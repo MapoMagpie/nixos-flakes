@@ -1,0 +1,13 @@
+mikudm.com###play_page ~ *
+mikudm.com##.conch_history_pop ~ div
+lldm.net###play_page ~ *
+lldm.net##.conch_history_pop ~ div
+bilibili.com##.recommended-container_floor-aside > .container .recommended-swipe
+bilibili.com##.recommended-container_floor-aside > .container .bili-live-card
+bilibili.com##.recommended-container_floor-aside > .container .floor-single-card
+bilibili.com,~search.bilibili.com##.recommended-container_floor-aside > .container .bili-video-card:not(.enable-no-interest)
+||s1.hdslb.com/bfs/static/pcdn-seeder/reward-seeder-1.2.0.min.js$domain=bilibili.com
+bbs.imoutolove.me###tab_1 > div:first-child > img
+@@||data.bilibili.com
+||www.colamanga.com/js/manga.read.js
+||www.colamanga.com/js/custom.js

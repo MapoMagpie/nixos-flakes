@@ -1,0 +1,186 @@
+{
+  "Gestures": [
+    {
+      "pattern": [
+        [
+          -37,
+          -25
+        ],
+        [
+          -88,
+          -11
+        ],
+        [
+          -50,
+          17
+        ],
+        [
+          -63,
+          62
+        ],
+        [
+          -22,
+          68
+        ],
+        [
+          4,
+          50
+        ],
+        [
+          33,
+          49
+        ],
+        [
+          84,
+          43
+        ],
+        [
+          105,
+          -4
+        ],
+        [
+          46,
+          -24
+        ],
+        [
+          22,
+          -27
+        ],
+        [
+          8,
+          -23
+        ],
+        [
+          -4,
+          -44
+        ],
+        [
+          -16,
+          -17
+        ],
+        [
+          -56,
+          -17
+        ],
+        [
+          -77,
+          8
+        ]
+      ],
+      "command": {
+        "name": "OpenAddonSettings"
+      }
+    },
+    {
+      "pattern": [
+        [
+          -3,
+          228
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          115,
+          -6
+        ]
+      ],
+      "command": {
+        "name": "CloseTab",
+        "settings": {
+          "nextFocus": "default",
+          "closePinned": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          16,
+          178
+        ],
+        [
+          -10,
+          65
+        ],
+        [
+          -169,
+          4
+        ],
+        [
+          -80,
+          -2
+        ]
+      ],
+      "command": {
+        "name": "RestoreTab",
+        "settings": {
+          "currentWindowOnly": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          -30,
+          -246
+        ],
+        [
+          1,
+          216
+        ]
+      ],
+      "command": {
+        "name": "ReloadTab",
+        "settings": {
+          "cache": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          62,
+          -12
+        ],
+        [
+          137,
+          14
+        ],
+        [
+          -135,
+          93
+        ],
+        [
+          -73,
+          32
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          199,
+          15
+        ],
+        [
+          12,
+          -3
+        ]
+      ],
+      "command": {
+        "name": "DuplicateTab",
+        "settings": {
+          "position": "default",
+          "focus": true
+        }
+      }
+    }
+  ],
+  "Settings": {
+    "General": {
+      "theme": "dark"
+    }
+  }
+}

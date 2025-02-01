@@ -1,0 +1,90 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Ark Pixel 12px Monospaced latin, Ark Pixel 12px Monospaced zh_cn";
+  font-feature-settings: "ss02, ss07";
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+/* .modules-left { */
+/*   margin-left: 15px; */
+/* } */
+/* .modules-right { */
+/*   margin-right: 15px; */
+/* } */
+window#waybar {
+  background: transparent;
+  border-radius: 0px;
+  border-bottom: 0px solid #3b6790;
+  min-height: 28px;
+  /* height: 28px; */
+}
+
+#clock, #workspaces, #window, #tray, #mpris,
+#network, #cpu, #memory, #disk, #pulseaudio, #custom-backlight {
+  background: #1f1f1f;
+  border-bottom: 2px solid #f0c30f;
+  border-top: 2px solid #f0c30f;
+}
+
+#clock, #workspaces, #window, #tray, #mpris
+{
+  border-left: 2px solid #f0c30f;
+  border-right: 2px solid #f0c30f;
+}
+#workspaces, #window, #tray, #network
+{
+  margin-left: 15px;
+}
+
+#network {
+  border-left: 2px solid #f0c30f;
+  padding-left: 10px;
+}
+#custom-backlight {
+  border-right: 2px solid #f0c30f;
+  padding-right: 10px;
+}
+
+#workspaces button.active {
+  background: #1f3f2a;
+}
+
+#mpris {
+  padding: 0 5px;
+}
+
+/* #workspaces */
+/* #workspaces button */
+/* #workspaces button.active */
+/* #workspaces button.empty */
+/* #workspaces button.persistent */
+/* #workspaces button.special */
+/* #workspaces button.visible */
+
+/* #network */
+/* #network.disabled */
+/* #network.disconnected */
+/* #network.linked */
+/* #network.ethernet */
+/* #network.wifi */
+
+
+/* #pulseaudio */
+/* #pulseaudio.bluetooth */
+/* #pulseaudio.muted */
+/* #pulseaudio.source-muted */
+
+
+
+/* #tray */
+#tray menu {
+  background: #1f1f1f;
+  color: rgb(250, 255, 255);
+}
+/* #tray > .passive for icons with status Passive */
+/* #tray > .active for icons with status Active */
+/* #tray > .needs-attention for icons with status NeedsAttention */
