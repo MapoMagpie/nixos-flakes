@@ -4,3 +4,6 @@
 [submodule "home/firefox/rime"]
 	path = home/firefox/rime
 	url = git@github.com:MapoMagpie/rime-xkjd6-private.git
+[submodule "home/fcitx5/rime"]
+	path = home/fcitx5/rime
+	url = git@github.com:MapoMagpie/rime-xkjd6-private.git
