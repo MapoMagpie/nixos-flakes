@@ -1,0 +1,311 @@
+{
+	"request": [
+		{
+			"enable": true,
+			"name": "imoutolove",
+			"ruleType": "redirect",
+			"matchType": "regexp",
+			"pattern": "https:\\/\\/[a-z]*\\.?(south|norht|east|spring|summer|snow|white|level|least|soul|blue)-plus\\.(net|org)\\/(.*)",
+			"exclude": "",
+			"group": "Ungrouped",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://bbs.imoutolove.me/$3"
+		},
+		{
+			"enable": true,
+			"name": "v2ex",
+			"ruleType": "redirect",
+			"matchType": "regexp",
+			"pattern": "^https:\\/\\/(?!cdn|www)\\w*.?v2ex.com\\/(.*)",
+			"exclude": "",
+			"group": "Ungrouped",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://www.v2ex.com/$1"
+		},
+		{
+			"enable": true,
+			"name": "bangumi",
+			"ruleType": "redirect",
+			"matchType": "regexp",
+			"pattern": "https:\\/\\/bgm\\.tv\\/(.*)",
+			"exclude": "",
+			"group": "Ungrouped",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://bangumi.tv/$1"
+		}
+	],
+	"sendHeader": [
+		{
+			"enable": false,
+			"name": "new bing sec-ch-ua",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "sec-ch-ua",
+				"value": "\"Microsoft Edge\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\""
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing user-agent",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "user-agent",
+				"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"
+			}
+		},
+		{
+			"enable": true,
+			"name": "moyu",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "https?://.*moyu.im.*",
+			"exclude": "",
+			"group": "Ungrouped",
+			"isFunction": false,
+			"action": {
+				"name": "referer",
+				"value": "http://jandan.net/"
+			}
+		},
+		{
+			"enable": false,
+			"name": "bing",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://www\\.bing\\.com/(.*)",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "x-forwarded-for",
+				"value": "8.8.8.8"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing authority",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": ":authority",
+				"value": "edgeservices.bing.com"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing method",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": ":method",
+				"value": "GET"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing path",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": ":path",
+				"value": "/edgesvc/chat?udsframed=1&form=SHORUN&clientscopes=chat,noheader,channelstable,saoc,&shellsig=c0ce5e765636243378bd5c67ce84e122c2296118&setlang=en-US&lightschemeovr=1"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing scheme",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": ":scheme",
+				"value": "https"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing Sec-Ch-Ua-Full-Version-List",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "sec-ch-ua-full-version-list",
+				"value": "\"Microsoft Edge\";v=\"119.0.2151.58\", \"Chromium\";v=\"119.0.6045.123\", \"Not?A_Brand\";v=\"24.0.0.0\""
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing Sec-Ms-Gec",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "sec-ms-gec",
+				"value": "1A944044FC87E22B03A475B310B2F0947BE1220743019569E16DC2260B772D1C"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing Cookie",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "cookie",
+				"value": "ipv6=hit=1703316042141&t=4; MUID=1289229A632067ED17EF316A62376658; _EDGE_S=SID=101CC864AB2769631289DB94AA71688B; USRLOC=HS=1; SRCHD=AF=NOFORM; SRCHUID=V=2&GUID=2304C45BED914FB9908C441E77BAB61B&dmnchg=1; MUIDB=1289229A632067ED17EF316A62376658; EDGSRVC=lightschemeovr=displaytheme=edgeservices&EN=language=edgeservices; EDGSRVCPERSIST=; EDGSRCHHPGUSR=CIBV=1.1381.12; CSRFCookie=de18d82e-4a48-45bb-a634-19c77719d58e; SRCHUSR=DOB=20231223&POEX=W; ANON=A=B32927161FBE04379014FBD9FFFFFFFF&E=1d34&W=1; NAP=V=1.9&E=1cda&C=LQZfhIwUVDl52s6k36w5Oj-sxf1lFEasLBUyxg6eZCXdiO7pQ_fHiA&W=1; PPLState=1; KievRPSSecAuth=FABaBBRaTOJILtFsMkpLVWSG6AN6C/svRwNmAAAEgAAACPB+lK7UEvkaGAR54cJ4xNoWBebbPCjwG5UMCyFR82DVZaqs+3LOkRQ6WKjOZPHYIZZERsLk/TssozTC7GLyYLO/seSVzoiuYH1Vj9yEprLBACrrRIr9WpueFwn5O4cR5jZlVOBUwAmFNQbcrqxpl1rTJtd1oYc+FbKK/OJU0m0CDA/ctAGBJTJfbqcTgZ3dDkOStrjO9qDRUkt/0nMIu6IwdTGD6jU9j9uRF0dKx+BzZZTMRsJCo45rRhAMRnx1DxvXMcHEyPnw1IoRKDZbF8SMfZAmzyEZvreFB4sxQBQyV9SDRtVDihdAUVwuODqVXLEfv0oWkJdHkW8oIJlErsVvpIBC9bOP6LKLjaE4ANoqauTol58ElZ2G3N3JHTPcuaeThL8ezTqAdwtEMsATq+UGOl+Jp9d//ENqLVoLrwLwfX+YfJZlxqa88D9Qzw5GRkE8uunVY+WKa+N4qx21bHHoKM8VuzFh9aAmzNMdiFrWx0/MjnaxSuiuAn/w+eRjOEmRqBNgiW9c4UahUyKFF0k27lj75NUo8hz9CclXqwNKPwKMUJCA5JU4aV27yunBttOfHWhmB2LMEsEnKWmVWYPhPy8uIyruQTv+7THYKvC3YAVqXdxFooPyr29b7WDFOQYgJxJMNk0lQl5QgqQJEEb9xglxyyiaRuTROEpPHrf2YMtwtjR7MdiERvWoNmmiYkXtL+/we4TzBF2OF1wJEB6OQvmS/zreUbkSnINtpmWF/GiUaFdox/o5dCjA7aZI16NEl6sCvpyj8zIGS6Taeo5qr7q98IAbipAxVxTFCsniGTswHFm226UYQB92kwcvuIZgWNLYR7RQvShGz7EMI5x0NfPV1oPgnJJdQrzNo95mDVySSzc5bPjPD0eBK+2/nFct9kvHfF4cLzp4+Lac0pWWA+ht8G2wcwUOM2qvt7jAbkwcas825HXBWyEes/VFvAkP4G5jrZycLG6CVCrSwdN2IrHwAMOUO6dASQRcf2vpDoUJ5Qg/B8vkK/yB8Tk5Z6c/UXlvSxL51+H+65gw5SzrI4WLyQaDePFmvCDuIZSLmZLlWcqa52bNHZaGOjT8nN20BZwJd8v3tbVIwklyF+BBvV5BsqdLhH8L8T5CtH7k1cYvbeX41ge2ZP9B1dDiyjRR5cufd/rOwkS0eI877hPBMMjWupjIHyDPRrqrm7g4EiQtP52F0nKvBSQ16g3rmvUyAh10ily34fxdb6A2Y8uwC029yLq+pEdaqtLUcBxfX5SmRLxyjE9nuZXXuhnysHtS2j6Vc3DYKir7WLAH6pAPbYaRsQF6M4WJhTLsSRMZVQijeIv7zZYGSE7VVdTOG+QqFId4uIxGV9g2zz4edk3bEWrQeveA6cyNcnUU3s/y3kNvmcYjgpAIdF6Ia31nRCYDFAALPkAJe72+YThw3cG1PkN8SOhrDw==; _U=1NDpYFml9Owe2VHNH95sWWaSULXxzNqGSJNdGorOZNg0c6j3riQrH4aUR07wZJXiCONvUoypRTQhnK0G36D2W4pVaH4SxVaLfP2mTa9kh5T-vkqE5W0D9Q_xEFM3imIxEsvmIScZuNYehr9EoIRj3b1Jb7hKadZiybqqXPPXFZEOJpo-UvumrB4aFsvTlzrJKVVmasmMw48XcaXbkzLV-dw; WLS=C=5b8f9f1bd30c9710&N=Zsyjk; WLID=dd9kIakb3gitgHsJnc4WBkjFmvaEeC/qj4ho+/wUX0Z3cS0chh6SygSAUyHQl8N2JSMgkUv4ywQJEKrlBRDPDlzQ09+PCAloXxxMLItsAAs=; _RwBf=r=0&ilt=0&ihpd=0&ispd=0&rc=0&rb=0&gb=0&rg=0&pc=0&mtu=0&rbb=0&g=0&cid=&clo=0&v=0&l=0001-01-01T00:00:00.0000000&lft=0001-01-01T00:00:00.0000000&aof=0&ard=0001-01-01T00:00:00.0000000&o=2&p=&c=&t=0&s=0001-01-01T00:00:00.0000000+00:00&ts=2023-12-23T06:21:35.3714759+00:00&rwred=0&wls=2&wlb=0&wle=1&ccp=0&lka=0&lkt=0&aad=0&TH=; _Rwho=u=m; _SS=SID=101CC864AB2769631289DB94AA71688B&R=0&RB=0&GB=0&RG=0&RP=0; GC=CVspFnUnPJKmsunQ_0MfNBUofmvqWj9AbkSmsHnT_JSqE797voab2DJcVprZ-FxlQ16L9Xk9-V2zepUQ_QnGkA; EDGSRVCSCEN=shell=clientscopes=noheader-coauthor-chat-visibilitypm-docvisibility-channelstable&chat=clientscopes=chat-noheader-channelstable-saoc; SRCHHPGUSR=SRCHLANG=en&PV=6.6.7&DM=0&HV=1703312661&WTS=63838909242&cdxupdttm=638388805054355451"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing Upgrade-Insecure-Requests",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "upgrade-insecure-requests",
+				"value": "1"
+			}
+		},
+		{
+			"enable": false,
+			"name": "new bing X-Edge-Shopping-Flag",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bing\\.com\\/.*",
+			"exclude": "",
+			"group": "newbing",
+			"isFunction": false,
+			"action": {
+				"name": "x-edge-shopping-flag",
+				"value": "1"
+			}
+		},
+		{
+			"enable": true,
+			"name": "bilibili-ua",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*bilibili.com.*",
+			"exclude": "",
+			"group": "bilibili",
+			"isFunction": false,
+			"action": {
+				"name": "user-agent",
+				"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+			}
+		},
+		{
+			"enable": true,
+			"name": "youtube-ua",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": ".*youtube.com.*",
+			"exclude": "",
+			"group": "youtube",
+			"isFunction": false,
+			"action": {
+				"name": "user-agent",
+				"value": "     Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+			}
+		},
+		{
+			"enable": true,
+			"name": "sinaimg",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "https?://.*sinaimg.cn.*",
+			"exclude": "",
+			"group": "Ungrouped",
+			"isFunction": false,
+			"action": {
+				"name": "referer",
+				"value": "http://news.sina.com.cn/"
+			}
+		}
+	],
+	"receiveHeader": [
+		{
+			"enable": false,
+			"name": "Pixiv Cross-Origin",
+			"ruleType": "modifyReceiveHeader",
+			"matchType": "domain",
+			"pattern": "www.pixiv.net",
+			"exclude": "",
+			"group": "Pixiv",
+			"isFunction": false,
+			"action": {
+				"name": "cross-origin-opener-policy",
+				"value": "same-origin"
+			}
+		},
+		{
+			"enable": false,
+			"name": "Pixiv Cross-Origin_2",
+			"ruleType": "modifyReceiveHeader",
+			"matchType": "domain",
+			"pattern": "www.pixiv.net",
+			"exclude": "",
+			"group": "Pixiv",
+			"isFunction": false,
+			"action": {
+				"name": "cross-origin-embedder-policy",
+				"value": "require-corp"
+			}
+		},
+		{
+			"enable": true,
+			"name": "cspremove",
+			"ruleType": "modifyReceiveHeader",
+			"matchType": "domain",
+			"pattern": "x.com",
+			"exclude": "",
+			"group": "Ungrouped",
+			"isFunction": false,
+			"action": {
+				"name": "content-security-policy",
+				"value": "object-src '*'"
+			}
+		}
+	],
+	"receiveBody": []
+}
