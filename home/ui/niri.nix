@@ -129,12 +129,30 @@
         "Mod+Alt+E".action = spawn "killall" "-INT" "wf-recorder";
       };
       window-rules = [
+        # no background of border
         {
           matches = [
             { app-id = "ghostty$"; }
+            { app-id = "^swayimg$"; }
           ];
           draw-border-with-background = false;
         }
+        # swayimg
+        {
+          matches = [
+            { app-id = "^swayimg$"; }
+          ];
+          open-floating = true;
+          default-column-width = {
+            proportion = 1.0;
+          };
+          default-window-height = {
+            proportion = 1.0;
+          };
+          # focus-ring.enable = true;
+          # border.enable = false;
+        }
+        # floating and size and bottom-right
         {
           matches = [
             {
@@ -153,6 +171,23 @@
             y = 10;
           };
         }
+        # max size
+        {
+          matches = [
+            { app-id = "^firefox$"; }
+          ];
+          excludes = [
+            { title = "Picture-in-Picture"; }
+          ];
+          default-column-width.proportion = 1.0;
+        }
+        # half size
+        # {
+        #   matches = [
+        #     { app-id = "ghostty$"; }
+        #   ];
+        #   default-column-width.proportion = 1.0 / 2.0;
+        # }
       ];
     };
   };
