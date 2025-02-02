@@ -7,6 +7,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
+    rimedm.url = "github:MapoMagpie/rimedm";
+    rimedm.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -14,6 +16,7 @@
       nixpkgs,
       home-manager,
       niri,
+      rimedm,
       ...
     }:
     {
@@ -35,6 +38,7 @@
               home-manager.extraSpecialArgs = {
                 inherit host;
                 inherit niri;
+                inherit rimedm;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

@@ -1,4 +1,9 @@
-{ pkgs, host, ... }:
+{
+  pkgs,
+  host,
+  rimedm,
+  ...
+}:
 {
   imports = [
     ./ui
@@ -38,6 +43,7 @@
     killall
     remmina
     swayimg
+    rimedm.packages.${pkgs.system}.default
   ];
 
   programs.git = {
