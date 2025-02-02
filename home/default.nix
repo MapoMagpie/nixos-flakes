@@ -44,6 +44,7 @@
     remmina
     swayimg
     rimedm.packages.${pkgs.system}.default
+    gitui
   ];
 
   programs.git = {
