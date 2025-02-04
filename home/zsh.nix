@@ -21,6 +21,11 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    completionInit = ''
+      autoload -U edit-command-line
+      zle -N edit-command-line
+      bindkey '^Xe' edit-command-line
+    '';
     history = {
       size = 100000;
       path = "${config.xdg.dataHome}/zsh/history";

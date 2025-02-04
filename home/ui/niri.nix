@@ -29,10 +29,12 @@
           repeat-delay = 400;
           repeat-rate = 50;
         };
+        focus-follows-mouse.enable = true;
       };
       layout = {
         gaps = 1;
         center-focused-column = "never";
+        # center-focused-column = "on-overflow";
         # "always-center-single-column" = false;
         preset-column-widths = [
           { proportion = 1.0 / 3.0; }
@@ -162,9 +164,25 @@
             { app-id = "^mpv$"; }
           ];
           open-floating = true;
-          open-focused = true;
           default-column-width.proportion = 1.5 / 5.0;
           default-window-height.proportion = 1.5 / 5.0;
+          default-floating-position = {
+            relative-to = "bottom-right";
+            x = 10;
+            y = 10;
+          };
+        }
+        # firefox developer floating and bottom-right
+        {
+          matches = [
+            {
+              app-id = "^firefox$";
+              title = "^$";
+            }
+          ];
+          open-floating = true;
+          default-column-width.proportion = 2.0 / 5.0;
+          default-window-height.proportion = 2.5 / 5.0;
           default-floating-position = {
             relative-to = "bottom-right";
             x = 10;

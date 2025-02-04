@@ -6,7 +6,6 @@
   home.file.".config/yazi/keymap.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/filemanager/keymap.toml";
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true;
     settings = {
       manager = {
         ratio = [

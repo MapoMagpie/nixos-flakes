@@ -136,6 +136,7 @@
     ripgrep # recursively searches directories for a regex pattern
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    jq
     # misc
     file
     which
