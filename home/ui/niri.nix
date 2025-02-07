@@ -139,6 +139,19 @@
           ];
           draw-border-with-background = false;
         }
+        # dragon drag-and-drop
+        {
+          matches = [
+            { app-id = "^dragon$"; }
+          ];
+          open-floating = true;
+          open-focused = false;
+          default-floating-position = {
+            relative-to = "bottom-left";
+            x = 10;
+            y = 10;
+          };
+        }
         # swayimg
         {
           matches = [
@@ -151,8 +164,6 @@
           default-window-height = {
             proportion = 1.0;
           };
-          # focus-ring.enable = true;
-          # border.enable = false;
         }
         # floating and size and bottom-right
         {
@@ -200,12 +211,12 @@
           default-column-width.proportion = 1.0;
         }
         # half size
-        # {
-        #   matches = [
-        #     { app-id = "ghostty$"; }
-        #   ];
-        #   default-column-width.proportion = 1.0 / 2.0;
-        # }
+        {
+          matches = [
+            { app-id = "ghostty$"; }
+          ];
+          default-column-width.proportion = 1.0 / 3.0;
+        }
       ];
     };
   };

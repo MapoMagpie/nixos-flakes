@@ -34,6 +34,6 @@ return {
 		if all == "" then
 			return
 		end
-		local _ = os.execute("dragon-drop -x -a -T  " .. all)
+		local _ = os.execute("dragon -x -a -T  " .. all)
 	end,
 }

@@ -5,15 +5,6 @@
     ./fuzzel.nix
     ./niri.nix
   ];
-  home.packages = with pkgs; [
-    xdg-desktop-portal-gnome
-    xdg-desktop-portal-gtk
-    gnome-keyring
-    slurp
-    libnotify
-    grim
-    wf-recorder
-  ];
   home.pointerCursor = with pkgs; {
     name = "Bibata-Original-Amber";
     package = bibata-cursors;
@@ -22,6 +13,7 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       cursor-theme = "Bibata-Original-Amber";
+      color-scheme = "prefer-dark";
     };
   };
   services.mako = {
