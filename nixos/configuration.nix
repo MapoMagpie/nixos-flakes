@@ -166,6 +166,7 @@
     yazi
     helix
     mpv
+    nix-output-monitor
   ];
 
   services.displayManager.sddm = {

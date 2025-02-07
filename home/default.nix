@@ -41,10 +41,19 @@
     kitty
     wl-clipboard
     killall
-    remmina
+    freerdp3
     swayimg
     rimedm.packages.${pkgs.system}.default
     gitui
+
+    xdg-desktop-portal-gnome
+    xdg-desktop-portal-gtk
+    gnome-keyring
+    slurp
+    libnotify
+    grim
+    wf-recorder
+    xdragon
   ];
 
   programs.git = {
