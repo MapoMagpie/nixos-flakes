@@ -8,6 +8,7 @@
   home.file.".config/swww/images".source = ./images;
 
   imports = [ niri.homeModules.niri ];
+  home.packages = [ pkgs.xwayland-satellite ];
 
   programs.niri = {
     enable = true;
@@ -17,9 +18,11 @@
         QT_QPA_PLATFORM = "wayland";
         EDITOR = "hx";
         TERMINAL = "ghostty";
+        DISPLAY = ":0";
       };
       spawn-at-startup = [
         { command = [ "waybar" ]; }
+        { command = [ "xwayland-satellite" ]; }
         {
           command = [
             "fcitx5"
