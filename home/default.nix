@@ -39,6 +39,7 @@
     tldr
     telegram-desktop
     kitty
+    bat
     wl-clipboard
     killall
     freerdp3
@@ -54,6 +55,7 @@
     grim
     wf-recorder
     xdragon
+    showmethekey
   ];
 
   programs.git = {

@@ -167,6 +167,8 @@
     helix
     mpv
     nix-output-monitor
+
+    hyprpolkitagent
   ];
 
   services.displayManager.sddm = {
