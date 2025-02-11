@@ -5,6 +5,11 @@
     ./fuzzel.nix
     ./niri.nix
   ];
+
+  home.packages = with pkgs; [
+    swww
+  ];
+
   home.pointerCursor = with pkgs; {
     name = "Bibata-Original-Amber";
     package = bibata-cursors;
@@ -68,16 +73,4 @@
     extraConfig = (builtins.readFile ./hyprlock.conf);
   };
 
-  home.file.".config/hypr/images".source = ./images;
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = [
-        "${config.xdg.configHome}/hypr/images/1.png"
-      ];
-      wallpaper = [
-        ", ${config.xdg.configHome}/hypr/images/1.png"
-      ];
-    };
-  };
 }

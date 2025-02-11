@@ -5,7 +5,10 @@
   ...
 }:
 {
+  home.file.".config/swww/images".source = ./images;
+
   imports = [ niri.homeModules.niri ];
+
   programs.niri = {
     enable = true;
     settings = {
@@ -21,6 +24,24 @@
           command = [
             "fcitx5"
             "-rd"
+          ];
+        }
+        {
+          command = [
+            "systemctl"
+            "--user"
+            "start"
+            "hyprpolkitagent"
+          ];
+        }
+        { command = [ "swww-daemon" ]; }
+        {
+          command = [
+            "swww"
+            "img"
+            "${config.xdg.configHome}/swww/images/4.png"
+            "--transition-type"
+            "center"
           ];
         }
       ];
