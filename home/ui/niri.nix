@@ -5,7 +5,6 @@
   ...
 }:
 {
-  home.file.".config/swww/images".source = ./images;
 
   imports = [ niri.homeModules.niri ];
   home.packages = [ pkgs.xwayland-satellite ];
@@ -42,7 +41,7 @@
           command = [
             "swww"
             "img"
-            "${config.xdg.configHome}/swww/images/4.png"
+            "${config.xdg.configHome}/nixos/home/images/wallpapers/4.png"
             "--transition-type"
             "center"
           ];
