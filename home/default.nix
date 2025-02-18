@@ -13,7 +13,7 @@
     ./browser
     ./code
     ./misc
-  ];
+  ] ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
   # 注意修改这里的用户名与用户目录
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
@@ -56,6 +56,9 @@
     wf-recorder
     xdragon
     showmethekey
+
+    ffmpeg
+    imagemagick
   ];
 
   programs.git = {
