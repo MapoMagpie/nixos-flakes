@@ -44,8 +44,7 @@
               home-manager.useUserPackages = true;
               home-manager.users."${host.username}" = import ./home;
             }
-
-          ];
+          ] ++ (if host.hostname == "maponixos" then [ ./home/game/steam.nix ] else [ ]);
         };
     };
 }

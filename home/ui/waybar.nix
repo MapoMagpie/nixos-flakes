@@ -12,7 +12,7 @@
         # "height" = 28;
         "width" = host.screen.w;
         "spacing" = 0;
-        "margin-top" = 6;
+        "margin-top" = 3;
         "modules-left" = [
           "clock"
           "niri/workspaces"
@@ -86,11 +86,11 @@
         "niri/workspaces" = {
           "format" = "{icon}";
           "format-icons" = {
-            "1" = "NET:";
-            "2" = "TERM:";
-            "3" = "CODE:";
-            "4" = "CHAT:";
-            "5" = "REMO:";
+            "NETW" = "NETW:";
+            "TERM" = "TERM:";
+            "CODE" = "CODE:";
+            "CHAT" = "CHAT:";
+            "GAME" = "GAME:";
             "default" = "TEMP:";
           };
           "current-only" = true;

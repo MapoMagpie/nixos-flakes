@@ -13,6 +13,13 @@
     enable = true;
     settings = {
       prefer-no-csd = true;
+      workspaces = {
+        "NETW" = { };
+        "TERM" = { };
+        "CODE" = { };
+        "CHAT" = { };
+        "GAME" = { };
+      };
       environment = {
         QT_QPA_PLATFORM = "wayland";
         EDITOR = "hx";
@@ -20,12 +27,12 @@
         DISPLAY = ":0";
       };
       spawn-at-startup = [
-        { command = [ "waybar" ]; }
         { command = [ "xwayland-satellite" ]; }
+        { command = [ "waybar" ]; }
         {
           command = [
             "fcitx5"
-            "-rd"
+            "-d"
           ];
         }
         {
@@ -90,10 +97,10 @@
           };
         };
         struts = {
-          left = 2;
-          right = 2;
-          top = 6;
-          bottom = 6;
+          left = 3;
+          right = 3;
+          top = 3;
+          bottom = 4;
         };
       };
       binds = with config.lib.niri.actions; {
@@ -116,24 +123,18 @@
         "Mod+Shift+I".action = consume-or-expel-window-right;
         "Mod+Shift+O".action = swap-window-left;
         "Mod+Shift+P".action = swap-window-right;
-        "Mod+1".action = focus-workspace 1;
-        "Mod+2".action = focus-workspace 2;
-        "Mod+3".action = focus-workspace 3;
-        "Mod+4".action = focus-workspace 4;
-        "Mod+5".action = focus-workspace 5;
-        "Mod+6".action = focus-workspace 6;
-        "Mod+7".action = focus-workspace 7;
-        "Mod+8".action = focus-workspace 8;
-        "Mod+9".action = focus-workspace 9;
-        "Mod+Shift+1".action = move-window-to-workspace 1;
-        "Mod+Shift+2".action = move-window-to-workspace 2;
-        "Mod+Shift+3".action = move-window-to-workspace 3;
-        "Mod+Shift+4".action = move-window-to-workspace 4;
-        "Mod+Shift+5".action = move-window-to-workspace 5;
-        "Mod+Shift+6".action = move-window-to-workspace 6;
-        "Mod+Shift+7".action = move-window-to-workspace 7;
-        "Mod+Shift+8".action = move-window-to-workspace 8;
-        "Mod+Shift+9".action = move-window-to-workspace 9;
+        "Mod+1".action = focus-workspace "NETW";
+        "Mod+2".action = focus-workspace "TERM";
+        "Mod+3".action = focus-workspace "CODE";
+        "Mod+4".action = focus-workspace "CHAT";
+        "Mod+5".action = focus-workspace "GAME";
+        "Mod+6".action = focus-workspace "TEMP";
+        "Mod+Shift+1".action = move-window-to-workspace "NETW";
+        "Mod+Shift+2".action = move-window-to-workspace "TERM";
+        "Mod+Shift+3".action = move-window-to-workspace "CODE";
+        "Mod+Shift+4".action = move-window-to-workspace "CHAT";
+        "Mod+Shift+5".action = move-window-to-workspace "GAME";
+        "Mod+Shift+6".action = move-window-to-workspace "TEMP";
         "Mod+Alt+H".action = set-window-width "-10%";
         "Mod+Alt+L".action = set-window-width "+10%";
         "Mod+Alt+J".action = set-window-height "+10%";
@@ -150,7 +151,7 @@
         "Mod+W".action = spawn "bash" "-c" "niri msg windows | ${config.home.homeDirectory}/.config/fuzzel/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";
         "Mod+S".action = spawn "bash" "-c" ''slurp > /tmp/geometry && notify-send "$(cat /tmp/geometry)"'';
         "Mod+Shift+S".action = spawn "bash" "-c" ''sleep 3 && grim -g "$(cat /tmp/geometry)" ${config.home.homeDirectory}/Pictures/screenshots/grim_$(date +"%Y%m%d_%H%M%S").png && notify-send "Screenshot Done"'';
-        "Mod+Shift+E".action = spawn "bash" "-c" ''notify-send "wf-recorder started" && wf-recorder -g "$(cat /tmp/geometry)" -r 30 -f ${config.home.homeDirectory}/Videos/screenshots/rec_$(date +"%Y%m%d_%H%M%S").mp4 && notify-send "wf-recorder done"'';
+        "Mod+Shift+E".action = spawn "bash" "-c" ''notify-send "wf-recorder started" && wf-recorder --audio -g "$(cat /tmp/geometry)" -r 60 -f ${config.home.homeDirectory}/Videos/screenshots/rec_$(date +"%Y%m%d_%H%M%S").mp4 && notify-send "wf-recorder done"'';
         "Mod+Alt+E".action = spawn "killall" "-INT" "wf-recorder";
       };
       window-rules = [
@@ -159,6 +160,7 @@
           matches = [
             { app-id = "ghostty$"; }
             { app-id = "^swayimg$"; }
+            { app-id = "^showmethekey-gtk$"; }
           ];
           draw-border-with-background = false;
         }
@@ -169,6 +171,21 @@
           ];
           open-floating = true;
           open-focused = false;
+          default-floating-position = {
+            relative-to = "bottom-left";
+            x = 10;
+            y = 10;
+          };
+        }
+        # showmethekey
+        {
+          matches = [
+            { app-id = "^showmethekey-gtk$"; }
+          ];
+          open-floating = true;
+          open-focused = false;
+          default-column-width.proportion = 400.0 / 2560.0;
+          default-window-height.proportion = 80.0 / 1440.0;
           default-floating-position = {
             relative-to = "bottom-left";
             x = 10;
@@ -227,6 +244,8 @@
         {
           matches = [
             { app-id = "^firefox$"; }
+            { app-id = "Minecraft"; }
+            { app-id = "^org.telegram.desktop$"; }
           ];
           excludes = [
             { title = "Picture-in-Picture"; }
@@ -238,7 +257,60 @@
           matches = [
             { app-id = "ghostty$"; }
           ];
-          default-column-width.proportion = 1.0 / 3.0;
+          default-column-width.proportion = 1.0 / 2.0;
+        }
+        # fullscreen
+        {
+          matches = [
+            { app-id = "^steam_app.*$"; }
+          ];
+          open-fullscreen = true;
+        }
+        # NETW
+        {
+          matches = [
+            { app-id = "^firefox$"; }
+            { app-id = "^chromium-browser$"; }
+          ];
+          open-on-workspace = "NETW";
+        }
+        # TERM
+        {
+          matches = [
+            { app-id = "ghostty$"; }
+          ];
+          open-on-workspace = "TERM";
+        }
+        # CODE
+        # {
+        #   matches = [
+        #     { app-id = "^steam_app.*$"; }
+        #   ];
+        #   open-on-workspace = "CODE";
+        # }
+        # CHAT
+        {
+          matches = [
+            { app-id = "^org.telegram.desktop$"; }
+          ];
+          open-on-workspace = "CHAT";
+        }
+        # GAME
+        {
+          matches = [
+            { app-id = "^steam_app.*$"; }
+            { app-id = "^steam$"; }
+            { app-id = "PrismLauncher$"; }
+            { app-id = "Minecraft"; }
+          ];
+          open-on-workspace = "GAME";
+        }
+        # TEMP_
+        {
+          matches = [
+            { app-id = "^steam_app.*$"; }
+          ];
+          open-on-workspace = "TEMP";
         }
       ];
     };
