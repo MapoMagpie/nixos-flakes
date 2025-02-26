@@ -137,6 +137,7 @@
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
     jq
+    sd
     # misc
     file
     which
