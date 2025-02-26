@@ -1,0 +1,128 @@
+@define-color color_bg #1f1f1f;
+@define-color color_bg_focused #1f1f7f;
+@define-color color_border #f0c30f;
+@define-color color_border_focused #ff23af;
+@define-color color_border_active #f0c30f;
+@define-color color_text #ffffff;
+@define-color color_urgent #8f0a0a;
+
+/* -- base styles -- */
+
+* {
+    font-family: "Ark Pixel 12px Monospaced latin, Ark Pixel 12px Monospaced zh_cn";
+    font-feature-settings: "ss02, ss07";
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: none;
+    /* border: none; */
+    /* border-radius: 0; */
+    background-color: @color_bg;
+    color: @color_text;
+    box-shadow: none;
+}
+
+.background,
+.background > .container,
+.widget-container,
+#start, #center, #end,
+button *
+{
+    background: transparent;
+}
+#start .widget {
+    margin-right: 10px;
+}
+#end .widget {
+    margin-left: 10px;
+}
+
+button {
+    background: @color_bg;
+    background-color: @color_bg;
+}
+
+button.widget, box.widget > button {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+}
+
+.widget, button.widget {
+    padding-left: 9px;
+    padding-right: 9px;
+    border: 2px solid @color_border;
+    background: @color_bg;
+    background-color: @color_bg;
+}
+
+.workspaces {
+    padding-left: 0;
+    padding-right: 0;
+}
+.workspaces > button.text-button {
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.popup-workspaces {
+    padding-left: 3px;
+    padding-right: 3px;
+    background: transparent;
+}
+
+.popup-workspaces .item {
+    padding: 0;
+    margin-top: 2px;
+    border-radius: 0;
+    border: none;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: 1px solid @color_border;
+    background: @color_bg;
+}
+
+.popup-workspaces .item.focused {
+    border: 1px solid @color_border_focused;
+}
+
+button:hover, button.text-button:hover, .workspaces:hover {
+    background: red;
+    background-color: red;
+}
+
+/* -- clock -- */
+.popup-clock {
+    border: 1px solid @color_border;
+}
+
+.popup-clock .calendar-clock {
+    color: @color_text;
+    font-size: 2.5em;
+    padding-bottom: 0.1em;
+    padding-top: 0.1em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+.popup-clock .calendar {
+    font-size: 1.2em;
+}
+
+.popup-clock .calendar .header {
+    border-top: 2px solid @color_border;
+    border-bottom: 2px solid @color_border;
+}
+.popup-clock .calendar:selected {
+    background-color: @color_border_active;
+}
+
+.popup-music .title .icon, .popup-music .title .label {
+    font-size: 1.2em;
+}
+
+.brightness .brightness-value {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
