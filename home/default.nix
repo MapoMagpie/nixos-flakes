@@ -59,6 +59,7 @@
 
     ffmpeg
     imagemagick
+    gimp
   ];
 
   programs.git = {
