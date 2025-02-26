@@ -10,6 +10,5 @@ prepend_keymap = [
 	{ on = "<C-w>",     run = "tasks_show",         desc = "Show task manager" },
   { on = "w",         run = '''
 	shell --block 'FX="$@" zsh'
-		
 	''',  desc = "Open Nested Shell(zsh)" },
 ]
