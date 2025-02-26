@@ -14,11 +14,21 @@
     settings = {
       prefer-no-csd = true;
       workspaces = {
-        "NETW" = { };
-        "TERM" = { };
-        "CODE" = { };
-        "CHAT" = { };
-        "GAME" = { };
+        "01_NETW" = {
+          name = "NETW";
+        };
+        "02_TERM" = {
+          name = "TERM";
+        };
+        "03_CODE" = {
+          name = "CODE";
+        };
+        "04_CHAT" = {
+          name = "CHAT";
+        };
+        "05_GAME" = {
+          name = "GAME";
+        };
       };
       environment = {
         QT_QPA_PLATFORM = "wayland";
@@ -99,8 +109,8 @@
         struts = {
           left = 3;
           right = 3;
-          top = 3;
-          bottom = 4;
+          top = 0;
+          bottom = 3;
         };
       };
       binds = with config.lib.niri.actions; {
@@ -262,7 +272,7 @@
         # fullscreen
         {
           matches = [
-            { app-id = "^steam_app.*$"; }
+            { app-id = "^steam_app_[0-9]+"; }
           ];
           open-fullscreen = true;
         }
@@ -306,12 +316,12 @@
           open-on-workspace = "GAME";
         }
         # TEMP_
-        {
-          matches = [
-            { app-id = "^steam_app.*$"; }
-          ];
-          open-on-workspace = "TEMP";
-        }
+        # {
+        #   matches = [
+        #     { app-id = "^steam_app.*$"; }
+        #   ];
+        #   open-on-workspace = "TEMP";
+        # }
       ];
     };
   };
