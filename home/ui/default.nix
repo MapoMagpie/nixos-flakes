@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    ./waybar.nix
+    # ./waybar.nix
+    ./ironbar.nix
     ./fuzzel.nix
     ./niri.nix
   ];
