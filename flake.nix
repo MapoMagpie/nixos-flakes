@@ -9,6 +9,8 @@
     niri.inputs.nixpkgs.follows = "nixpkgs";
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
+    ironbar.url = "github:JakeStanger/ironbar";
+    ironbar.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -17,6 +19,7 @@
       home-manager,
       niri,
       rimedm,
+      ironbar,
       ...
     }:
     {
@@ -39,6 +42,7 @@
                 inherit host;
                 inherit niri;
                 inherit rimedm;
+                inherit ironbar;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

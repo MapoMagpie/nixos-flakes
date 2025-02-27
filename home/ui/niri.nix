@@ -38,7 +38,7 @@
       };
       spawn-at-startup = [
         { command = [ "xwayland-satellite" ]; }
-        { command = [ "waybar" ]; }
+        { command = [ "${config.home.homeDirectory}/code/ironbar/target/release/ironbar" ]; }
         {
           command = [
             "fcitx5"
@@ -158,7 +158,7 @@
         "Mod+Shift+T".action = switch-focus-between-floating-and-tiling;
         "Mod+G".action = center-column;
         "Mod+V".action = spawn "bash" "-c" "cliphist list | fuzzel -d | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-        "Mod+W".action = spawn "bash" "-c" "niri msg windows | ${config.home.homeDirectory}/.config/fuzzel/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";
+        "Mod+W".action = spawn "bash" "-c" "niri msg windows | ${config.home.homeDirectory}/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";
         "Mod+S".action = spawn "bash" "-c" ''slurp > /tmp/geometry && notify-send "$(cat /tmp/geometry)"'';
         "Mod+Shift+S".action = spawn "bash" "-c" ''sleep 3 && grim -g "$(cat /tmp/geometry)" ${config.home.homeDirectory}/Pictures/screenshots/grim_$(date +"%Y%m%d_%H%M%S").png && notify-send "Screenshot Done"'';
         "Mod+Shift+E".action = spawn "bash" "-c" ''notify-send "wf-recorder started" && wf-recorder --audio -g "$(cat /tmp/geometry)" -r 60 -f ${config.home.homeDirectory}/Videos/screenshots/rec_$(date +"%Y%m%d_%H%M%S").mp4 && notify-send "wf-recorder done"'';
