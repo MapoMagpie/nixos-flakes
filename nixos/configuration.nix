@@ -5,10 +5,13 @@
 { pkgs, host, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports =
+    if host.hostname == "maponixos" then
+      [
+        ./hardware-configuration-maponixos.nix
+      ]
+    else
+      [ ];
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

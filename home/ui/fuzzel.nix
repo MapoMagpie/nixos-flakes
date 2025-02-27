@@ -1,6 +1,5 @@
 { ... }:
 {
-  home.file.".config/fuzzel/merge_window_info.sh".source = ./merge_window_info.sh;
   programs.fuzzel = {
     enable = true;
     settings = {

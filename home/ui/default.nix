@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./waybar.nix
     ./ironbar.nix
     ./fuzzel.nix
     ./niri.nix
