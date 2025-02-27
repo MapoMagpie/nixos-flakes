@@ -51,7 +51,7 @@
       buildos = "sudo nixos-rebuild switch --flake ~/nixos";
       nd = "nix develop";
     };
-    initExtra = "source ${config.xdg.configHome}/yazi/yy.sh";
+    initExtra = "source ${config.home.homeDirectory}/nixos/home/misc/scripts/yy.sh";
   };
 
 }

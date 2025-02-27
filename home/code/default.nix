@@ -3,13 +3,9 @@
   home.packages = with pkgs; [
     nil
     nixfmt-rfc-style
-    # rust-analyzer
   ];
   home.file.".config/helix/themes" = {
     source = config.lib.file.mkOutOfStoreSymlink ./helix/themes;
-  };
-  home.file.".config/helix/setrimeasciimode.sh" = {
-    source = config.lib.file.mkOutOfStoreSymlink ./helix/setrimeasciimode.sh;
   };
   programs.helix = {
     enable = true;
@@ -32,44 +28,18 @@
           };
         }
       ];
-      # language-server = {
-      #   denolsp = {
-      #     command = "${pkgs.deno}/bin/deno";
-      #     args = [ "lsp" ];
-      #     environment.NO_COLOR = "1";
-      #     config.deno = {
-      #       enable = true;
-      #       lint = true;
-      #       unstable = true;
-      #       suggest = {
-      #         completeFunctionCalls = false;
-      #         imports = {
-      #           hosts."https://deno.land" = true;
-      #         };
-      #       };
-      #       inlayHints = {
-      #         enumMemberValues.enabled = true;
-      #         functionLikeReturnTypes.enabled = true;
-      #         parameterNames.enabled = "all";
-      #         parameterTypes.enabled = true;
-      #         propertyDeclarationTypes.enabled = true;
-      #         variableTypes.enabled = true;
-      #       };
-      #     };
-      #   };
-      # };
     };
     settings = {
       theme = "catppuccin_mocha_nb";
       keys.insert = {
         "esc" = [
-          ":run-shell-command ~/.config/helix/setrimeasciimode.sh"
+          ":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh"
           "normal_mode"
         ];
         "C-s" = ":w";
       };
       keys.normal = {
-        "esc" = [ ":run-shell-command ~/.config/helix/setrimeasciimode.sh" ];
+        "esc" = [ ":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh" ];
         "C-s" = ":w";
       };
       editor = {
