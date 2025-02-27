@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    ./ironbar.nix
-    ./fuzzel.nix
-    ./niri.nix
+    ./ironbar
+    ./niri
+    ./fuzzel
   ];
 
   home.packages = with pkgs; [
