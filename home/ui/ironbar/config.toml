@@ -5,8 +5,8 @@ icon_theme = "Paper"
 
 [margin]
 top = 5
-bottom = 2
-left = 5
+bottom = 5
+left = 2
 right = 2
 
 [[start]]
@@ -15,6 +15,7 @@ type = "clock"
 [[start]]
 type = "workspaces"
 sort = "added"
+on_click_right = '''niri msg windows | ~/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}'''
 
 [start.name_map]
 NETW = "NETW "
@@ -39,7 +40,7 @@ format = "{title} / {artist}"
 
 [end.truncate]
 mode = "end"
-max_length = 100
+max_length = 80
 
 [end.icons]
 play = ""
@@ -48,11 +49,13 @@ pause = ""
 [[end]]
 type = 'sys_info'
 format = [
-    "[信] {net_down#k@wlp37s0:3}/{net_up#k@wlp37s0:2}k",
-    "[算] {cpu_percent}",
-    "[存] {memory_used#G:2.0}",
-    "[贮] {disk_used#G@/}",
+    "  {net_down#k@wlp37s0:3}/{net_up#k@wlp37s0:2}k",
+    "  {cpu_percent}",
+    "  {memory_used#G:2.0}",
+    "  {disk_used#G@/}",
 ]
+on_click_right = '''ghostty -e btop'''
+# 
 
 [end.interval]
 cpu = 1
@@ -63,7 +66,7 @@ networks = 3
 
 [[end]]
 type = "volume"
-format = "[音] {percentage}"
+format = "  {percentage}"
 max_volume = 100
 
 [[end]]
@@ -72,13 +75,13 @@ class = "brightness"
 
 [[end.bar]]
 type = "label"
-label = "[亮]"
+label = ""
 class = "brightness-label"
 
 [[end.bar]]
 type = "script"
 class = "brightness-value"
-cmd = "~/.config/ironbar/ironbar-ddc-module.sh"
+cmd = "~/nixos/home/misc/scripts/ironbar-ddc-module.sh"
 mode = "watch"
 interval = 0
 on_scroll_up = '''echo "+" > /tmp/ironbar-ddc-module-rx'''
