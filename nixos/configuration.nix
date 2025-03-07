@@ -2,16 +2,26 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, host, ... }:
+{
+  pkgs,
+  host,
+  niri,
+  ...
+}:
 
 {
   imports =
-    if host.hostname == "maponixos" then
-      [
-        ./hardware-configuration-maponixos.nix
-      ]
-    else
-      [ ];
+    [
+      niri.nixosModules.niri
+    ]
+    ++ (
+      if host.hostname == "maponixos" then
+        [
+          ./hardware-configuration-maponixos.nix
+        ]
+      else
+        [ ]
+    );
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -85,7 +95,13 @@
   };
 
   programs.zsh.enable = true;
-  programs.niri.enable = true;
+
+  nixpkgs.overlays = [ niri.overlays.niri ];
+  programs.niri = {
+    enable = true;
+    # package = pkgs.niri-unstable;
+  };
+
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
