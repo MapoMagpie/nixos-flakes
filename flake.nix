@@ -32,6 +32,7 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit host;
+            inherit niri;
           };
           modules = [
             ./nixos/configuration.nix
