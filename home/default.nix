@@ -83,7 +83,7 @@
   services.cliphist.enable = true;
 
   # services.mpd.enable = true;
-  services.mpd-mpris.enable = true;
+  # services.mpd-mpris.enable = true;
 
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
