@@ -18,12 +18,12 @@ sort = "added"
 on_click_right = '''niri msg windows | ~/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}'''
 
 [start.name_map]
-NETW = "NETW "
-TERM = "TERM "
-CODE = "CODE "
-CHAT = "CHAT "
-GAME = "GAME "
-6 = "TEMP "
+NETW = " NETW  "
+TERM = " TERM  "
+CODE = " CODE  "
+CHAT = " CHAT  "
+GAME = " GAME  "
+6 = " TEMP  "
 # https://unicodes.jessetane.com/%EF%89%93
 
 [[start]]
