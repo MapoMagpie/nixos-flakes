@@ -1,0 +1,5 @@
+Consolas  英文字母编码字体
+TumanPUA  字根字体（私用区）
+LXGWWenKaiGBScreenR  主字体，文楷，虎码的常用字基本都覆盖了（也融合了虎码字根）
+Segoe UI Emoji 和 NotoColorEmoji-Regular  用来显示Emoji （给Win版的小狼毫用，Mac端无需字体即可显示）
+Win系统宋体升级包 扩i已支持（2选1）和 TH-Tshyn-4.0.0（2选1） 超集字体（生僻字）支持，2个选1个装上就行，一般Win版选第一个，Mac端选第二个
