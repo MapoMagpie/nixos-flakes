@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     swww
+    mpvpaper
   ];
 
   home.pointerCursor = with pkgs; {
