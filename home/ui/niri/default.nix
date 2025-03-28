@@ -14,16 +14,13 @@
       "01_NETW" = {
         name = "NETW";
       };
-      "02_TERM" = {
-        name = "TERM";
-      };
-      "03_CODE" = {
+      "02_CODE" = {
         name = "CODE";
       };
-      "04_CHAT" = {
+      "03_CHAT" = {
         name = "CHAT";
       };
-      "05_GAME" = {
+      "04_GAME" = {
         name = "GAME";
       };
     };
@@ -34,7 +31,7 @@
       DISPLAY = ":0";
     };
     spawn-at-startup = [
-      { command = [ "${config.home.homeDirectory}/code/ironbar/target/release/ironbar" ]; }
+      { command = [ "ironabr" ]; }
       {
         command = [
           "fcitx5"
@@ -131,17 +128,15 @@
       "Mod+Shift+O".action = swap-window-left;
       "Mod+Shift+P".action = swap-window-right;
       "Mod+1".action = focus-workspace "NETW";
-      "Mod+2".action = focus-workspace "TERM";
-      "Mod+3".action = focus-workspace "CODE";
-      "Mod+4".action = focus-workspace "CHAT";
-      "Mod+5".action = focus-workspace "GAME";
-      "Mod+6".action = focus-workspace "TEMP";
+      "Mod+2".action = focus-workspace "CODE";
+      "Mod+3".action = focus-workspace "CHAT";
+      "Mod+4".action = focus-workspace "GAME";
+      "Mod+5".action = focus-workspace "TEMP";
       "Mod+Shift+1".action = move-window-to-workspace "NETW";
-      "Mod+Shift+2".action = move-window-to-workspace "TERM";
-      "Mod+Shift+3".action = move-window-to-workspace "CODE";
-      "Mod+Shift+4".action = move-window-to-workspace "CHAT";
-      "Mod+Shift+5".action = move-window-to-workspace "GAME";
-      "Mod+Shift+6".action = move-window-to-workspace "TEMP";
+      "Mod+Shift+2".action = move-window-to-workspace "CODE";
+      "Mod+Shift+3".action = move-window-to-workspace "CHAT";
+      "Mod+Shift+4".action = move-window-to-workspace "GAME";
+      "Mod+Shift+5".action = move-window-to-workspace "TEMP";
       "Mod+Alt+H".action = set-window-width "-10%";
       "Mod+Alt+L".action = set-window-width "+10%";
       "Mod+Alt+J".action = set-window-height "+10%";
@@ -281,20 +276,13 @@
         ];
         open-on-workspace = "NETW";
       }
-      # TERM
+      # CODE
       {
         matches = [
           { app-id = "ghostty$"; }
         ];
-        open-on-workspace = "TERM";
+        open-on-workspace = "CODE";
       }
-      # CODE
-      # {
-      #   matches = [
-      #     { app-id = "^steam_app.*$"; }
-      #   ];
-      #   open-on-workspace = "CODE";
-      # }
       # CHAT
       {
         matches = [
