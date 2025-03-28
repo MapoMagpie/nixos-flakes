@@ -31,7 +31,7 @@
       DISPLAY = ":0";
     };
     spawn-at-startup = [
-      { command = [ "ironabr" ]; }
+      { command = [ "ironbar" ]; }
       {
         command = [
           "fcitx5"
@@ -47,15 +47,15 @@
         ];
       }
       { command = [ "swww-daemon" ]; }
-      {
-        command = [
-          "swww"
-          "img"
-          "${config.xdg.configHome}/nixos/home/images/wallpapers/4.png"
-          "--transition-type"
-          "center"
-        ];
-      }
+      # {
+      #   command = [
+      #     "swww"
+      #     "img"
+      #     "${config.xdg.configHome}/nixos/home/images/wallpapers/4.png"
+      #     "--transition-type"
+      #     "center"
+      #   ];
+      # }
       { command = [ "xwayland-satellite" ]; }
     ];
     input = {

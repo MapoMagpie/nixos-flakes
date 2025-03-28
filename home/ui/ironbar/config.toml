@@ -22,7 +22,7 @@ NETW = " NETW  "
 CODE = " CODE  "
 CHAT = " CHAT  "
 GAME = " GAME  "
-6 = " TEMP  "
+5 = " TEMP  "
 # https://unicodes.jessetane.com/%EF%89%93
 
 [[start]]
