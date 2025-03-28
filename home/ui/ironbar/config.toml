@@ -19,7 +19,6 @@ on_click_right = '''niri msg windows | ~/nixos/home/misc/scripts/merge_window_in
 
 [start.name_map]
 NETW = " NETW  "
-TERM = " TERM  "
 CODE = " CODE  "
 CHAT = " CHAT  "
 GAME = " GAME  "
