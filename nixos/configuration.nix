@@ -99,25 +99,9 @@
   nixpkgs.overlays = [ niri.overlays.niri ];
   programs.niri = {
     enable = true;
-    # package = pkgs.niri-unstable;
+    package = pkgs.niri-unstable;
   };
 
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5 = {
-      waylandFrontend = true;
-      addons = with pkgs; [
-        fcitx5-rime
-        fcitx5-gtk
-        fcitx5-nord
-        fcitx5-configtool
-        fcitx5-catppuccin
-        fcitx5-tokyonight
-        libsForQt5.fcitx5-qt
-      ];
-    };
-  };
   security.polkit.enable = true;
   # xdg.portal.wlr.enable = true;
 
