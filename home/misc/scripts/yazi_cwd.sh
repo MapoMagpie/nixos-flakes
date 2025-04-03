@@ -1,4 +1,4 @@
-function yy() {
+function yazi_cwd() {
 	local cwd_file="/tmp/yazi-cwd.txt"
 	# local cho_file="/tmp/yazi-cho.txt"
 	echo "" >$cwd_file

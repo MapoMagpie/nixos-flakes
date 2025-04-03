@@ -50,8 +50,10 @@
       ll = "eza -l";
       buildos = "sudo nixos-rebuild switch --flake ~/nixos";
       nd = "nix develop";
+      h = "hx .";
+      y = "yazi_cwd";
     };
-    initExtra = "source ${config.home.homeDirectory}/nixos/home/misc/scripts/yy.sh";
+    initExtra = "source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh";
   };
 
 }
