@@ -25,7 +25,7 @@
   services.mako = {
     enable = true;
     backgroundColor = "#1f1f1fc3";
-    width = 300;
+    width = 500;
     height = 110;
     borderColor = "#f0c30f";
     borderRadius = 0;

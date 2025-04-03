@@ -49,7 +49,7 @@ pause = ""
 type = 'sys_info'
 format = [
     "  {net_down#k@wlp37s0:3}/{net_up#k@wlp37s0:2}k",
-    "  {cpu_percent}",
+    "  {cpu_percent}",
     "  {memory_used#G:2.0}",
     "  {disk_used#G@/}",
 ]
@@ -65,8 +65,14 @@ networks = 3
 
 [[end]]
 type = "volume"
-format = "  {percentage}"
+format = "  {percentage}"
 max_volume = 100
+
+[end.icons]
+volume_high = ""
+volume_medium = ""
+volume_low = ""
+muted = ""
 
 [[end]]
 type = "custom"
@@ -87,12 +93,6 @@ on_scroll_up = '''echo "+" > /tmp/ironbar-ddc-module-rx'''
 on_scroll_down = '''echo "-" > /tmp/ironbar-ddc-module-rx'''
 on_click_left = '''echo "min" > /tmp/ironbar-ddc-module-rx'''
 on_click_right = '''echo "max" > /tmp/ironbar-ddc-module-rx'''
-
-[end.icons]
-volume_high = "󰕾"
-volume_medium = "󰖀"
-volume_low = "󰕿"
-muted = "󰝟"
 
 [[end]]
 type = "tray"
