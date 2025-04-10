@@ -53,7 +53,7 @@ format = [
     "  {memory_used#G:2.0}",
     "  {disk_used#G@/}",
 ]
-on_click_right = '''ghostty -e btop'''
+on_click_right = '''kitty -e btop'''
 # 
 
 [end.interval]

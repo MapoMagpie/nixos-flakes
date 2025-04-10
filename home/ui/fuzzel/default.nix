@@ -6,7 +6,6 @@
       main = {
         font = "Monocraft:weight=bold:size=14";
         icons-enabled = "no";
-        # terminal = "ghostty";
         show-actions = "no";
         lines = 20;
         width = 60;

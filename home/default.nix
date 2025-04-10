@@ -23,7 +23,6 @@
     git-credential-manager
     tldr
     telegram-desktop
-    kitty
     bat
     wl-clipboard
     killall
@@ -58,25 +57,29 @@
     enableZshIntegration = true;
   };
 
-  programs.ghostty = {
+  programs.kitty = {
     enable = true;
-    enableZshIntegration = true;
+    font = {
+      name = "0xProto Nerd Font Mono";
+      size = 16;
+    };
+    shellIntegration = {
+      enableZshIntegration = true;
+      mode = "no-cursor";
+    };
+    themeFile = "base2tone-suburb-dark";
     settings = {
-      theme = "catppuccin-mocha";
-      font-size = 16;
-      font-family = [
-        "0xProto Nerd Font Mono"
-        "JetBrainsMono Nerd Font"
-        "Noto Sans Mono CJK SC"
-      ];
-      font-style = "Bold";
-      background-opacity = 0.8;
-      background-blur-radius = 20;
-      window-decoration = false;
-      cursor-style = "underline";
-      cursor-style-blink = true;
-      shell-integration-features = "no-cursor";
-      keybind = [ "right_shift=ignore" ];
+      cursor = "#f0c30f";
+      cursor_text_color = "#f0c30f";
+      cursor_shape = "underline";
+      cursor_trail = 1;
+      cursor_trail_decay = "0.3 0.6";
+      background_opacity = 0.7;
+      #     font-family = [
+      #       "0xProto Nerd Font Mono"
+      #       "JetBrainsMono Nerd Font"
+      #       "Noto Sans Mono CJK SC"
+      #     ];
     };
   };
 

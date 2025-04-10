@@ -27,7 +27,7 @@
     environment = {
       QT_QPA_PLATFORM = "wayland";
       EDITOR = "hx";
-      TERMINAL = "ghostty";
+      TERMINAL = "kitty";
       DISPLAY = ":0";
     };
     spawn-at-startup = [
@@ -115,7 +115,7 @@
       {
         # "Mod+Q".action = do-screen-transition;
         "Mod+Space".action = spawn "fuzzel";
-        "Mod+Return".action = spawn "ghostty";
+        "Mod+Return".action = spawn "kitty";
         "Mod+Q".action = close-window;
         "Mod+Shift+Q".action = quit;
         "Mod+H".action = focus-column-or-monitor-left;
@@ -165,7 +165,7 @@
       # no background of border
       {
         matches = [
-          { app-id = "ghostty$"; }
+          { app-id = "kitty"; }
           { app-id = "^swayimg$"; }
           { app-id = "^showmethekey-gtk$"; }
         ];
@@ -262,7 +262,7 @@
       # half size
       {
         matches = [
-          { app-id = "ghostty$"; }
+          { app-id = "kitty$"; }
         ];
         default-column-width.proportion = 1.0 / 2.0;
       }
@@ -284,7 +284,7 @@
       # CODE
       {
         matches = [
-          { app-id = "ghostty$"; }
+          { app-id = "kitty$"; }
         ];
         open-on-workspace = "CODE";
       }
