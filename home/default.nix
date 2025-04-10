@@ -67,7 +67,8 @@
       enableZshIntegration = true;
       mode = "no-cursor";
     };
-    themeFile = "base2tone-suburb-dark";
+    # themeFile = "base2tone-suburb-dark";
+    themeFile = "ForestNight";
     settings = {
       cursor = "#f0c30f";
       cursor_text_color = "#f0c30f";

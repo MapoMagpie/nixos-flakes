@@ -33,8 +33,9 @@
 
 /* -- base styles -- */
 
+
 * {
-    font-family: "Ark Pixel 12px Monospaced latin, Ark Pixel 12px Monospaced zh_cn";
+    font-family: "ChillBitmap 7px";
     /* font-feature-settings: "ss02, ss07"; */
     font-size: 16px;
     font-weight: bold;
