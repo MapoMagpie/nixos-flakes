@@ -58,7 +58,7 @@
           # hidden = false;
           git-ignore = true;
         };
-        terminal.command = "ghostty";
+        terminal.command = "kitty";
         whitespace.render = {
           space = "none";
           tab = "all";
