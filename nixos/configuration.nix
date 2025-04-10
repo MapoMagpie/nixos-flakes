@@ -69,22 +69,71 @@
 
   fonts = {
     packages = with pkgs; [
-      material-design-icons
+      nerd-fonts._0xproto
+      nerd-fonts._3270
+      # material-design-icons
       noto-fonts
       noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
-      nerd-fonts._0xproto
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-      ark-pixel-font
+      # maple-mono.truetype
+      # Maple Mono NF (Ligature unhinted)
+      # maple-mono.NF-unhinted
+      # Maple Mono NF CN (Ligature unhinted)
+      # maple-mono.NF-CN-unhinted
+      # ark-pixel-font
+      # maple-mono.CN
+      # # Maple Mono CN (Ligature unhinted)
+      # maple-mono.CN-unhinted
+      # # Maple Mono NF CN (Ligature hinted)
+      # maple-mono.NF-CN
+      # # Maple Mono NF CN (Ligature unhinted)
+      # maple-mono.NF-CN-unhinted
       monocraft
+      (pkgs.stdenv.mkDerivation {
+        name = "local_fonts";
+        src = ../home/misc/fonts;
+        installPhase = ''
+          mkdir -p $out/share/fonts/truetype
+          cp $src/*.{ttf,otf} $out/share/fonts/truetype/
+        '';
+      })
     ];
-    enableDefaultPackages = false;
-    fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" ];
-      sansSerif = [ "Noto Sans" ];
-      monospace = [ "Noto Sans Mono" ];
-      emoji = [ "Noto Color Emoji" ];
+    enableDefaultPackages = true;
+    fontDir.enable = true;
+    fontconfig = {
+      defaultFonts = {
+        serif = [
+          "Noto Serif"
+          "Noto Sans CJK SC"
+          "Noto Sans CJK TC"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Noto Sans CJK SC"
+          "Noto Sans CJK TC"
+        ];
+        # monospace = [
+        #   "Noto Sans Mono"
+        #   "Noto Sans Mono CJK SC"
+        #   "Noto Sans Mono CJK TC"
+        # ];
+        emoji = [ "Noto Color Emoji" ];
+      };
+      # localConf = ''
+      #   <?xml version="1.0"?>
+      #   <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+      #   <fontconfig>
+      #     <match target="scan">
+      #       <test name="family">
+      #         <string>STXingkai</string>
+      #       </test>
+      #       <edit name="spacing">
+      #         <int>100</int>
+      #       </edit>
+      #     </match>
+      #   </fontconfig>
+      # '';
     };
   };
 
@@ -95,6 +144,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.wshowkeys.enable = true;
 
   nixpkgs.overlays = [ niri.overlays.niri ];
   programs.niri = {
