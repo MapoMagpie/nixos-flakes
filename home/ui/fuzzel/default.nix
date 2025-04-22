@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       main = {
-        font = "Monocraft:weight=bold:size=14";
+        font = "ChillBitmap 7px:weight=bold:size=14";
         icons-enabled = "no";
         show-actions = "no";
         lines = 20;
