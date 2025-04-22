@@ -59,12 +59,12 @@
           git-ignore = true;
         };
         terminal.command = "kitty";
-        sort-wrap = {
-          enable = false;
-          max-wrap = 5; # increase value to reduce forced mid-word wrapping
-          max-indent-retain = 2;
-          wrap-indicator = "";
-        };
+        # soft-wrap = {
+        #   enable = false;
+        #   max-wrap = 5; # increase value to reduce forced mid-word wrapping
+        #   max-indent-retain = 2;
+        #   wrap-indicator = "";
+        # };
         whitespace.render = {
           space = "none";
           tab = "all";
