@@ -114,8 +114,14 @@
       in
       {
         # "Mod+Q".action = do-screen-transition;
-        "Mod+Space".action = spawn "fuzzel";
-        "Mod+Return".action = spawn "kitty";
+        "Mod+Space" = {
+          action = spawn "fuzzel";
+          hotkey-overlay.title = "Open Launcher";
+        };
+        "Mod+Return" = {
+          action = spawn "kitty";
+          hotkey-overlay.title = "Open Terminal";
+        };
         "Mod+Q".action = close-window;
         "Mod+Shift+Q".action = quit;
         "Mod+H".action = focus-column-or-monitor-left;
@@ -154,12 +160,34 @@
         "Mod+T".action = toggle-window-floating;
         "Mod+Shift+T".action = switch-focus-between-floating-and-tiling;
         "Mod+G".action = center-column;
-        "Mod+V".action = sh "cliphist list | fuzzel -d | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-        "Mod+W".action = sh "niri msg windows | ${config.home.homeDirectory}/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";
-        "Mod+S".action = sh ''slurp > /tmp/geometry && notify-send "$(cat /tmp/geometry)"'';
-        "Mod+Shift+S".action = sh ''sleep 3 && grim -g "$(cat /tmp/geometry)" ${config.home.homeDirectory}/Pictures/screenshots/grim_$(date +"%Y%m%d_%H%M%S").png && notify-send "Screenshot Done"'';
-        "Mod+Shift+E".action = sh ''notify-send "wf-recorder started" && wf-recorder --audio -g "$(cat /tmp/geometry)" -r 60 -f ${config.home.homeDirectory}/Videos/screenshots/rec_$(date +"%Y%m%d_%H%M%S").mp4 && notify-send "wf-recorder done"'';
-        "Mod+Alt+E".action = spawn "killall" "-INT" "wf-recorder";
+        "Mod+V" = {
+          action = sh "cliphist list | fuzzel -d | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+          hotkey-overlay.title = "Show Clip History";
+        };
+        "Mod+W" = {
+          action = sh "niri msg windows | ${config.home.homeDirectory}/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";
+          hotkey-overlay.title = "Show All Windows";
+        };
+        "Mod+S" = {
+          action = sh ''slurp > /tmp/geometry && notify-send "$(cat /tmp/geometry)"'';
+          hotkey-overlay.title = "Slurp Geometry";
+        };
+        "Mod+Shift+S" = {
+          action = sh ''sleep 3 && grim -g "$(cat /tmp/geometry)" ${config.home.homeDirectory}/Pictures/screenshots/grim_$(date +"%Y%m%d_%H%M%S").png && notify-send "Screenshot Done"'';
+          hotkey-overlay.title = "Screenshot After 3 Second";
+        };
+        "Mod+Ctrl+S" = {
+          action = sh ''cat /tmp/geometry | sd 'x' ',' | xargs -I{} swayimg -a pinimg -p {} -w {} '${config.home.homeDirectory}/Pictures/screenshots/'$(ls -t ${config.home.homeDirectory}/Pictures/screenshots | head -n 1)'';
+          hotkey-overlay.title = "Pin the last screenshot";
+        };
+        "Mod+Shift+E" = {
+          action = sh ''notify-send "wf-recorder started" && wf-recorder --audio -g "$(cat /tmp/geometry)" -r 60 -f ${config.home.homeDirectory}/Videos/screenshots/rec_$(date +"%Y%m%d_%H%M%S").mp4 && notify-send "wf-recorder done"'';
+          hotkey-overlay.title = "Record Screen";
+        };
+        "Mod+Alt+E" = {
+          action = sh ''killall -INT wf-recorder'';
+          hotkey-overlay.title = "Stop Record Screen";
+        };
       };
     window-rules = [
       # no background of border
@@ -229,6 +257,13 @@
           x = 10;
           y = 10;
         };
+      }
+      # just floating
+      {
+        matches = [
+          { app-id = "pinimg"; }
+        ];
+        open-floating = true;
       }
       # firefox developer floating and bottom-right
       {
