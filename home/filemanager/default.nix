@@ -21,6 +21,25 @@
         tab_size = 2;
         max_width = 800;
       };
+      open = {
+        prepend_rules = [
+          {
+            name = "*.zip";
+            use = [
+              "extract"
+              "reveal"
+            ];
+          }
+        ];
+      };
+      plugin = {
+        prepend_previewers = [
+          {
+            name = "*.zip";
+            run = "archive";
+          }
+        ];
+      };
     };
   };
 }
