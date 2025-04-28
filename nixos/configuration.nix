@@ -235,6 +235,7 @@
   networking.firewall.allowedTCPPorts = [
     22
     8080
+    41021
   ];
   services.openssh = {
     enable = true;
