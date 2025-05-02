@@ -53,7 +53,7 @@
       h = "hx .";
       y = "yazi_cwd";
     };
-    initExtra = "source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh";
+    initContent = "source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh";
   };
 
 }
