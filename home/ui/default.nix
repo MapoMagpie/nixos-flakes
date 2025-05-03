@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./ironbar
@@ -7,7 +7,6 @@
   ];
 
   home.packages = with pkgs; [
-    swww
     mpvpaper
   ];
 
@@ -65,6 +64,20 @@
           timeout = 300;
           on-timeout = "hyprlock";
         }
+      ];
+    };
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "${config.home.homeDirectory}/nixos/home/images/wallpapers/extend.jpg"
+        "${config.home.homeDirectory}/nixos/home/images/wallpapers/paper.jpg"
+      ];
+      wallpaper = [
+        "DP-3,${config.home.homeDirectory}/nixos/home/images/wallpapers/paper.jpg"
+        "HDMI-A-1,${config.home.homeDirectory}/nixos/home/images/wallpapers/extend.jpg"
       ];
     };
   };
