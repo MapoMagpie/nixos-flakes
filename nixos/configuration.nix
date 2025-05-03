@@ -71,11 +71,16 @@
     packages = with pkgs; [
       nerd-fonts._0xproto
       nerd-fonts._3270
-      # material-design-icons
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
       noto-fonts-emoji
+      lxgw-wenkai
+      lxgw-neoxihei
+      lxgw-wenkai-tc
+      lxgw-fusionkai
+      lxgw-wenkai-screen
+      sarasa-gothic
+      # noto-fonts
+      # noto-fonts-cjk-sans
+      # noto-fonts-cjk-serif
       # maple-mono.truetype
       # Maple Mono NF (Ligature unhinted)
       # maple-mono.NF-unhinted
@@ -89,7 +94,8 @@
       # maple-mono.NF-CN
       # # Maple Mono NF CN (Ligature unhinted)
       # maple-mono.NF-CN-unhinted
-      monocraft
+      # monocraft
+      # material-design-icons
       (pkgs.stdenv.mkDerivation {
         name = "local_fonts";
         src = ../home/misc/fonts;
@@ -103,37 +109,23 @@
     fontDir.enable = true;
     fontconfig = {
       defaultFonts = {
-        serif = [
-          "Noto Serif"
-          "Noto Sans CJK SC"
-          "Noto Sans CJK TC"
-        ];
-        sansSerif = [
-          "Noto Sans"
-          "Noto Sans CJK SC"
-          "Noto Sans CJK TC"
-        ];
+        # serif = [
+        #   "Noto Serif"
+        #   "Noto Sans CJK SC"
+        #   "Noto Sans CJK TC"
+        # ];
+        # sansSerif = [
+        #   "Noto Sans"
+        #   "Noto Sans CJK SC"
+        #   "Noto Sans CJK TC"
+        # ];
         # monospace = [
         #   "Noto Sans Mono"
         #   "Noto Sans Mono CJK SC"
         #   "Noto Sans Mono CJK TC"
         # ];
-        emoji = [ "Noto Color Emoji" ];
+        # emoji = [ "Noto Color Emoji" ];
       };
-      # localConf = ''
-      #   <?xml version="1.0"?>
-      #   <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-      #   <fontconfig>
-      #     <match target="scan">
-      #       <test name="family">
-      #         <string>STXingkai</string>
-      #       </test>
-      #       <edit name="spacing">
-      #         <int>100</int>
-      #       </edit>
-      #     </match>
-      #   </fontconfig>
-      # '';
     };
   };
 
