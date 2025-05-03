@@ -1,0 +1,67 @@
+monitors:
+  DP-3:
+    anchor_to_edges: true
+    position: top
+    height: 30
+    # icon_theme: Paper
+    margin:
+      top: 5
+      bottom: 5
+      left: 2
+      right: 2
+    start:
+      - type: clock
+      - type: workspaces
+        sort: added
+        # on_click_right: "niri msg windows | ~/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}"
+        on_click_right: "niri msg action toggle-overview"
+        name_map:
+          "EXTE": " EXTE  "
+          "NETW": " NETW  "
+          "CODE": " CODE  "
+          "CHAT": " CHAT  "
+          "GAME": " GAME  "
+          "5": " TEMP  "
+          # https://unicodes.jessetane.com/%EF%89%93
+      - type: focused
+        show_icon: false
+        # show_if: "#title"
+        truncate:
+          mode: end
+          max_length: 100
+    end:
+      - type: music
+        player_type: "mpris"
+        format: "{title} / {artist}"
+        truncate:
+          mode: end
+          max_length: 80
+        icons:
+          play: ""
+          pause: ""
+      - type: label
+        label: "recording"
+        show_if: "#recording"
+      - type: sys_info
+        format: 
+          - "  {net_down#k@wlp37s0:3}/{net_up#k@wlp37s0:2}k"
+          - "  {cpu_percent}"
+          - "  {memory_used#G:2.0}"
+          - "  {disk_used#G@/}"
+        on_click_right: "kitty -e btop"
+        interval:
+          cpu: 1
+          disks: 300
+          memory: 30
+          networks: 3
+      - type: volume
+        format: "  {percentage}"
+        max_volume: 100
+        icons:
+          "volume_high": ""
+          "volume_medium": ""
+          "volume_low": ""
+          "muted": ""
+      - type: tray
+        icon_size: 16
+        prefer_theme_icons: true

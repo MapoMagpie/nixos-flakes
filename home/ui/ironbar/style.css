@@ -35,7 +35,7 @@
 
 
 * {
-    font-family: "ChillBitmap 7px";
+    font-family: "寒蝉点阵体 7px";
     /* font-feature-settings: "ss02, ss07"; */
     font-size: 16px;
     font-weight: bold;
@@ -110,6 +110,11 @@ button.widget, box.widget > button {
 
 .popup-workspaces .item.focused {
     border: 1px solid @srcery-bright-green;
+}
+
+.workspaces .item.focused {
+    /* border: 1px solid @srcery-bright-green; */
+    background: @srcery-bright-yellow;
 }
 
 button:hover, button.text-button:hover, .workspaces:hover {
