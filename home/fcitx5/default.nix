@@ -4,7 +4,8 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/fcitx5/rime";
   };
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
