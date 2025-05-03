@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       main = {
-        font = "ChillBitmap 7px:weight=bold:size=14";
+        font = "3270 Nerd Font Mono:weight=bold:size=16";
         icons-enabled = "no";
         show-actions = "no";
         lines = 20;
