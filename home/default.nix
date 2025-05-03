@@ -76,6 +76,7 @@
       cursor_trail = 1;
       cursor_trail_decay = "0.3 0.6";
       background_opacity = 0.7;
+      symbol_map = "U+3000-U+30ff,U+4e00-U+9fff LXGW WenKai Mono Medium";
       #     font-family = [
       #       "0xProto Nerd Font Mono"
       #       "JetBrainsMono Nerd Font"
