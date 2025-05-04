@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   pkgs,
   host,
@@ -33,6 +29,15 @@
   };
   nix.settings.auto-optimise-store = true;
 
+  nixpkgs.overlays = [
+    niri.overlays.niri
+    (self: super: {
+      sddm-astronaut = super.sddm-astronaut.override {
+        embeddedTheme = "hyprland_kath";
+      };
+    })
+  ];
+
   hardware.i2c.enable = true;
 
   # Bootloader.
@@ -42,10 +47,6 @@
   networking.hostName = host.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -54,18 +55,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # i18n.extraLocaleSettings = {
-  #   LC_ADDRESS = "zh_CN.UTF-8";
-  #   LC_IDENTIFICATION = "zh_CN.UTF-8";
-  #   LC_MEASUREMENT = "zh_CN.UTF-8";
-  #   LC_MONETARY = "zh_CN.UTF-8";
-  #   LC_NAME = "zh_CN.UTF-8";
-  #   LC_NUMERIC = "zh_CN.UTF-8";
-  #   LC_PAPER = "zh_CN.UTF-8";
-  #   LC_TELEPHONE = "zh_CN.UTF-8";
-  #   LC_TIME = "zh_CN.UTF-8";
-  # };
 
   fonts = {
     packages = with pkgs; [
@@ -78,24 +67,6 @@
       lxgw-fusionkai
       lxgw-wenkai-screen
       sarasa-gothic
-      # noto-fonts
-      # noto-fonts-cjk-sans
-      # noto-fonts-cjk-serif
-      # maple-mono.truetype
-      # Maple Mono NF (Ligature unhinted)
-      # maple-mono.NF-unhinted
-      # Maple Mono NF CN (Ligature unhinted)
-      # maple-mono.NF-CN-unhinted
-      # ark-pixel-font
-      # maple-mono.CN
-      # # Maple Mono CN (Ligature unhinted)
-      # maple-mono.CN-unhinted
-      # # Maple Mono NF CN (Ligature hinted)
-      # maple-mono.NF-CN
-      # # Maple Mono NF CN (Ligature unhinted)
-      # maple-mono.NF-CN-unhinted
-      # monocraft
-      # material-design-icons
       (pkgs.stdenv.mkDerivation {
         name = "local_fonts";
         src = ../home/misc/fonts;
@@ -107,26 +78,6 @@
     ];
     enableDefaultPackages = true;
     fontDir.enable = true;
-    fontconfig = {
-      defaultFonts = {
-        # serif = [
-        #   "Noto Serif"
-        #   "Noto Sans CJK SC"
-        #   "Noto Sans CJK TC"
-        # ];
-        # sansSerif = [
-        #   "Noto Sans"
-        #   "Noto Sans CJK SC"
-        #   "Noto Sans CJK TC"
-        # ];
-        # monospace = [
-        #   "Noto Sans Mono"
-        #   "Noto Sans Mono CJK SC"
-        #   "Noto Sans Mono CJK TC"
-        # ];
-        # emoji = [ "Noto Color Emoji" ];
-      };
-    };
   };
 
   # Configure keymap in X11
@@ -138,7 +89,6 @@
   programs.zsh.enable = true;
   programs.wshowkeys.enable = true;
 
-  nixpkgs.overlays = [ niri.overlays.niri ];
   programs.niri = {
     enable = true;
     package = pkgs.niri-unstable;
@@ -167,6 +117,7 @@
   boot.extraModprobeConfig = ''
     options hid_apple fnmode=0
   '';
+
   environment.systemPackages = with pkgs; [
     wget
     curl
@@ -197,30 +148,25 @@
     sysstat
     ethtool
     pciutils # lspci
-    usbutils # lsusb
 
     ddcutil
-
-    # sddm theme
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtsvg
-    libsForQt5.qt5.qtbase
-    libsForQt5.qt5.qtgraphicaleffects
-    sddm-sugar-dark
 
     miniserve
     yazi
     helix
     mpv
-    nix-output-monitor
 
     hyprpolkitagent
+
+    sddm-astronaut
   ];
 
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    theme = "sugar-dark";
+    theme = "sddm-astronaut-theme";
+    package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs; [ sddm-astronaut ];
   };
 
   # Open ports in the firewall.
@@ -250,10 +196,6 @@
       pulse.enable = true;
     };
   };
-
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
