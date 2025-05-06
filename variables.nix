@@ -12,6 +12,10 @@ let
         userDesc = "Mapo Magpie";
         userInitPass = "changepassword";
         openssh.authorizedKeys.keys = [ ];
+        git = {
+          userName = "MapoMagpie";
+          userEmail = "zsyjk@live.cn";
+        };
       }
     else
       {
@@ -24,6 +28,10 @@ let
         userDesc = "Mapo Magpie Slave";
         userInitPass = "changepassword";
         openssh.authorizedKeys.keys = [ ];
+        git = {
+          userName = "MapoMagpie";
+          userEmail = "zsyjk@live.cn";
+        };
       };
 in
 host

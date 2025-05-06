@@ -31,8 +31,6 @@
     rimedm.packages.${pkgs.system}.default
     gitui
 
-    xdg-desktop-portal-gnome
-    xdg-desktop-portal-gtk
     gnome-keyring
     slurp
     libnotify
@@ -48,8 +46,8 @@
 
   programs.git = {
     enable = true;
-    userName = "MapoMagpie";
-    userEmail = "zsyjk@live.cn";
+    userName = host.git.userName;
+    userEmail = host.git.userEmail;
   };
 
   services.cliphist.enable = true;
