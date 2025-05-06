@@ -12,6 +12,7 @@
         "browser.urlbar.openintab" = true;
         "browser.tabs.loadBookmarksInTabs" = true;
         "browser.tabs.closeWindowWithLastTab" = false;
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
     };
   };

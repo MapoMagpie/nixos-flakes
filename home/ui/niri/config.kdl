@@ -264,6 +264,14 @@ window-rule {
     open-on-workspace "CODE"
 }
 window-rule {
+    match app-id="kitty.yazi.filechooser"
+    match app-id="^org.telegram.desktop$" title="Choose Files"
+    open-floating true
+    default-column-width { proportion 0.600000; }
+    default-window-height { proportion 0.500000; }
+    default-floating-position relative-to="bottom-right" x=10 y=10
+}
+window-rule {
     match app-id="^org.telegram.desktop$"
     open-on-workspace "CHAT"
 }
