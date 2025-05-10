@@ -2,6 +2,8 @@
   pkgs,
   host,
   rimedm,
+  quickshell,
+  matugen,
   ...
 }:
 {
@@ -42,6 +44,8 @@
     ffmpeg
     imagemagick
     gimp
+    quickshell.packages.${pkgs.system}.default
+    matugen.packages.${pkgs.system}.default
   ];
 
   programs.git = {

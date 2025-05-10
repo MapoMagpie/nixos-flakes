@@ -3,14 +3,24 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
+
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
-    ironbar.url = "github:JakeStanger/ironbar";
-    ironbar.inputs.nixpkgs.follows = "nixpkgs";
+
+    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
+
+    matugen.url = "github:iniox/matugen"; # upstream
+    matugen.inputs.nixpkgs.follows = "nixpkgs";
+
+    swww.url = "github:LGFae/swww";
+    swww.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -19,7 +29,9 @@
       home-manager,
       niri,
       rimedm,
-      ironbar,
+      quickshell,
+      matugen,
+      swww,
       ...
     }:
     {
@@ -43,7 +55,9 @@
                 inherit host;
                 inherit niri;
                 inherit rimedm;
-                inherit ironbar;
+                inherit quickshell;
+                inherit matugen;
+                inherit swww;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
