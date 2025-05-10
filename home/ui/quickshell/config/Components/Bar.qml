@@ -3,7 +3,6 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import "../Widgets"
-import "../Assets"
 
 Scope {
     PanelWindow {
