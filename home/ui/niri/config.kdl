@@ -43,14 +43,15 @@ environment {
 }
 
 // workspaces
-workspace "EXTE" { open-on-output "HDMI-A-1"; }
 workspace "NETW" { open-on-output "DP-3"; }
 workspace "CODE" { open-on-output "DP-3"; }
 workspace "CHAT" { open-on-output "DP-3"; }
 workspace "GAME" { open-on-output "DP-3"; }
+workspace "EXTE" { open-on-output "HDMI-A-1"; }
 
 // startup
-spawn-at-startup "ironbar"
+spawn-at-startup "quickshell"
+spawn-at-startup "swww-daemon"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
 spawn-at-startup "xwayland-satellite"
@@ -58,7 +59,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#1f1f1f"
+    backdrop-color "#101417"
     workspace-shadow {
         off
         softness 40
@@ -79,16 +80,15 @@ layout {
     struts {
         left 3
         right 3
-        top 0
+        top 3
         bottom 3
     }
     focus-ring {
         width 2
-        active-color "#f0c30f"
-        inactive-color "rgb(80 80 80)"
+        active-color "#96ccf8"
     }
     border { off; }
-    insert-hint { color "#ffc87f80"; }
+    insert-hint { color "#96ccf8"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
@@ -171,10 +171,10 @@ binds {
         spawn "sh" "-c" "slurp > /tmp/geometry && notify-send \"$(cat /tmp/geometry)\"";
     }
     Mod+Shift+E hotkey-overlay-title="Record Screen"             {
-        spawn "sh" "-c" "notify-send \"wf-recorder started\" && ironbar var set recording true && wf-recorder --audio -g \"$(cat /tmp/geometry)\" -r 60 -f ~/Videos/screenshots/rec_$(date +\"%Y%m%d_%H%M%S\").mp4 && notify-send \"wf-recorder done\"";
+        spawn "sh" "-c" "notify-send \"wf-recorder started\" && wf-recorder --audio -g \"$(cat /tmp/geometry)\" -r 60 -f ~/Videos/screenshots/rec_$(date +\"%Y%m%d_%H%M%S\").mp4 && notify-send \"wf-recorder done\"";
     }
     Mod+Alt+E   hotkey-overlay-title="Stop Record Screen"        {
-        spawn "sh" "-c" "ironbar var set recording false && killall -INT wf-recorder";
+        spawn "sh" "-c" "killall -INT wf-recorder";
     }
     Mod+Shift+S hotkey-overlay-title="Screenshot After 3 Second" {
         spawn "sh" "-c" "sleep 3 && grim -g \"$(cat /tmp/geometry)\" ~/Pictures/screenshots/grim_$(date +\"%Y%m%d_%H%M%S\").png && notify-send \"Screenshot Done\"";
