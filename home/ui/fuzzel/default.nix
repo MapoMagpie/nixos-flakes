@@ -1,30 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        font = "3270 Nerd Font Mono:weight=bold:size=16";
-        icons-enabled = "no";
-        show-actions = "no";
-        lines = 20;
-        width = 60;
-        tabs = 5;
-        horizontal-pad = 10;
-        inner-pad = 5;
-        line-height = 16;
-        letter-spacing = 0;
-      };
-      colors = {
-        background = "212121ee";
-        text = "f1c30fff";
-        match = "cb4b16ff";
-        border = "f1c30fff";
-      };
-      border = {
-        width = 2;
-        radius = 7;
-      };
-    };
-  };
+  home.packages = [ pkgs.fuzzel ];
+  home.file.".config/fuzzel/fuzzel.ini".text =
+    let
+      base = builtins.readFile ./base.ini;
+      colors = builtins.readFile ./colors.ini;
+    in
+    base + colors;
 }
