@@ -7,6 +7,8 @@
   imports = [
     ./niri
     ./fuzzel
+    ./quickshell
+    ./matugen
   ];
 
   home.packages = with pkgs; [

@@ -1,0 +1,4 @@
+        active-color "{{colors.primary.default.hex}}"
+    insert-hint { color "{{colors.primary.default.hex}}"; }
+    backdrop-color "{{colors.background.default.hex}}"
+
