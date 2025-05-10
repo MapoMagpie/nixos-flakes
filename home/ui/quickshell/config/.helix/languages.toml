@@ -6,5 +6,5 @@ args = [ "-E" ]
 name = "qml"
 auto-format = true
 [language.formatter]
-command = "./.helix/qmlfmt.sh"
+command = ".helix/qmlfmt.sh"
 
