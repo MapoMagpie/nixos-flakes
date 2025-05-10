@@ -4,9 +4,7 @@
     nil
     nixfmt-rfc-style
   ];
-  home.file.".config/helix/themes" = {
-    source = config.lib.file.mkOutOfStoreSymlink ./helix/themes;
-  };
+  home.file.".config/helix/themes".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/code/helix/themes";
   programs.helix = {
     enable = true;
     languages = {
