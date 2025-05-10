@@ -1,13 +1,18 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  swww,
+  ...
+}:
 {
   imports = [
-    ./ironbar
+    # ./ironbar
     ./niri
     ./fuzzel
   ];
 
   home.packages = with pkgs; [
     mpvpaper
+    swww.packages.${pkgs.system}.swww
   ];
 
   home.pointerCursor = with pkgs; {
@@ -15,36 +20,52 @@
     package = bibata-cursors;
     size = 32;
   };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk4.extraCss = ''
+      @import 'colors.css'
+    '';
+    gtk3.extraCss = ''
+      @import 'colors.css'
+    '';
+  };
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       cursor-theme = "Bibata-Original-Amber";
       color-scheme = "prefer-dark";
     };
   };
-  services.mako = {
-    enable = true;
-    backgroundColor = "#1f1f1fc3";
-    width = 500;
-    height = 110;
-    borderColor = "#f0c30f";
-    borderRadius = 0;
-    borderSize = 2;
-    # icons = false;
-    maxIconSize = 64;
-    defaultTimeout = 5000;
-    # extraConfig = ''
-    #   [urgency=low]
-    #   border-color=#cccccc
-    #   [urgency=normal]
-    #   border-color=#f0c30f
-    #   [urgency=high]
-    #   border-color=#bf616a
-    #   default-timeout=50000
-    #   [category=mpd]
-    #   border-color=#cccccc
-    #   default-timeout=2000
-    # '';
-  };
+
+  # services.mako = {
+  #   enable = true;
+  #   backgroundColor = "#1f1f1fc3";
+  #   width = 500;
+  #   height = 110;
+  #   borderColor = "#f0c30f";
+  #   borderRadius = 0;
+  #   borderSize = 2;
+  #   # icons = false;
+  #   maxIconSize = 64;
+  #   defaultTimeout = 5000;
+  #   # extraConfig = ''
+  #   #   [urgency=low]
+  #   #   border-color=#cccccc
+  #   #   [urgency=normal]
+  #   #   border-color=#f0c30f
+  #   #   [urgency=high]
+  #   #   border-color=#bf616a
+  #   #   default-timeout=50000
+  #   #   [category=mpd]
+  #   #   border-color=#cccccc
+  #   #   default-timeout=2000
+  #   # '';
+  # };
 
   services.hypridle = {
     enable = true;
@@ -68,19 +89,19 @@
     };
   };
 
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = [
-        "${config.home.homeDirectory}/nixos/home/images/wallpapers/extend.jpg"
-        "${config.home.homeDirectory}/nixos/home/images/wallpapers/paper.jpg"
-      ];
-      wallpaper = [
-        "DP-3,${config.home.homeDirectory}/nixos/home/images/wallpapers/paper.jpg"
-        "HDMI-A-1,${config.home.homeDirectory}/nixos/home/images/wallpapers/extend.jpg"
-      ];
-    };
-  };
+  # services.hyprpaper = {
+  #   enable = true;
+  #   settings = {
+  #     preload = [
+  #       "${config.home.homeDirectory}/nixos/home/images/wallpapers/extend.jpg"
+  #       "${config.home.homeDirectory}/nixos/home/images/wallpapers/paper.jpg"
+  #     ];
+  #     wallpaper = [
+  #       "DP-3,${config.home.homeDirectory}/nixos/home/images/wallpapers/paper.jpg"
+  #       "HDMI-A-1,${config.home.homeDirectory}/nixos/home/images/wallpapers/extend.jpg"
+  #     ];
+  #   };
+  # };
 
   programs.hyprlock = {
     enable = true;
