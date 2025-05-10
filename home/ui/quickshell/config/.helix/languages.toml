@@ -1,0 +1,10 @@
+[language-server.qmlls]
+command = "qmlls"
+args = [ "-E" ]
+
+[[language]]
+name = "qml"
+auto-format = true
+[language.formatter]
+command = "./.helix/qmlfmt.sh"
+
