@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./zsh.nix
@@ -40,7 +40,7 @@
       symbol_map = "U+3000-U+30ff,U+4e00-U+9fff LXGW WenKai Mono Medium";
     };
     extraConfig = ''
-      include theme.conf
+      include ${config.home.homeDirectory}/nixos/home/term/kitty_theme.conf
     '';
   };
 
