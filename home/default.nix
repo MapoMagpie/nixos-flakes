@@ -50,7 +50,16 @@
     userEmail = host.git.userEmail;
   };
 
-  services.cliphist.enable = true;
+  services.cliphist = {
+    enable = true;
+    allowImages = true;
+    extraOptions = [
+      "-max-dedupe-search"
+      "500"
+      "-max-items"
+      "5000"
+    ];
+  };
 
   # services.mpd.enable = true;
   # services.mpd-mpris.enable = true;
