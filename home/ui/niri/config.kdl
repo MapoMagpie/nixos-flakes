@@ -60,7 +60,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#0f131c"
+    backdrop-color "#131313"
     workspace-shadow {
         off
         softness 40
@@ -86,10 +86,10 @@ layout {
     }
     focus-ring {
         width 2
-        active-color "#54d6f3"
+        active-color "#ffffff"
     }
     border { off; }
-    insert-hint { color "#54d6f3"; }
+    insert-hint { color "#ffffff"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
@@ -188,6 +188,9 @@ binds {
     }
     Mod+V       hotkey-overlay-title="Show Clip History"         {
         spawn "sh" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy";
+    }
+    Mod+I       hotkey-overlay-title="Toggle Rime Ascii Mode"    {
+        spawn "sh" "-c" "~/nixos/home/misc/scripts/setrimeasciimode.sh";
     }
     Mod+Shift+W hotkey-overlay-title="Show All Windows"          {
         spawn "sh" "-c" "niri msg windows | ~/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";

@@ -31,13 +31,13 @@
       theme = "catppuccin_mocha_nb";
       keys.insert = {
         "esc" = [
-          ":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh"
+          ":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"
           "normal_mode"
         ];
         "C-s" = ":w";
       };
       keys.normal = {
-        "esc" = [ ":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh" ];
+        "esc" = [ ":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true" ];
         "C-s" = ":w";
       };
       editor = {
