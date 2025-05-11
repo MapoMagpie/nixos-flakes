@@ -7,6 +7,7 @@ output_path = '~/nixos/home/filemanager/theme.toml'
 [templates.kitty]
 input_path = './templates/kitty-colors.conf'
 output_path = '~/nixos/home/term/kitty_theme.conf'
+post_hook = "kitty @ set-colors -a -c ~/nixos/home/term/kitty_theme.conf"
 
 [templates.niri]
 input_path = './templates/niri-colors.txt'
