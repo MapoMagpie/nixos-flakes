@@ -13,6 +13,7 @@
         "browser.tabs.loadBookmarksInTabs" = true;
         "browser.tabs.closeWindowWithLastTab" = false;
         "widget.use-xdg-desktop-portal.file-picker" = 1;
+        "browser.tabs.allow_transparent_browser" = true;
       };
     };
   };
