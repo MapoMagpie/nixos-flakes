@@ -59,7 +59,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#1a1111"
+    backdrop-color "#0f131c"
     workspace-shadow {
         off
         softness 40
@@ -78,17 +78,17 @@ gestures {
 layout {
     gaps 1
     struts {
-        left 3
-        right 3
-        top 3
+        left 4
+        right 4
+        top 4
         bottom 3
     }
     focus-ring {
         width 2
-        active-color "#ffb3ae"
+        active-color "#54d6f3"
     }
     border { off; }
-    insert-hint { color "#ffb3ae"; }
+    insert-hint { color "#54d6f3"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
@@ -270,6 +270,13 @@ window-rule {
     default-column-width { proportion 0.600000; }
     default-window-height { proportion 0.500000; }
     default-floating-position relative-to="bottom-right" x=10 y=10
+}
+window-rule {
+    match app-id="kitty.btop"
+    open-floating true
+    default-column-width { proportion 0.600000; }
+    default-window-height { proportion 0.500000; }
+    default-floating-position relative-to="top-right" x=20 y=20
 }
 window-rule {
     match app-id="^org.telegram.desktop$"
