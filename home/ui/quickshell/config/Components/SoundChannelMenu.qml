@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
@@ -17,10 +18,10 @@ PopupWindow {
     anchor.rect.x: bar.width - width - 10
     anchor.rect.y: bar.height + 10
     width: 400
-    height: 200
+    height: 220
 
     Rectangle {
-        color: Colors.withAlpha(Colors.surface, 0.79)
+        color: Colors.withAlpha(Colors.surface, 0.70)
         anchors.centerIn: parent
         width: parent.width - 10
         height: parent.height - 10

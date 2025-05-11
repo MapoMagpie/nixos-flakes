@@ -12,7 +12,7 @@ Text {
     font.pointSize: 12
     font.family: "0xProto Nerd Font"
     font.bold: true
-    color: root.hovering ? Colors.tertiary : Colors.secondary
+    color: root.hovering ? Colors.error : Colors.secondary
 
     MouseArea {
         anchors.fill: parent

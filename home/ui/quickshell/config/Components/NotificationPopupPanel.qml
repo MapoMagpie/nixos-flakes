@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import "../Data"
 import "../MenuWidgets"
+import "../Assets"
 
 PopupWindow {
     id: win
@@ -13,34 +14,47 @@ PopupWindow {
     visible: false
 
     onNotifCountChanged: {
-        // console.log("onNotifCountChanged ", notiModel.values.length);
         if (win.showAll) {
             notiModel.values = [...NotifServer.notifServer.trackedNotifications.values];
+        } else {
+            notiModel.values = notiModel.values.filter(n => n.tracked);
+        }
+        if (win.notifCount === 0) {
+            columns.state = "Closed";
         }
     }
 
     anchor.window: bar
-    anchor.rect.x: bar.width - width - 10
+    anchor.rect.x: bar.width - width - 5
     anchor.rect.y: bar.height + 10
-    width: columns.width
-    height: columns.height
+    width: 500
+    height: 600
 
     function toggleVisibility() {
         if (win.visible) {
-            columns.state = "Closed";
+            this.hide();
         } else {
-            win.visible = true;
-            win.showAll = true;
-            notiModel.values = [...NotifServer.notifServer.trackedNotifications.values];
-            columns.state = "Open";
+            this.show();
         }
+    }
+
+    function show() {
+        win.visible = true;
+        win.showAll = true;
+        notiModel.values = [...NotifServer.notifServer.trackedNotifications.values];
+        columns.state = "Open";
+        hideTimer.stop();
+    }
+
+    function hide() {
+        hideTimer.restart();
     }
 
     Rectangle {
         id: columns
         anchors.centerIn: parent
-        width: 500
-        implicitHeight: 700
+        width: parent.width
+        height: parent.height
         color: "transparent"
         state: "Closed"
         states: [
@@ -61,11 +75,23 @@ PopupWindow {
             if (opacity == 0) {
                 win.visible = false;
                 win.showAll = false;
+                notiModel.values = [];
             }
         }
         Behavior on opacity {
             NumberAnimation {
-                duration: 100
+                duration: 200
+            }
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onExited: {
+                columns.state = "Closed";
+            }
+            onEntered: {
+                hideTimer.stop();
             }
         }
         ListView {
@@ -90,18 +116,19 @@ PopupWindow {
     Component.onCompleted: () => {
         NotifServer.notifServer.onNotification.connect(n => {
             win.visible = true;
+            win.showAll = false;
             columns.state = "Open";
-            notiModel.values = [n];
-            if (n.actions.length === 0) {
-                timer.restart();
-            }
+            notiModel.values.push(n);
+            hideTimer.interval = 5000;
+            hideTimer.restart();
         });
     }
     Timer {
-        id: timer
-        interval: 5000
+        id: hideTimer
+        interval: 200
         onTriggered: {
             columns.state = "Closed";
+            hideTimer.interval = 200;
         }
     }
 }

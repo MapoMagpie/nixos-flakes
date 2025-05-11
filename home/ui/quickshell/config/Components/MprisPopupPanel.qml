@@ -121,28 +121,5 @@ PopupWindow {
                 }
             }
         }
-
-        // ListView { // Notification Inbox
-        //     id: listView
-        //     Layout.fillWidth: true
-        //     Layout.minimumHeight: 0
-        //     Layout.preferredHeight: childrenRect.height + 20
-        //     Layout.maximumHeight: Screen.height * 0.95 - this.y
-        //     clip: true
-        //     model: NotifServer.notifications
-        //     delegate: NotificationEntry {
-        //         id: toast
-        //         width: parent?.width
-        //         required property Notification modelData
-        //         notif: modelData
-
-        //         // no destruction animation for now
-        //         NumberAnimation on opacity {
-        //             from: 0
-        //             to: 1
-        //             duration: 320
-        //         }
-        //     }
-        // }
     }
 }

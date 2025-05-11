@@ -8,12 +8,11 @@ Rectangle {
     id: root
     property bool active: false
     required property PanelWindow bar
-
     visible: NotifServer.notifCount > 0
     implicitHeight: parent.height
     implicitWidth: indicateText.implicitWidth + 20
-    color: root.active ? Colors.withAlpha(Colors.on_primary, 0.8) : Colors.withAlpha(Colors.background, 0.8)
-    border.color: Colors.primary
+    color: root.active ? Colors.withAlpha(Colors.on_primary, 1.0) : Colors.withAlpha(Colors.background, 0.9)
+    border.color: Colors.error
     border.width: 2
 
     Text {
@@ -28,8 +27,12 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
+        hoverEnabled: true
         onClicked: {
             popup.toggleVisibility();
+        }
+        onExited: {
+            popup.hide();
         }
     }
 
@@ -44,6 +47,7 @@ Rectangle {
             duration: 150
         }
     }
+
     NotificationPopupPanel {
         id: popup
         bar: root.bar
