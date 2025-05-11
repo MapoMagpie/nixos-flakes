@@ -20,7 +20,8 @@ input {
     trackball { accel-speed 0.000000; }
     tablet
     touch
-    focus-follows-mouse
+    // focus-follows-mouse
+    // warp-mouse-to-focus
 }
 output "DP-3" {
     transform "normal"
