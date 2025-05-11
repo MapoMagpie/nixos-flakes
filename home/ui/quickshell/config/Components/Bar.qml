@@ -57,7 +57,9 @@ Scope {
                 anchors.centerIn: parent
                 height: parent.height
 
-                ActionWindowWidget {}
+                ActionWindowWidget {
+                    bar: bar
+                }
             }
 
             RowLayout {

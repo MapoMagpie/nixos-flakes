@@ -1,10 +1,15 @@
 import QtQuick
+import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
+import "../Data"
 import "../Assets"
+import "../Components"
 
 Rectangle {
-    id: container
+    id: root
 
+    required property PanelWindow bar
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
     color: Colors.withAlpha(Colors.background, 0.9)
     border.color: Colors.primary
@@ -27,6 +32,48 @@ Rectangle {
         leftPadding: 10
         rightPadding: 10
         anchors.centerIn: parent
-        text: container.activeWindow?.activated ? container.elideMiddle((container.activeWindow?.appId + " : " + container.activeWindow.title), 70) : "<h_h>"
+        text: root.activeWindow?.activated ? root.elideMiddle((root.activeWindow?.appId + " : " + root.activeWindow.title), 70) : "<h_h>"
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
+        hoverEnabled: true
+        onWheel: event => {
+            process_focus_window.action = (event.angleDelta.y > 0) ? "focus-window-up-or-column-left" : "focus-window-down-or-column-right";
+            process_focus_window.running = true;
+        }
+        Process {
+            id: process_focus_window
+            running: false
+            property string action: "focus-window-down-or-column-left"
+            // focus-window-down-or-column-left
+            command: ["niri", "msg", "action", this.action]
+        }
+        // onEntered: {
+        //     let pos = root.mapToItem(popup.parent, 0, root.height);
+        //     popup.x = pos.x - (root.activedWorkspaceIndex * 80);
+        //     popup.y = pos.y;
+        //     popup.show();
+        // }
+        onClicked: event => {
+            switch (event.button) {
+            case Qt.LeftButton:
+                popup.toggleVisibility();
+                break;
+            case Qt.MiddleButton:
+                break;
+            case Qt.RightButton:
+                break;
+            }
+        }
+        // onExited: {
+        //     popup.hide();
+        // }
+    }
+
+    WindowsPopup {
+        id: popup
+        bar: root.bar
     }
 }

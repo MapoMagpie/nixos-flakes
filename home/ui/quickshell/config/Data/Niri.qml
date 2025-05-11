@@ -10,6 +10,8 @@ Singleton {
     property var workspaces: []
     property var activedWorkspace: "VOID"
     property var activedWorkspaceIndex: 0
+    property var windows: []
+    // property var activedWindowId: 0
 
     Process {
         id: proc
@@ -28,6 +30,30 @@ Singleton {
                         root.activedWorkspaceIndex = 0;
                     }
                     root.activedWorkspace = root.workspaces[root.activedWorkspaceIndex].name;
+                }
+                if (event.WindowsChanged) {
+                    root.windows = [...event.WindowsChanged.windows].sort((a, b) => a.id - b.id);
+                }
+                if (event.WindowOpenedOrChanged) {
+                    const window = event.WindowOpenedOrChanged.window;
+                    const index = root.windows.findIndex(w => w.id === window.id);
+                    console.log("window opened or changed: ", index, ", win id: ", window.id);
+                    if (index >= 0) {
+                        console.log("replace window, old: ", root.windows[index].id, ", new: ", window.id);
+                        root.windows[index] = window;
+                    } else {
+                        console.log("push    window, new: ", window.id);
+                        root.windows.push(window);
+                    }
+                    root.windows = [...root.windows.sort((a, b) => a.id - b.id)];
+                }
+                if (event.WindowClosed) {
+                    const index = root.windows.findIndex(w => w.id === event.WindowClosed.id);
+                    console.log("window closed: ", index, ", win id: ", event.WindowClosed.id);
+                    if (index >= 0) {
+                        root.windows.splice(index, 1);
+                    }
+                    root.windows = [...root.windows.sort((a, b) => a.id - b.id)];
                 }
                 if (event.WorkspaceActivated) {
                     root.activedWorkspaceIndex = root.workspaces.findIndex(w => w.id === event.WorkspaceActivated.id);
@@ -51,59 +77,5 @@ Singleton {
 //       "is_focused": false,
 //       "active_window_id": null
 //     },
-//     {
-//       "id": 6,
-//       "idx": 5,
-//       "name": null,
-//       "output": "DP-3",
-//       "is_active": false,
-//       "is_focused": false,
-//       "active_window_id": null
-//     },
-//     {
-//       "id": 7,
-//       "idx": 2,
-//       "name": null,
-//       "output": "HDMI-A-1",
-//       "is_active": false,
-//       "is_focused": false,
-//       "active_window_id": null
-//     },
-//     {
-//       "id": 2,
-//       "idx": 1,
-//       "name": "NETW",
-//       "output": "DP-3",
-//       "is_active": false,
-//       "is_focused": false,
-//       "active_window_id": 54
-//     },
-//     {
-//       "id": 1,
-//       "idx": 1,
-//       "name": "EXTE",
-//       "output": "HDMI-A-1",
-//       "is_active": true,
-//       "is_focused": false,
-//       "active_window_id": null
-//     },
-//     {
-//       "id": 3,
-//       "idx": 2,
-//       "name": "CODE",
-//       "output": "DP-3",
-//       "is_active": true,
-//       "is_focused": true,
-//       "active_window_id": 56
-//     },
-//     {
-//       "id": 4,
-//       "idx": 3,
-//       "name": "CHAT",
-//       "output": "DP-3",
-//       "is_active": false,
-//       "is_focused": false,
-//       "active_window_id": null
-//     }
 //   ]
 // }
