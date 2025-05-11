@@ -10,12 +10,12 @@
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-rime
-        fcitx5-gtk
+        # fcitx5-gtk
         fcitx5-nord
-        fcitx5-configtool
+        kdePackages.fcitx5-configtool
         fcitx5-catppuccin
         fcitx5-tokyonight
-        libsForQt5.fcitx5-qt
+        kdePackages.fcitx5-qt
       ];
     };
   };
