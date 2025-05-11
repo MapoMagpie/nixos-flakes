@@ -10,22 +10,26 @@ Rectangle {
     required property PanelWindow bar
 
     visible: Mpris.players.values.length > 0
-    implicitHeight: parent.height
-    implicitWidth: indicateText.implicitWidth + 20
-    color: root.active ? Colors.withAlpha(Colors.on_primary, 0.8) : Colors.withAlpha(Colors.background, 0.8)
-    border.color: Colors.primary
+    width: 50
+    height: parent.height
+    color: root.active ? Colors.withAlpha(Colors.on_primary, 1.0) : Colors.withAlpha(Colors.background, 1.0)
+    border.color: Colors.error
     border.width: 2
 
     ShaderEffect {
-        anchors.fill: parent
+        width: parent.width - 8
+        height: parent.height - 8
+        anchors.centerIn: parent
         property real time: 0.0
-        property var resolution: Qt.size(60, 30)
-        fragmentShader: "../Assets/ani.frag.qsb"
+        property var resolution: Qt.size(1.0, 1.0)
+        property real brightness: root.active ? 1.0 : 1.5
+        // blending: true
+        fragmentShader: "../Assets/wheel.frag.qsb"
         Timer {
             interval: 16
             running: true
             repeat: true
-            onTriggered: parent.time += 0.026
+            onTriggered: parent.time += 0.010
         }
     }
     Text {

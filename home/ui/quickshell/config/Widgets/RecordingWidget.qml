@@ -5,29 +5,34 @@ import "../Assets"
 
 Rectangle {
     id: root
-    property bool active: false
+    property bool hovering: false
     required property PanelWindow bar
     property string runningTime: "00:00:00"
 
     visible: false
-    implicitHeight: parent.height
-    implicitWidth: indicateText.implicitWidth + 20
-    color: root.active ? Colors.withAlpha(Colors.on_primary, 0.8) : Colors.withAlpha(Colors.background, 0.8)
-    border.color: Colors.primary
+    height: parent.height
+    width: 100
+    color: root.hovering ? Colors.withAlpha(Colors.on_primary, 1.0) : Colors.withAlpha(Colors.background, 0.9)
+    border.color: Colors.error
     border.width: 2
 
-    ShaderEffect {
-        anchors.fill: parent
-        property real time: 0.0
-        property var resolution: Qt.size(60, 30)
-        fragmentShader: "../Assets/ani.frag.qsb"
-        Timer {
-            interval: 16
-            running: true
-            repeat: true
-            onTriggered: parent.time += 0.026
-        }
-    }
+    // ShaderEffect {
+    //     width: parent.width - 8
+    //     height: parent.height - 8
+    //     anchors.centerIn: parent
+    //     property real time: 0.0
+    //     property var resolution: Qt.size(1.0, 1.0)
+    //     property real brightness: 0.5
+    //     // blending: true
+    //     fragmentShader: "../Assets/ani.frag.qsb"
+    //     Timer {
+    //         interval: 16
+    //         running: true
+    //         repeat: true
+    //         onTriggered: parent.time += 0.010
+    //     }
+    // }
+
     Process {
         id: process
         running: true
@@ -93,6 +98,13 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
+        hoverEnabled: true
+        onEntered: {
+            root.hovering = true;
+        }
+        onExited: {
+            root.hovering = false;
+        }
         onClicked: {
             process_stop.running = true;
         }

@@ -10,7 +10,7 @@ Rectangle {
     required property PanelWindow bar
     implicitHeight: parent.height
     implicitWidth: rows.implicitWidth + 20
-    color: Colors.withAlpha(Colors.background, 0.8)
+    color: Colors.withAlpha(Colors.background, 0.9)
     border.color: Colors.primary
     border.width: 2
 

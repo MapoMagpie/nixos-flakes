@@ -6,7 +6,7 @@ Rectangle {
     id: container
 
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
-    color: Colors.withAlpha(Colors.background, 0.8)
+    color: Colors.withAlpha(Colors.background, 0.9)
     border.color: Colors.primary
     border.width: 2
     implicitHeight: parent.height
