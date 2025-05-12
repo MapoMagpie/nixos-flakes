@@ -6,7 +6,6 @@ import Quickshell
 import Quickshell.Services.Pipewire
 
 import "../Assets"
-import "../Data"
 
 PopupWindow {
     id: panel
@@ -41,39 +40,40 @@ PopupWindow {
 
             model: ScriptModel {
                 id: script
-                values: Pipewire.nodes.values.filter(node => node.audio != null && !node.description.startsWith("Tiger"))
+                values: Pipewire.nodes.values.filter(node => node.audio != null && !node.description.startsWith("Tiger")).sort((a, b) => a.id - b.id)
             }
 
             delegate: Slider {
                 id: slider
                 required property PwNode modelData
                 required property int index
+                property bool isDefaultSink: slider.modelData.id === Pipewire.defaultAudioSink.id
                 width: parent.width
                 height: 30
                 snapMode: Slider.NoSnap
 
                 PwObjectTracker {
-                    objects: [modelData]
+                    objects: [slider.modelData]
                 }
 
                 background: Rectangle {
                     id: sliderback
                     anchors.centerIn: parent
-                    color: Colors.on_primary
+                    color: slider.isDefaultSink ? Colors.on_tertiary : Colors.on_primary
                     height: slider.height
                     width: slider.availableWidth
                     Layout.alignment: Qt.AlignTop
                     clip: true
 
                     Rectangle {
-                        color: Colors.primary
+                        color: slider.isDefaultSink ? Colors.tertiary : Colors.primary
                         width: slider.visualPosition * slider.availableWidth
                         height: slider.height
                     }
 
                     Text {
                         id: text
-                        property string icon: (!modelData?.isSink) ? "󰕾 " : "󰍬 "
+                        property string icon: (!slider.modelData?.isSink) ? "  " : "  "
                         anchors.leftMargin: 10
                         verticalAlignment: Text.AlignVCenter
                         anchors.fill: parent
@@ -92,6 +92,15 @@ PopupWindow {
 
                 onValueChanged: {
                     slider.modelData.audio.volume = (slider.value / 100);
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton
+                    onClicked: event => {
+                        if (event.button === Qt.RightButton && slider.modelData.isSink) {
+                            Pipewire.preferredDefaultAudioSink = slider.modelData;
+                        }
+                    }
                 }
             }
         }
