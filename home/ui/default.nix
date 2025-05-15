@@ -47,9 +47,7 @@
     enable = true;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
-        # before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        lock_cmd = "pidof swaylock || swaylock";
       };
       listener = [
         {
@@ -59,15 +57,27 @@
         }
         {
           timeout = 300;
-          on-timeout = "hyprlock";
+          on-timeout = "loginctl lock-session";
         }
       ];
     };
   };
 
-  programs.hyprlock = {
+  programs.swaylock = {
     enable = true;
-    extraConfig = (builtins.readFile ./hyprland/hyprlock.conf);
+    settings = {
+      # swaylock -i $FX --ring-color=00000000 --ring-clear-color=1a1a1c --indicator-radius=200 --inside-color=1f1f1f30 --indicator-thickness=15 --separator-color=00000000 --line-uses-inside --line-uses-ring --key-hl-color=f0c31f
+      image = "~/nixos/home/images/wallpapers/lock.jpg";
+      ring-color = "00000000";
+      ring-clear-color = "1a1a1c";
+      indicator-radius = "200";
+      indicator-thickness = "15";
+      inside-color = "1f1f1f30";
+      separator-color = "00000000";
+      key-hl-color = "f0c31f";
+      line-uses-inside = true;
+      line-uses-ring = true;
+    };
   };
 
 }
