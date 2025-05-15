@@ -34,8 +34,8 @@
       cursor = "#f0c30f";
       cursor_text_color = "#f0c30f";
       cursor_shape = "underline";
-      cursor_trail = 1;
-      cursor_trail_decay = "0.3 0.6";
+      # cursor_trail = 1;
+      # cursor_trail_decay = "0.3 0.6";
       background_opacity = 0.77;
       symbol_map = "U+3000-U+30ff,U+4e00-U+9fff LXGW WenKai Mono Medium";
       allow_remote_control = true;
