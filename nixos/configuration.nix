@@ -59,6 +59,7 @@
   };
 
   security.polkit.enable = true;
+  security.pam.services.swaylock = { };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${host.username}" = {
@@ -85,6 +86,8 @@
       pulse.enable = true;
     };
   };
+
+  hardware.bluetooth.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
