@@ -79,17 +79,17 @@ gestures {
 layout {
     gaps 1
     struts {
-        left 4
-        right 4
+        left 5
+        right 5
         top 4
         bottom 3
     }
     focus-ring {
         width 2
-        active-color "#ffffff"
+        active-color "#8fd88a"
     }
     border { off; }
-    insert-hint { color "#ffffff"; }
+    insert-hint { color "#8fd88a"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
