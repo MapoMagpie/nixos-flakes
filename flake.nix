@@ -74,5 +74,6 @@
     {
       nixpkgs.overlays = [ niri.overlays.niri ];
       nixosConfigurations.maponixos = nixosSystem "maponixos";
+      nixosConfigurations.slavenixos = nixosSystem "slavenixos";
     };
 }
