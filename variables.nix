@@ -11,6 +11,7 @@ let
         hostname = "maponixos";
         userDesc = "Mapo Magpie";
         userInitPass = "changepassword";
+        hardwareModule = ./hardware/hardware-configuration-maponixos.nix;
         openssh.authorizedKeys.keys = [ ];
         git = {
           userName = "MapoMagpie";
@@ -27,6 +28,7 @@ let
         hostname = "slavenixos";
         userDesc = "Mapo Magpie Slave";
         userInitPass = "changepassword";
+        hardwareModule = ./hardware/hardware-configuration-slavenixos.nix;
         openssh.authorizedKeys.keys = [ ];
         git = {
           userName = "MapoMagpie";

@@ -23,16 +23,16 @@ input {
     // focus-follows-mouse
     // warp-mouse-to-focus
 }
-output "DP-3" {
-    transform "normal"
-    position x=900 y=0
-    mode "2560x1440@144.000000"
-}
-output "HDMI-A-1" {
-    transform "90"
-    position x=0 y=0
-    mode "1440x900@59.887000"
-}
+// output "DP-3" {
+//     transform "normal"
+//     position x=900 y=0
+//     mode "2560x1440@144.000000"
+// }
+// output "HDMI-A-1" {
+//     transform "90"
+//     position x=0 y=0
+//     mode "1440x900@59.887000"
+// }
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 hotkey-overlay
@@ -44,11 +44,10 @@ environment {
 }
 
 // workspaces
-workspace "NETW" { open-on-output "DP-3"; }
-workspace "CODE" { open-on-output "DP-3"; }
-workspace "CHAT" { open-on-output "DP-3"; }
-workspace "GAME" { open-on-output "DP-3"; }
-workspace "EXTE" { open-on-output "HDMI-A-1"; }
+workspace "NETW"
+workspace "CODE"
+workspace "CHAT"
+workspace "GAME"
 
 // startup
 spawn-at-startup "quickshell"

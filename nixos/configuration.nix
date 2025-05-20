@@ -6,23 +6,15 @@
 }:
 
 {
-  imports =
-    [
-      niri.nixosModules.niri
-      ./network.nix
-      ./fonts.nix
-      ./portal.nix
-      ./programs.nix
-      ./sddm.nix
-    ]
-    ++ (
-      if host.hostname == "maponixos" then
-        [
-          ./hardware-configuration-maponixos.nix
-        ]
-      else
-        [ ]
-    );
+  imports = [
+    niri.nixosModules.niri
+    ./network.nix
+    ./fonts.nix
+    ./portal.nix
+    ./programs.nix
+    ./sddm.nix
+    host.hardwareModule
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
