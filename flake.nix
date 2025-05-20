@@ -39,11 +39,11 @@
       swww,
       ...
     }:
-    {
-      nixpkgs.overlays = [ niri.overlays.niri ];
-      nixosConfigurations.maponixos =
+    let
+      nixosSystem =
+        hostname:
         let
-          host = import ./variables.nix "maponixos";
+          host = import ./variables.nix hostname;
         in
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -70,5 +70,9 @@
             }
           ] ++ (if host.hostname == "maponixos" then [ ./home/game/steam.nix ] else [ ]);
         };
+    in
+    {
+      nixpkgs.overlays = [ niri.overlays.niri ];
+      nixosConfigurations.maponixos = nixosSystem "maponixos";
     };
 }
