@@ -25,7 +25,7 @@ case $opt in
         sleep 10 && reboot &
         ;;
     "3. Lock Screen")
-        hyprlock
+        swaylock
         ;;
     "4. Cancel")
         pkill -f "sleep 15" && notify-send "Shutdown canceled"

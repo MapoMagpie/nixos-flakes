@@ -48,7 +48,7 @@
     };
     shellAliases = {
       ll = "eza -l";
-      buildos = "sudo nixos-rebuild switch --flake ~/nixos";
+      buildos = "sudo nixos-rebuild switch --flake ~/nixos && notify-send 'nixos build succeeded'";
       nd = "nix develop";
       h = "hx .";
       y = "yazi_cwd";
