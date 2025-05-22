@@ -2,8 +2,6 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
-import Quickshell.Io
-import "../Assets"
 import "../Data"
 import "../MenuWidgets"
 
@@ -16,8 +14,8 @@ PopupWindow {
     anchor.window: bar
     anchor.rect.y: bar.height + 0
     anchor.rect.x: 0
-    width: bar.width
-    height: rows.height
+    implicitWidth: bar.width
+    implicitHeight: rows.height
 
     function toggleVisibility() {
         if (win.visible) {
@@ -73,7 +71,8 @@ PopupWindow {
         }
 
         MouseArea {
-            anchors.fill: parent
+            Layout.alignment: Qt.AlignLeft
+            // anchors.fill: parent
             hoverEnabled: true
             onExited: {
                 rows.state = "Closed";

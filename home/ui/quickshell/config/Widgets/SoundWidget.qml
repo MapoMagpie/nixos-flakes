@@ -2,11 +2,10 @@ import QtQuick
 import Quickshell
 import "../Data"
 import "../Assets"
-import "../Components"
 
 Text {
     id: root
-    required property PanelWindow bar
+    required property PopupWindow popup
     property bool hovering: false
     text: " " + Math.round(Audio.volume * 100)
     font.pointSize: 12
@@ -27,7 +26,7 @@ Text {
         onClicked: mouse => {
             switch (mouse.button) {
             case Qt.LeftButton:
-                popup.visible = !popup.visible;
+                root.popup.toggleVisibility();
                 break;
             case Qt.MiddleButton:
                 Audio.sink.audio.muted = !Audio.muted;
@@ -39,9 +38,9 @@ Text {
         }
         onWheel: event => Audio.wheelAction(event)
     }
-
-    SoundChannelMenu {
-        id: popup
-        bar: root.bar
-    }
+    // Component.onCompleted: () => {
+    //     popup.onVisibleChanged.connect(() => {
+    //         root.active = popup.visible;
+    //     });
+    // }
 }

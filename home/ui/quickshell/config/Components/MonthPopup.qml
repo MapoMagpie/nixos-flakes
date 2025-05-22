@@ -16,8 +16,8 @@ PopupWindow {
     anchor.window: bar
     anchor.rect.x: 0
     anchor.rect.y: bar.height
-    width: 330
-    height: 250
+    implicitWidth: 330
+    implicitHeight: 250
 
     function toggleVisibility() {
         if (win.visible) {

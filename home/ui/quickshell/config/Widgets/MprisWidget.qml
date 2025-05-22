@@ -2,16 +2,15 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Mpris
 import "../Assets"
-import "../Components"
 
 Rectangle {
     id: root
     property bool active: false
-    required property PanelWindow bar
+    required property PopupWindow popup
 
     visible: Mpris.players.values.length > 0
-    width: 50
-    height: parent.height
+    implicitWidth: 50
+    implicitHeight: parent.height
     color: root.active ? Colors.withAlpha(Colors.on_primary, 1.0) : Colors.withAlpha(Colors.background, 1.0)
     border.color: Colors.error
     border.width: 2
@@ -45,7 +44,7 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            popup.toggleVisibility();
+            root.popup.toggleVisibility();
         }
     }
 
@@ -59,10 +58,5 @@ Rectangle {
         ColorAnimation {
             duration: 150
         }
-    }
-
-    MprisPopupPanel {
-        id: popup
-        bar: root.bar
     }
 }

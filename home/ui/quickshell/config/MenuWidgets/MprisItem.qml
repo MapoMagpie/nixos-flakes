@@ -151,7 +151,7 @@ Rectangle {
         anchors.left: rect.left
         anchors.right: rect.right
 
-        height: 2
+        height: 6
 
         padding: 0
         topInset: 0
@@ -168,7 +168,7 @@ Rectangle {
             width: slider.availableWidth
 
             Rectangle {
-                color: Colors.primary
+                color: Colors.secondary_fixed
                 width: slider.visualPosition * slider.availableWidth
                 height: slider.height
             }
