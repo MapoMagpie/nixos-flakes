@@ -19,9 +19,9 @@ PopupWindow {
 
     function toggleVisibility() {
         if (win.visible) {
-            this.hide();
+            win.hide();
         } else {
-            this.show();
+            win.show();
         }
     }
     function show() {
@@ -42,9 +42,21 @@ PopupWindow {
         }
     }
 
+    // MouseArea {
+    //     anchors.fill: parent
+    //     hoverEnabled: true
+    //     onExited: {
+    //         rows.state = "Closed";
+    //     }
+    //     onEntered: {
+    //         hideTimer.stop();
+    //     }
+    // }
+
     ColumnLayout {
         id: rows
         anchors.centerIn: parent
+        implicitWidth: parent.width
         spacing: 5
         property var windows: Niri.windows
 
@@ -70,18 +82,6 @@ PopupWindow {
             }
         }
 
-        MouseArea {
-            Layout.alignment: Qt.AlignLeft
-            // anchors.fill: parent
-            hoverEnabled: true
-            onExited: {
-                rows.state = "Closed";
-            }
-            onEntered: {
-                hideTimer.stop();
-            }
-        }
-
         Behavior on opacity {
             NumberAnimation {
                 duration: 160
@@ -91,6 +91,8 @@ PopupWindow {
         Repeater {
             model: rows.windows
             delegate: WindowItem {
+                popup: win
+                implicitHeight: win.bar.height
                 anchors.horizontalCenter: rows.horizontalCenter
             }
         }

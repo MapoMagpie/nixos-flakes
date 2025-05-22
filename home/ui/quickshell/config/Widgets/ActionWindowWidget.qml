@@ -2,7 +2,6 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
-import "../Data"
 import "../Assets"
 import "../Components"
 
@@ -67,9 +66,9 @@ Rectangle {
                 break;
             }
         }
-        // onExited: {
-        //     popup.hide();
-        // }
+        onExited: {
+            popup.hide();
+        }
     }
 
     WindowsPopup {
