@@ -1,21 +1,18 @@
 pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
-import QtQuick.Layouts
 import Quickshell.Io
 import "../Assets"
-import "../Data"
 
 Rectangle {
     id: root
     required property var modelData
-    height: win.bar.height
+    required property PopupWindow popup
     implicitWidth: text.width
-    // Layout.fillHeight: true
-    // Layout.fillWidth: true
-    color: Colors.withAlpha(Colors.background, 0.7)
+    color: Colors.withAlpha((root.hovering ? Colors.on_background : Colors.background), 0.7)
     border.color: Colors.primary
     border.width: 2
+    property bool hovering: false
     function elideMiddle(str, maxLength) {
         if (str.length <= maxLength)
             return str;
@@ -32,7 +29,7 @@ Rectangle {
         rightPadding: 10
         anchors.centerIn: parent
         // text: root.activeWindow?.activated ? root.elideMiddle((root.activeWindow?.appId + " : " + root.activeWindow.title), 70) : "<h_h>"
-        text: root.elideMiddle(root.modelData.id + " : " + root.modelData.app_id + " : " + root.modelData.title, 100)
+        text: root.elideMiddle(root.modelData.app_id + " : " + root.modelData.title, 100)
     }
     Process {
         id: process
@@ -45,12 +42,19 @@ Rectangle {
         command: ["niri", "msg", "action", "close-window", "--id", root.modelData.id]
     }
     MouseArea {
-        anchors.fill: parent
+        anchors.fill: root
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
-        // hoverEnabled: true
-        // onEntered: {
-        //     process.running = true;
-        // }
+        hoverEnabled: true
+        propagateComposedEvents: true
+        onEntered: {
+            root.hovering = true;
+            root.popup.show();
+            // process.running = true;
+        }
+        onExited: {
+            root.hovering = false;
+            root.popup.hide();
+        }
         onClicked: event => {
             switch (event.button) {
             case Qt.LeftButton:
