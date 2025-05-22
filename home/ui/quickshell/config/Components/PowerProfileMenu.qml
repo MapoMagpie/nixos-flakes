@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import Quickshell
-import Quickshell.Hyprland
 import Quickshell.Services.UPower
 
 import "../Assets"
@@ -18,23 +17,6 @@ PopupWindow {
     anchor.rect.y: bar.height + 10
     implicitWidth: 500
     implicitHeight: 200
-
-    HyprlandFocusGrab {
-        id: grab
-        windows: [panel]
-
-        onActiveChanged: {
-            if (!grab.active) {
-                panel.visible = false;
-            }
-        }
-    }
-
-    onVisibleChanged: {
-        if (visible) {
-            grab.active = true;
-        }
-    }
 
     Rectangle {
         color: Colors.withAlpha(Colors.surface, 0.79)

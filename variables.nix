@@ -17,6 +17,7 @@ let
           userName = "MapoMagpie";
           userEmail = "zsyjk@live.cn";
         };
+        upowerEnable = false;
       }
     else
       {
@@ -34,6 +35,7 @@ let
           userName = "MapoMagpie";
           userEmail = "zsyjk@live.cn";
         };
+        upowerEnable = true;
       };
 in
 host

@@ -69,15 +69,15 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  services = {
-    # dbus.packages = [pkgs.gcr];
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
+
+  services.upower.enable = host.upowerEnable;
+  services.power-profiles-daemon.enable = host.upowerEnable;
 
   hardware.bluetooth.enable = true;
 

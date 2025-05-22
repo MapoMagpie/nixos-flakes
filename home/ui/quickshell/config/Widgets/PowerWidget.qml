@@ -34,20 +34,6 @@ RowLayout {
     }
 
     Text {
-        id: percentText
-        text: Math.round(root.batPercentage * 100) + "%"
-        color: Colors.secondary_fixed_dim
-        font.pointSize: 11
-        font.bold: true
-
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.LeftButton
-            onClicked: mouse => popup.visible = !popup.visible
-        }
-    }
-
-    Text {
         id: batText
         text: root.pwrProf
         color: Colors.secondary_fixed_dim
@@ -70,6 +56,20 @@ RowLayout {
                     break;
                 }
             }
+        }
+    }
+
+    Text {
+        id: percentText
+        text: Math.round(root.batPercentage * 100)
+        color: Colors.secondary_fixed_dim
+        font.pointSize: 11
+        font.bold: true
+
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton
+            onClicked: mouse => popup.visible = !popup.visible
         }
     }
 
