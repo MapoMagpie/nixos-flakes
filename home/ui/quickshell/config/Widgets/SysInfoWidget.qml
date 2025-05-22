@@ -72,7 +72,7 @@ Rectangle {
             }
         }
         PowerWidget {
-            bar: bar
+            bar: root.bar
         }
     }
 }

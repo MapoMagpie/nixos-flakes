@@ -32,7 +32,7 @@ Rectangle {
         leftPadding: 10
         rightPadding: 10
         anchors.centerIn: parent
-        text: root.activeWindow?.activated ? root.elideMiddle((root.activeWindow?.appId + " : " + root.activeWindow.title), 70) : "<h_h>"
+        text: root.activeWindow?.activated ? root.elideMiddle((root.activeWindow?.appId + " : " + root.activeWindow.title), (root.bar.width <= 1920 ? 40 : 70)) : "<h_h>"
     }
 
     MouseArea {
