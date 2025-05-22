@@ -1,4 +1,4 @@
-        active-color "#8fd88a"
-    insert-hint { color "#8fd88a"; }
+        active-color "#ffb0cd"
+    insert-hint { color "#ffb0cd"; }
     backdrop-color "#131313"
 
