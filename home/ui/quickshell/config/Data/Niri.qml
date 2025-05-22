@@ -37,19 +37,19 @@ Singleton {
                 if (event.WindowOpenedOrChanged) {
                     const window = event.WindowOpenedOrChanged.window;
                     const index = root.windows.findIndex(w => w.id === window.id);
-                    console.log("window opened or changed: ", index, ", win id: ", window.id);
+                    // console.log("window opened or changed: ", index, ", win id: ", window.id);
                     if (index >= 0) {
-                        console.log("replace window, old: ", root.windows[index].id, ", new: ", window.id);
+                        // console.log("replace window, old: ", root.windows[index].id, ", new: ", window.id);
                         root.windows[index] = window;
                     } else {
-                        console.log("push    window, new: ", window.id);
+                        // console.log("push    window, new: ", window.id);
                         root.windows.push(window);
                     }
                     root.windows = [...root.windows.sort((a, b) => a.id - b.id)];
                 }
                 if (event.WindowClosed) {
                     const index = root.windows.findIndex(w => w.id === event.WindowClosed.id);
-                    console.log("window closed: ", index, ", win id: ", event.WindowClosed.id);
+                    // console.log("window closed: ", index, ", win id: ", event.WindowClosed.id);
                     if (index >= 0) {
                         root.windows.splice(index, 1);
                     }

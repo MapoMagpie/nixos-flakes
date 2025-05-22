@@ -8,7 +8,7 @@ import Quickshell.Services.Pipewire
 import "../Assets"
 
 PopupWindow {
-    id: panel
+    id: win
     required property PanelWindow bar
 
     visible: false
@@ -16,8 +16,8 @@ PopupWindow {
     anchor.window: bar
     anchor.rect.x: bar.width - width - 10
     anchor.rect.y: bar.height + 10
-    width: 400
-    height: 220
+    implicitWidth: 500
+    implicitHeight: 250
 
     Rectangle {
         color: Colors.withAlpha(Colors.surface, 0.70)

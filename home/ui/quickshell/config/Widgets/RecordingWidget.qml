@@ -6,8 +6,7 @@ import "../Assets"
 Rectangle {
     id: root
     property bool hovering: false
-    required property PanelWindow bar
-    property string runningTime: "00:00:00"
+    property string runningTime: "00:00"
 
     visible: false
     height: parent.height

@@ -3,11 +3,12 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import "../Widgets"
+import "../Components"
 
 Scope {
     PanelWindow {
         id: bar
-        height: 28
+        implicitHeight: 28
         color: "transparent"
 
         margins {
@@ -68,14 +69,17 @@ Scope {
                 anchors.right: parent.right
                 height: parent.height
 
+                MediaPopup {
+                    id: media_popup
+                    bar: bar
+                }
                 MprisWidget {
-                    bar: bar
+                    popup: media_popup
                 }
-                RecordingWidget {
-                    bar: bar
-                }
+                RecordingWidget {}
                 SysInfoWidget {
                     bar: bar
+                    sound_popup: media_popup
                 }
                 TrayWidget {
                     bar: bar

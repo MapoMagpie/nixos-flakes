@@ -8,6 +8,7 @@ import "../Assets"
 Rectangle {
     id: root
     required property PanelWindow bar
+    required property PopupWindow sound_popup
     Layout.preferredWidth: childrenRect.width + 25
     Layout.fillHeight: true
     color: Colors.withAlpha(Colors.background, 0.9)
@@ -17,7 +18,7 @@ Rectangle {
     RowLayout {
         id: row
         anchors.centerIn: parent
-        spacing: 10
+        spacing: 12
 
         function zeroPad(num, size) {
             var s = num + "";
@@ -27,9 +28,14 @@ Rectangle {
             return s;
         }
 
+        SoundWidget {
+            popup: root.sound_popup
+        }
+
         Rectangle {
             id: rect
             implicitWidth: infos.width - 10
+            Layout.fillHeight: true
             color: "transparent"
             property bool hovering: false
             Text {
@@ -65,9 +71,8 @@ Rectangle {
                 }
             }
         }
-
-        SoundWidget {
-            bar: root.bar
+        PowerWidget {
+            bar: bar
         }
     }
 }

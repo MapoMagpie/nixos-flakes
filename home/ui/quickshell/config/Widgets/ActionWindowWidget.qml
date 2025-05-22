@@ -14,8 +14,8 @@ Rectangle {
     color: Colors.withAlpha(Colors.background, 0.9)
     border.color: Colors.primary
     border.width: 2
-    implicitHeight: parent.height
     implicitWidth: text.width
+    implicitHeight: parent.height
     function elideMiddle(str, maxLength) {
         if (str.length <= maxLength)
             return str;

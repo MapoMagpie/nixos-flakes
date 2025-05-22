@@ -74,6 +74,8 @@ Rectangle {
     WorkspacePopup {
         id: popup
         bar: root.bar
+        x: 0
+        y: 0
     }
 
     Component.onCompleted: () => {

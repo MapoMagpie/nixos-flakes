@@ -9,16 +9,16 @@ import "../Data"
 PopupWindow {
     id: win
     required property PanelWindow bar
-    property var x
-    property var y
+    property int x
+    property int y
 
     color: "transparent"
     visible: false
     anchor.window: bar
     anchor.rect.x: this.x
     anchor.rect.y: this.y
-    width: rows.width
-    height: rows.height + 10
+    implicitWidth: rows.width
+    implicitHeight: rows.height + 10
 
     function toggleVisibility() {
         if (win.visible) {
@@ -75,7 +75,7 @@ PopupWindow {
         }
 
         MouseArea {
-            anchors.fill: parent
+            Layout.alignment: Qt.AlignLeft
             hoverEnabled: true
             onExited: {
                 rows.state = "Closed";
