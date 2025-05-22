@@ -28,11 +28,10 @@ input {
 //     position x=900 y=0
 //     mode "2560x1440@144.000000"
 // }
-// output "HDMI-A-1" {
-//     transform "90"
-//     position x=0 y=0
-//     mode "1440x900@59.887000"
-// }
+output "eDP-1" {
+    mode "1920x1080"
+    scale 1.0
+}
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 hotkey-overlay
