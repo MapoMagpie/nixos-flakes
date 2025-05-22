@@ -86,10 +86,10 @@ layout {
     }
     focus-ring {
         width 2
-        active-color "#8fd88a"
+        active-color "#ffb0cd"
     }
     border { off; }
-    insert-hint { color "#8fd88a"; }
+    insert-hint { color "#ffb0cd"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
