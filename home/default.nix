@@ -39,8 +39,6 @@
     xdragon
     showmethekey
 
-    ffmpeg
-    imagemagick
     gimp
   ];
 
