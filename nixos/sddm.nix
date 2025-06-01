@@ -1,9 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, host, ... }:
 {
   nixpkgs.overlays = [
     (self: super: {
       sddm-astronaut = super.sddm-astronaut.override {
         embeddedTheme = "hyprland_kath";
+        themeConfig = {
+          ScreenWidth = host.screen.w;
+          ScreenHeight = host.screen.h;
+        };
       };
     })
   ];
