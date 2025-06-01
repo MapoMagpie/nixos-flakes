@@ -46,6 +46,8 @@
     miniserve
     yazi
     helix
+    ffmpeg
+    imagemagick
     mpv
 
     hyprpolkitagent
