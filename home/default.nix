@@ -59,6 +59,28 @@
     ];
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/zip" = [ "7z.desktop" ];
+      "application/7z" = [ "7z.desktop" ];
+      "application/7z-compressed" = [ "7z.desktop" ];
+      "application/octet-stream" = [ "7z.desktop" ];
+      "image/png" = [ "swayimg.desktop" ];
+      "image/jpeg" = [ "swayimg.desktop" ];
+      "image/bmp" = [ "swayimg.desktop" ];
+      "image/gif" = [ "swayimg.desktop" ];
+      "image/webp" = [ "swayimg.desktop" ];
+      "image/svg+xml" = [ "swayimg.desktop" ];
+    };
+    associations.added = {
+      "application/zip" = [ "7z.desktop" ];
+      "application/7z" = [ "7z.desktop" ];
+      "application/7z-compressed" = [ "7z.desktop" ];
+      "application/octet-stream" = [ "7z.desktop" ];
+    };
+  };
+
   # services.mpd.enable = true;
   # services.mpd-mpris.enable = true;
 
