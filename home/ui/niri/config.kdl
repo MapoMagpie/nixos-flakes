@@ -60,7 +60,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#11131a"
+    backdrop-color "#1a110e"
     workspace-shadow {
         off
         softness 40
@@ -86,10 +86,10 @@ layout {
     }
     focus-ring {
         width 2
-        active-color "#adc6ff"
+        active-color "#ffb598"
     }
     border { off; }
-    insert-hint { color "#adc6ff"; }
+    insert-hint { color "#ffb598"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
@@ -164,6 +164,9 @@ binds {
 
     Mod+Return  hotkey-overlay-title="Open Terminal"             {
         spawn "kitty";
+    }
+    Mod+Y       hotkey-overlay-title="Open Yazi"                 {
+        spawn "kitty" "-T" "Yazi" "yazi";
     }
     Mod+Space   hotkey-overlay-title="Open Launcher"             {
         spawn "fuzzel";
