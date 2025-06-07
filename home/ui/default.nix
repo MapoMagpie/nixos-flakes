@@ -22,19 +22,13 @@
     size = 32;
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    gtk4.extraCss = ''
-      @import 'colors.css'
-    '';
-    gtk3.extraCss = ''
-      @import 'colors.css'
-    '';
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Catppuccin-GTK-Dark";
+  #     package = pkgs.magnetic-catppuccin-gtk;
+  #   };
+  # };
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
