@@ -1,0 +1,40 @@
+theme = "catppuccin_mocha_nb"
+[editor]
+auto-format = true
+completion-timeout = 250
+mouse = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+git-ignore = true
+
+[editor.terminal]
+command = "kitty"
+
+[editor.whitespace.characters]
+nbsp = "⍽"
+newline = "⏎"
+nnbsp = "␣"
+space = "·"
+tab = "→"
+tabpad = "·"
+
+[editor.whitespace.render]
+nbsp = "all"
+newline = "all"
+nnbsp = "all"
+space = "none"
+tab = "all"
+
+[keys.insert]
+C-s = ":w"
+esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true", "normal_mode"]
+
+[keys.normal]
+C-s = ":w"
+esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
+

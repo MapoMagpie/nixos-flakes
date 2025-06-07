@@ -1,4 +1,9 @@
-{ pkgs, niri, ... }:
+{
+  pkgs,
+  niri,
+  helix,
+  ...
+}:
 {
   nixpkgs.overlays = [ niri.overlays.niri ];
 
@@ -45,7 +50,7 @@
 
     miniserve
     yazi
-    helix
+    helix.packages.${pkgs.system}.helix
     ffmpeg
     imagemagick
     mpv
