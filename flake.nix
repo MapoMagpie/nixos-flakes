@@ -1,6 +1,17 @@
 {
   description = "A very basic flake";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://helix.cachix.org"
+      "https://niri.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -22,6 +33,9 @@
     swww.url = "github:LGFae/swww";
     swww.inputs.nixpkgs.follows = "nixpkgs";
 
+    helix.url = "github:helix-editor/helix";
+    helix.inputs.nixpkgs.follows = "nixpkgs";
+
     # zen-browser.url = "github:0xc000022070/zen-browser-flake";
     # # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
     # # to have it up-to-date or simply don't specify the nixpkgs input
@@ -37,6 +51,7 @@
       quickshell,
       matugen,
       swww,
+      helix,
       ...
     }:
     let
@@ -50,6 +65,7 @@
           specialArgs = {
             inherit host;
             inherit niri;
+            inherit helix;
           };
           modules = [
             ./nixos/configuration.nix

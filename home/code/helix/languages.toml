@@ -1,0 +1,15 @@
+[[language]]
+auto-format = true
+name = "nix"
+
+[language.formatter]
+args = ["--width=300"]
+command = "nixfmt"
+
+[[language]]
+auto-format = true
+name = "typescript"
+
+[language.indent]
+tab-width = 2
+unit = " "
