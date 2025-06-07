@@ -10,6 +10,7 @@ prepend_keymap = [
   { on = ["g", "e"],  run = "arrow bot",           desc = "Go to bottom" },
   { on = "<Space>",   run = ["toggle", "arrow 1"], desc = "Toggle files" },
   { on = "f",         run = "plugin fzfd",         desc = "Jump to a directory, or reveal a file using fzf" },
+  { on = "F",         run = "filter",              desc = "Filter files" },
   { on = "<C-g>",     run = "plugin dragon",       desc = "Drag and drop selected files" },
 	{ on = "q",         run = "close",               desc = "Close the current tab, or quit if it's last" },
 	{ on = "<C-w>",     run = "tasks_show",          desc = "Show task manager" },
