@@ -60,7 +60,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#1a110e"
+    backdrop-color "#0f1511"
     workspace-shadow {
         off
         softness 40
@@ -86,10 +86,10 @@ layout {
     }
     focus-ring {
         width 2
-        active-color "#ffb598"
+        active-color "#92d5ab"
     }
     border { off; }
-    insert-hint { color "#ffb598"; }
+    insert-hint { color "#92d5ab"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
@@ -138,6 +138,7 @@ binds {
     Mod+Alt+K           { set-window-height "-10%";                 }
     Mod+Alt+L           { set-window-width "+10%";                  }
     Mod+F               { maximize-column;                          }
+    Mod+Shift+F         { expand-column-to-available-width;         }
     Mod+G               { center-column;                            }
     Mod+Q               { close-window;                             }
     Mod+T               { toggle-window-floating;                   }
