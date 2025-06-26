@@ -3,7 +3,7 @@
   nixpkgs.overlays = [
     (self: super: {
       sddm-astronaut = super.sddm-astronaut.override {
-        embeddedTheme = "hyprland_kath";
+        embeddedTheme = "pixel_sakura";
         themeConfig = {
           ScreenWidth = host.screen.w;
           ScreenHeight = host.screen.h;

@@ -14,6 +14,7 @@
     enable = true;
     package = pkgs.niri-unstable;
   };
+  services.gnome.rygel.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget
