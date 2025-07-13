@@ -3,7 +3,8 @@ import Quickshell
 import Quickshell.Io
 import "../Data"
 import "../Assets"
-import "../Components"
+
+// import "../Components"
 
 Rectangle {
     id: root
@@ -49,12 +50,12 @@ Rectangle {
             property string direction: "down"
             command: ["niri", "msg", "action", "toggle-overview"]
         }
-        onEntered: {
-            let pos = root.mapToItem(popup.parent, 0, root.height);
-            popup.x = pos.x - (root.activedWorkspaceIndex * 80);
-            popup.y = pos.y;
-            popup.show();
-        }
+        // onEntered: {
+        //     let pos = root.mapToItem(popup.parent, 0, root.height);
+        //     popup.x = pos.x - (root.activedWorkspaceIndex * 80);
+        //     popup.y = pos.y;
+        //     popup.show();
+        // }
         onClicked: event => {
             switch (event.button) {
             case Qt.LeftButton:
@@ -66,23 +67,23 @@ Rectangle {
                 break;
             }
         }
-        onExited: {
-            popup.hide();
-        }
+        // onExited: {
+        //     popup.hide();
+        // }
     }
 
-    WorkspacePopup {
-        id: popup
-        bar: root.bar
-        x: 0
-        y: 0
-    }
+    // WorkspacePopup {
+    //     id: popup
+    //     bar: root.bar
+    //     x: 0
+    //     y: 0
+    // }
 
-    Component.onCompleted: () => {
-        popup.onVisibleChanged.connect(() => {
-            root.active = popup.visible;
-        });
-    }
+    // Component.onCompleted: () => {
+    //     popup.onVisibleChanged.connect(() => {
+    //         root.active = popup.visible;
+    //     });
+    // }
 
     Behavior on color {
         ColorAnimation {
