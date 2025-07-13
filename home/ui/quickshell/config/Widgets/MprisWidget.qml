@@ -15,22 +15,22 @@ Rectangle {
     border.color: Colors.error
     border.width: 2
 
-    ShaderEffect {
-        width: parent.width - 8
-        height: parent.height - 8
-        anchors.centerIn: parent
-        property real time: 0.0
-        property var resolution: Qt.size(1.0, 1.0)
-        property real brightness: root.active ? 1.0 : 1.5
-        // blending: true
-        fragmentShader: "../Assets/wheel.frag.qsb"
-        Timer {
-            interval: 16
-            running: true
-            repeat: true
-            onTriggered: parent.time += 0.010
-        }
-    }
+    // ShaderEffect {
+    //     width: parent.width - 8
+    //     height: parent.height - 8
+    //     anchors.centerIn: parent
+    //     property real time: 0.0
+    //     property var resolution: Qt.size(1.0, 1.0)
+    //     property real brightness: root.active ? 1.0 : 1.5
+    //     // blending: true
+    //     fragmentShader: "../Assets/wheel.frag.qsb"
+    //     Timer {
+    //         interval: 16
+    //         running: true
+    //         repeat: true
+    //         onTriggered: parent.time += 0.010
+    //     }
+    // }
     Text {
         id: indicateText
         anchors.centerIn: parent
