@@ -51,7 +51,7 @@
 
     miniserve
     yazi
-    helix.packages.${pkgs.system}.helix
+    helix.packages.${pkgs.system}.default
     ffmpeg
     imagemagick
     mpv
