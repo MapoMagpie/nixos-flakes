@@ -15,6 +15,7 @@
           3
         ];
         show_hidden = false;
+        sort_by = "natural";
       };
       preview = {
         wrap = "no";

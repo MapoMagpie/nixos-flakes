@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     mpvpaper
     swww.packages.${pkgs.system}.swww
+    sway-audio-idle-inhibit
   ];
 
   home.pointerCursor = with pkgs; {
@@ -57,10 +58,31 @@
     };
   };
 
+  # services.swayidle = {
+  #   enable = true;
+  #   events = [
+  #     {
+  #       event = "after-resume";
+  #       command = "'${pkgs.niri}/bin/niri msg action power-on-monitors'";
+  #     }
+  #   ];
+  #   timeouts = [
+  #     {
+  #       timeout = 300;
+  #       command = "${pkgs.swaylock}/bin/swaylock -f";
+  #     }
+  #     {
+  #       timeout = 330;
+  #       command = "'${pkgs.niri}/bin/niri msg action power-off-monitors'";
+  #     }
+  #   ];
+  # };
+
   programs.swaylock = {
     enable = true;
     settings = {
       # swaylock -i $FX --ring-color=00000000 --ring-clear-color=1a1a1c --indicator-radius=200 --inside-color=1f1f1f30 --indicator-thickness=15 --separator-color=00000000 --line-uses-inside --line-uses-ring --key-hl-color=f0c31f
+      daemonize = true;
       image = "~/nixos/home/images/wallpapers/lock.jpg";
       ring-color = "00000000";
       ring-clear-color = "1a1a1c";
