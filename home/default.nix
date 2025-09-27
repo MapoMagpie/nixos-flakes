@@ -13,7 +13,8 @@
     ./browser
     ./code
     ./misc
-  ] ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
+  ]
+  ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
 
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
@@ -71,6 +72,7 @@
       "image/bmp" = [ "swayimg.desktop" ];
       "image/gif" = [ "swayimg.desktop" ];
       "image/webp" = [ "swayimg.desktop" ];
+      "image/avif" = [ "swayimg.desktop" ];
       "image/svg+xml" = [ "swayimg.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];

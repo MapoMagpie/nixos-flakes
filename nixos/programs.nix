@@ -1,20 +1,12 @@
 {
   pkgs,
-  niri,
-  helix,
   ...
 }:
 {
-  nixpkgs.overlays = [ niri.overlays.niri ];
 
   programs.zsh.enable = true;
   programs.wshowkeys.enable = true;
-
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-  };
-  services.gnome.rygel.enable = true;
+  programs.niri.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget
@@ -51,9 +43,10 @@
 
     miniserve
     yazi
-    helix.packages.${pkgs.system}.default
+    helix
     ffmpeg
     imagemagick
+    libavif
     mpv
 
     hyprpolkitagent

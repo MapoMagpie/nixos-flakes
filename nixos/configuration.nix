@@ -1,13 +1,11 @@
 {
   pkgs,
   host,
-  niri,
   ...
 }:
 
 {
   imports = [
-    niri.nixosModules.niri
     ./network.nix
     ./fonts.nix
     ./portal.nix
@@ -20,6 +18,7 @@
     "nix-command"
     "flakes"
   ];
+  nix.settings.trusted-users = [ host.username ];
   nix.gc = {
     automatic = true;
     dates = "weekly";

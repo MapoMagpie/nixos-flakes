@@ -54,6 +54,7 @@ spawn-at-startup "swww-daemon"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "sway-audio-idle-inhibit"
 
 // overview
 overview {
