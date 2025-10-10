@@ -40,7 +40,8 @@
     xdragon
     showmethekey
 
-    gimp
+    gimp3
+    kdePackages.kdenlive
   ];
 
   programs.git = {
