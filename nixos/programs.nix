@@ -7,11 +7,14 @@
   programs.zsh.enable = true;
   programs.wshowkeys.enable = true;
   programs.niri.enable = true;
+  programs.git = {
+    enable = true;
+    # lfs.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     wget
     curl
-    git
 
     zip
     xz
@@ -32,7 +35,7 @@
 
     # system call monitoring
     strace # system call monitoring
-    ltrace # library call monitoring
+    # ltrace # library call monitoring
     lsof # list open files
 
     sysstat
