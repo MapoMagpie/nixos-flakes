@@ -1,6 +1,6 @@
 {
   pkgs,
-  swww,
+  # swww,
   ...
 }:
 {
@@ -13,7 +13,7 @@
 
   home.packages = with pkgs; [
     mpvpaper
-    swww.packages.${pkgs.system}.swww
+    swww
     sway-audio-idle-inhibit
   ];
 
