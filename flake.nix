@@ -10,11 +10,8 @@
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
 
-    matugen.url = "github:iniox/matugen"; # upstream
-    matugen.inputs.nixpkgs.follows = "nixpkgs";
-
-    swww.url = "github:LGFae/swww";
-    swww.inputs.nixpkgs.follows = "nixpkgs";
+    # swww.url = "github:LGFae/swww";
+    # swww.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
@@ -23,8 +20,7 @@
       nixpkgs,
       home-manager,
       rimedm,
-      matugen,
-      swww,
+      # swww,
       ...
     }:
     let
@@ -46,8 +42,7 @@
               home-manager.extraSpecialArgs = {
                 inherit host;
                 inherit rimedm;
-                inherit matugen;
-                inherit swww;
+                # inherit swww;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
