@@ -82,10 +82,6 @@
 
   hardware.amdgpu = {
     initrd.enable = true;
-    amdvlk = {
-      enable = true;
-      # suportExperimental.enable = true;
-    };
   };
 
   # This value determines the NixOS release from which the default
