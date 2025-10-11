@@ -42,6 +42,8 @@
 
     gimp3
     kdePackages.kdenlive
+    yt-dlp
+    tsukimi
   ];
 
   programs.git = {
