@@ -38,12 +38,10 @@
     historySubstringSearch = {
       enable = true;
       searchDownKey = [
-        "^[[B"
-        "$terminfo[kcud1]"
+        "^[OB"
       ];
       searchUpKey = [
-        "^[[A"
-        "$terminfo[kcuu1]"
+        "^[OA"
       ];
     };
     shellAliases = {
