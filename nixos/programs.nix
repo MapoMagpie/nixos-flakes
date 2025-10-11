@@ -44,6 +44,8 @@
 
     ddcutil
 
+    ntfs3g
+
     miniserve
     yazi
     helix
