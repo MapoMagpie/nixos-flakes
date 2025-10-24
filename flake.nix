@@ -10,9 +10,6 @@
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
 
-    # swww.url = "github:LGFae/swww";
-    # swww.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs =
@@ -20,7 +17,6 @@
       nixpkgs,
       home-manager,
       rimedm,
-      # swww,
       ...
     }:
     let
@@ -42,7 +38,6 @@
               home-manager.extraSpecialArgs = {
                 inherit host;
                 inherit rimedm;
-                # inherit swww;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

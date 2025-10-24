@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  host,
+  config,
+  ...
+}:
 {
   home.packages = with pkgs; [
     nil
@@ -9,6 +14,6 @@
   home.file.".config/helix/languages.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/code/helix/languages.toml";
 
   programs.zed-editor = {
-    enable = true;
+    enable = host.hostname == "maponixos";
   };
 }
