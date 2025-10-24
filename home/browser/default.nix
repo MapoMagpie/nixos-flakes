@@ -1,8 +1,9 @@
-{ config, ... }:
 {
-  # imports = [
-  #   zen-browser.homeModules.beta
-  # ];
+  config,
+  host,
+  ...
+}:
+{
   home.file.".mozilla/firefox/mapomagpie/chrome" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/browser/firefox-compact-ui";
   };
@@ -21,16 +22,9 @@
       };
     };
   };
-  # programs.zen-browser = {
-  #   enable = true;
-  #   policies = {
-  #     DisableAppUpdate = true;
-  #     DisableTelemetry = true;
-  #     # find more options here: https://mozilla.github.io/policy-templates/
-  #   };
-  # };
+
   programs.chromium = {
-    enable = true;
+    enable = host.hostname == "maponixos";
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"

@@ -19,32 +19,41 @@
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
 
-  home.packages = with pkgs; [
-    gh
-    git-credential-manager
-    tldr
-    telegram-desktop
-    bat
-    wl-clipboard
-    killall
-    freerdp3
-    swayimg
-    rimedm.packages.${pkgs.system}.default
-    gitui
+  home.packages =
+    with pkgs;
+    [
+      gh
+      git-credential-manager
+      tldr
+      telegram-desktop
+      bat
+      wl-clipboard
+      killall
+      freerdp3
+      swayimg
+      rimedm.packages.${pkgs.system}.default
+      gitui
 
-    gnome-keyring
-    slurp
-    libnotify
-    grim
-    wf-recorder
-    xdragon
-    showmethekey
+      gnome-keyring
+      slurp
+      libnotify
+      grim
+      wf-recorder
+      xdragon
+      showmethekey
 
-    gimp3
-    kdePackages.kdenlive
-    yt-dlp
-    tsukimi
-  ];
+    ]
+    ++ (
+      if host.hostname == "maponixos" then
+        [
+          gimp3
+          kdePackages.kdenlive
+          yt-dlp
+          tsukimi
+        ]
+      else
+        [ ]
+    );
 
   programs.git = {
     enable = true;
