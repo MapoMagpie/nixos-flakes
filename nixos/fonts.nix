@@ -5,7 +5,7 @@
     packages = with pkgs; [
       nerd-fonts._0xproto
       nerd-fonts._3270
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       lxgw-wenkai
       lxgw-neoxihei
       lxgw-wenkai-tc
