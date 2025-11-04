@@ -13,7 +13,7 @@
         # fcitx5-gtk
         fcitx5-nord
         kdePackages.fcitx5-configtool
-        fcitx5-catppuccin
+        catppuccin-fcitx5
         fcitx5-tokyonight
         kdePackages.fcitx5-qt
       ];

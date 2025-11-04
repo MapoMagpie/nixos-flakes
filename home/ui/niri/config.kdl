@@ -61,7 +61,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#0f1511"
+    backdrop-color "#161311"
     workspace-shadow {
         off
         softness 40
@@ -87,10 +87,10 @@ layout {
     }
     focus-ring {
         width 2
-        active-color "#92d5ab"
+        active-color "#edbca9"
     }
     border { off; }
-    insert-hint { color "#92d5ab"; }
+    insert-hint { color "#edbca9"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333

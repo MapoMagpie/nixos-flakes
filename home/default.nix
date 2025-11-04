@@ -29,9 +29,9 @@
       bat
       wl-clipboard
       killall
-      freerdp3
+      freerdp
       swayimg
-      rimedm.packages.${pkgs.system}.default
+      rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
       gitui
 
       gnome-keyring
@@ -39,7 +39,7 @@
       libnotify
       grim
       wf-recorder
-      xdragon
+      dragon-drop
       showmethekey
 
     ]
@@ -57,8 +57,12 @@
 
   programs.git = {
     enable = true;
-    userName = host.git.userName;
-    userEmail = host.git.userEmail;
+    settings = {
+      user = {
+        name = host.git.userName;
+        email = host.git.userEmail;
+      };
+    };
   };
 
   services.cliphist = {
