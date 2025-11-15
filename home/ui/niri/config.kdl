@@ -61,7 +61,7 @@ spawn-at-startup "xwayland-satellite"
 // overview
 overview {
     zoom 0.6
-    backdrop-color "#161311"
+    backdrop-color "#210e0b"
     workspace-shadow {
         off
         softness 40
@@ -87,10 +87,10 @@ layout {
     }
     focus-ring {
         width 2
-        active-color "#edbca9"
+        active-color "#ffb4a8"
     }
     border { off; }
-    insert-hint { color "#edbca9"; }
+    insert-hint { color "#ffb4a8"; }
     default-column-width
     preset-column-widths {
         proportion 0.333333
@@ -207,6 +207,7 @@ window-rule {
     match app-id="kitty"
     match app-id="^swayimg$"
     match app-id="^showmethekey-gtk$"
+    match app-id="^dev.zed.Zed$"
     draw-border-with-background false
 }
 window-rule {
