@@ -41,6 +41,7 @@ environment {
     EDITOR "hx"
     "QT_QPA_PLATFORM" "wayland"
     TERMINAL "kitty"
+    "QT_QPA_PLATFORMTHEME" "flatpak"
 }
 
 // workspaces
@@ -138,6 +139,7 @@ binds {
     Mod+Alt+K           { set-window-height "-10%";                 }
     Mod+Alt+L           { set-window-width "+10%";                  }
     Mod+F               { maximize-column;                          }
+    Mod+Shift+F         { fullscreen-window;                        }
     Mod+G               { center-column;                            }
     Mod+Q               { close-window;                             }
     Mod+T               { toggle-window-floating;                   }

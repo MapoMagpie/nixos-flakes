@@ -20,7 +20,7 @@ input {
     trackball { accel-speed 0.000000; }
     tablet
     touch
-    focus-follows-mouse
+    // focus-follows-mouse
     // warp-mouse-to-focus
 }
 output "DP-3" {
@@ -41,6 +41,7 @@ environment {
     EDITOR "hx"
     "QT_QPA_PLATFORM" "wayland"
     TERMINAL "kitty"
+    "QT_QPA_PLATFORMTHEME" "flatpak"
 }
 
 // workspaces
@@ -139,7 +140,7 @@ binds {
     Mod+Alt+K           { set-window-height "-10%";                 }
     Mod+Alt+L           { set-window-width "+10%";                  }
     Mod+F               { maximize-column;                          }
-    Mod+Shift+F         { expand-column-to-available-width;         }
+    Mod+Shift+F         { fullscreen-window;                        }
     Mod+G               { center-column;                            }
     Mod+Q               { close-window;                             }
     Mod+T               { toggle-window-floating;                   }
