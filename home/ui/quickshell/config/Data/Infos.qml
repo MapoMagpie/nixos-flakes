@@ -10,7 +10,7 @@ Singleton {
 
     Process {
         id: proc
-        command: ["/home/mapomagpie/.config/quickshell/sinfo"]
+        command: ["/home/mapomagpie/.config/quickshell/sinfo", "-interface", "enp34s0"]
 
         running: true
         stdout: SplitParser {
