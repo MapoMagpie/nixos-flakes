@@ -11,6 +11,7 @@
     ./portal.nix
     ./programs.nix
     ./sddm.nix
+    ./kvm.nix
     host.hardwareModule
   ];
 
@@ -62,6 +63,7 @@
       "networkmanager"
       "wheel"
       "i2c"
+      "libvirtd"
     ];
     openssh.authorizedKeys.keys = host.openssh.authorizedKeys.keys;
   };
@@ -73,6 +75,13 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  services.mihomo = {
+    enable = true;
+    webui = "/home/mapomagpie/.config/clash/metacubexd/";
+    tunMode = true;
+    configFile = "/home/${host.username}/.config/clash/config.yaml";
   };
 
   services.upower.enable = host.upowerEnable;
