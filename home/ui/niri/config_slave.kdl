@@ -250,6 +250,7 @@ window-rule {
     match app-id="^firefox$"
     match app-id="Minecraft"
     match app-id="^org.telegram.desktop$"
+    match app-id="moe.tsuna.tsukimi"
     exclude title="Picture-in-Picture"
     default-column-width { proportion 1.000000; }
 }
