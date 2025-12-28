@@ -10,10 +10,12 @@
     ./fonts.nix
     ./portal.nix
     ./programs.nix
+    ./xdgmime.nix
     ./sddm.nix
     ./kvm.nix
     host.hardwareModule
-  ];
+  ]
+  ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -43,6 +45,14 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocales = [
+    "zh_CN.UTF-8/UTF-8"
+    "zh_CN/GB2312"
+    "zh_TW.UTF-8/UTF-8"
+    "zh_TW.EUC-TW/EUC-TW"
+    "zh_TW/BIG5"
+    "ja_JP.UTF-8/UTF-8"
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
