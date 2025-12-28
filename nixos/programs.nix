@@ -1,59 +1,87 @@
 {
   pkgs,
+  host,
+  rimedm,
   ...
 }:
 {
 
   programs.zsh.enable = true;
-  programs.wshowkeys.enable = true;
   programs.niri.enable = true;
   programs.git = {
     enable = true;
     # lfs.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    wget
-    curl
+  environment.systemPackages =
+    with pkgs;
+    [
+      wget
+      curl
 
-    zip
-    xz
-    unzip
-    p7zip
-    zstd
+      zip
+      xz
+      unzip
+      p7zip
+      zstd
 
-    ripgrep # recursively searches directories for a regex pattern
-    eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
-    jq
-    sd
+      ripgrep
+      eza
+      fzf
+      jq
+      sd
 
-    file
-    which
-    tree
-    btop # replacement of htop/nmon
+      ffmpeg
+      imagemagick
+      libavif
+      mpv
 
-    # system call monitoring
-    strace # system call monitoring
-    # ltrace # library call monitoring
-    lsof # list open files
+      file
+      which
+      tree
+      btop
+      showmethekey
 
-    sysstat
-    ethtool
-    pciutils # lspci
+      sysstat
+      ethtool
 
-    ddcutil
+      ddcutil
 
-    ntfs3g
+      ntfs3g
 
-    miniserve
-    yazi
-    helix
-    ffmpeg
-    imagemagick
-    libavif
-    mpv
+      gnome-keyring
+      hyprpolkitagent
 
-    hyprpolkitagent
-  ];
+      libnotify
+
+      yazi
+      helix
+      miniserve
+      telegram-desktop
+
+      tldr
+      bat
+      wl-clipboard
+      killall
+      freerdp
+      swayimg
+      wf-recorder
+      rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
+      grim
+      gitui
+
+      slurp
+      dragon-drop
+    ]
+    ++ (
+      if host.hostname == "maponixos" then
+        [
+          gimp3
+          kdePackages.kdenlive
+          yt-dlp
+          tsukimi
+        ]
+      else
+        [ ]
+    );
 }
