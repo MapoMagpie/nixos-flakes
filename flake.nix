@@ -29,6 +29,7 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit host;
+            inherit rimedm;
           };
           modules = [
             ./nixos/configuration.nix
@@ -37,14 +38,12 @@
               home-manager.backupFileExtension = "bak";
               home-manager.extraSpecialArgs = {
                 inherit host;
-                inherit rimedm;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users."${host.username}" = import ./home;
             }
-          ]
-          ++ (if host.hostname == "maponixos" then [ ./home/game/steam.nix ] else [ ]);
+          ];
         };
     in
     {
