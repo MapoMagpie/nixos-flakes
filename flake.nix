@@ -10,6 +10,9 @@
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
 
+    helix.url = "github:MapoMagpie/helix/my-helix";
+    helix.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs =
@@ -17,6 +20,7 @@
       nixpkgs,
       home-manager,
       rimedm,
+      helix,
       ...
     }:
     let
@@ -30,6 +34,7 @@
           specialArgs = {
             inherit host;
             inherit rimedm;
+            inherit helix;
           };
           modules = [
             ./nixos/configuration.nix
