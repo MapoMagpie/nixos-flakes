@@ -1,5 +1,27 @@
 {
   "nodes": {
+    "helix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1767683112,
+        "narHash": "sha256-AicltxEmQ7FZCFqnxUbetjME9dngPVwmjzH6cLYatxo=",
+        "owner": "MapoMagpie",
+        "repo": "helix",
+        "rev": "1c71bf90e8c2e3b847cb1d1aee28f4e278c5a39f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MapoMagpie",
+        "ref": "my-helix",
+        "repo": "helix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -7,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766881808,
-        "narHash": "sha256-JR7A2xS3EBPWFeONzhqez5vp7nKEsp7eLj2Ks210Srk=",
+        "lastModified": 1767619743,
+        "narHash": "sha256-N0kK1JqxIjFl7hPAfhkW6C9AO7feYJUWLPyqJO2VuQQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d2e0458d6531885600b346e161c38790dc356fa8",
+        "rev": "a65c04965c841eb01ba401f5162f12bc8d52014f",
         "type": "github"
       },
       "original": {
@@ -22,11 +44,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1766651565,
-        "narHash": "sha256-QEhk0eXgyIqTpJ/ehZKg9IKS7EtlWxF3N7DXy42zPfU=",
+        "lastModified": 1767379071,
+        "narHash": "sha256-EgE0pxsrW9jp9YFMkHL9JMXxcqi/OoumPJYwf+Okucw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3e2499d5539c16d0d173ba53552a4ff8547f4539",
+        "rev": "fb7944c166a3b630f177938e478f0378e64ce108",
         "type": "github"
       },
       "original": {
@@ -44,11 +66,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1745155781,
-        "narHash": "sha256-s47ZFQdnPEx5sx9cxOJtZrEZSw5xcJYGugD3Yo1CrvU=",
+        "lastModified": 1767450548,
+        "narHash": "sha256-vzjN3c3/QYd8HpU8o9JIXPc9T0UYUWXD/MaTpalQit0=",
         "owner": "MapoMagpie",
         "repo": "rimedm",
-        "rev": "be9f9251c95ca0864c22b89c69a601fb6a381152",
+        "rev": "c34dd40e98dc55c2f3abd5a14ab8ce92872d39ad",
         "type": "github"
       },
       "original": {
@@ -59,9 +81,31 @@
     },
     "root": {
       "inputs": {
+        "helix": "helix",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "rimedm": "rimedm"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "helix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759631821,
+        "narHash": "sha256-V8A1L0FaU/aSXZ1QNJScxC12uP4hANeRBgI4YdhHeRM=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "1d7cbdaad90f8a5255a89a6eddd8af24dc89cafe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "systems": {
