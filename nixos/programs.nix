@@ -2,6 +2,7 @@
   pkgs,
   host,
   rimedm,
+  helix,
   ...
 }:
 {
@@ -55,7 +56,8 @@
       libnotify
 
       yazi
-      helix
+      # helix
+      helix.packages.${pkgs.stdenv.hostPlatform.system}.default
       miniserve
       telegram-desktop
 
