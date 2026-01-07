@@ -46,12 +46,22 @@
     };
     shellAliases = {
       ll = "eza -l";
-      buildos = "sudo nixos-rebuild switch --flake ~/nixos && notify-send 'nixos build succeeded'";
-      nd = "nix develop";
+      bos = "sudo nixos-rebuild switch --flake ~/nixos && notify-send 'nixos build succeeded'";
+      nu = "nix flake update";
+      kt = "SHELL=zsh kitty --detach";
       h = "hx .";
       y = "yazi_cwd";
     };
-    initContent = "source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh";
+    initContent = ''
+      source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh
+      nd() {
+        if [ -z "$1" ]; then
+          nix develop -c zsh
+        else
+          nix develop ~/devflakes/"$1" -c zsh
+        fi
+      }
+    '';
   };
 
 }
