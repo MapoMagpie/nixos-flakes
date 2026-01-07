@@ -12,11 +12,26 @@
     ./programs.nix
     ./xdgmime.nix
     ./sddm.nix
-    ./kvm.nix
     host.hardwareModule
   ]
-  ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
+  ++ (
+    if host.hostname == "maponixos" then
+      [
+        ./game
+        # ./kvm.nix
+      ]
+    else
+      [ ]
+  );
 
+  environment = {
+    variables = {
+      EDITOR = "hx";
+      TERMINAL = "kitty";
+      "QT_QPA_PLATFORM" = "wayland";
+      "QT_QPA_PLATFORMTHEME" = "flatpak";
+    };
+  };
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
