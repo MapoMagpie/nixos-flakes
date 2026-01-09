@@ -29,8 +29,10 @@
       ripgrep
       eza
       fzf
+      skim
       jq
       sd
+      fd
 
       ffmpeg
       imagemagick
