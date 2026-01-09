@@ -1,33 +1,75 @@
--- local state = ya.sync(function()
--- 	return cx.active.current.cwd
--- end)
---
-local function fail(s, ...)
-	ya.notify({ title = "fzfd", content = string.format(s, ...), timeout = 5, level = "error" })
+local M = {}
+
+local state = ya.sync(function()
+	local selected = {}
+	for _, url in pairs(cx.active.selected) do
+		selected[#selected + 1] = url
+	end
+	return cx.active.current.cwd, selected
+end)
+
+function M:entry()
+	ya.emit("escape", { visual = true })
+
+	local cwd, selected = state()
+	if cwd.scheme.is_virtual then
+		return ya.notify { title = "skim", content = "Not supported under virtual filesystems", timeout = 5, level = "warn" }
+	end
+
+	local _permit = ui.hide()
+	local output, err = M.run_with(cwd, selected)
+	if not output then
+		return ya.notify { title = "skim", content = tostring(err), timeout = 5, level = "error" }
+	end
+
+	local urls = M.split_urls(cwd, output)
+	if #urls == 1 then
+		local cha = #selected == 0 and fs.cha(urls[1])
+		ya.emit(cha and cha.is_dir and "cd" or "reveal", { urls[1], raw = true })
+	elseif #urls > 1 then
+		urls.state = #selected > 0 and "off" or "on"
+		ya.emit("toggle_all", urls)
+	end
 end
 
-local function entry()
-	local permit = ya.hide()
-	-- local cwd = tostring(state())
-	local handle = io.popen(
-		"FZF_DEFAULT_COMMAND=\"find . -not \\( -path '*/node_modules*' -type d -prune \\) -not \\( -path '*/.git*' -type d -prune \\) -maxdepth 5\" fzf"
-	)
-	if not handle then
-		return fail("Spawn fzfd failed, handle is nil")
+function M.run_with(cwd, selected)
+	local child, err = Command("sk")
+		:cwd(tostring(cwd))
+		:stdin(#selected > 0 and Command.PIPED or Command.INHERIT)
+		:stdout(Command.PIPED)
+		:spawn()
+
+	if not child then
+		return nil, Err("Failed to start `skim`, error: %s", err)
 	end
 
-	local result = handle:read("*a")
-	handle:close()
-	if result == nil or result == "" then
-		return
+	for _, u in ipairs(selected) do
+		child:write_all(string.format("%s\n", u))
 	end
-	result = result:gsub("\n$", "")
-	local cha, err = fs.cha(Url(result))
-	if not cha then
-		return fail("cannot read file's characteristics, ", err)
+	if #selected > 0 then
+		child:flush()
 	end
-	ya.manager_emit(cha.is_dir and "cd" or "reveal", { result })
-	permit:drop()
+
+	local output, err = child:wait_with_output()
+	if not output then
+		return nil, Err("Cannot read `skim` output, error: %s", err)
+	elseif not output.status.success and output.status.code ~= 130 then
+		return nil, Err("`skim` exited with error code %s", output.status.code)
+	end
+	return output.stdout, nil
 end
 
-return { entry = entry }
+function M.split_urls(cwd, output)
+	local t = {}
+	for line in output:gmatch("[^\r\n]+") do
+		local u = Url(line)
+		if u.is_absolute then
+			t[#t + 1] = u
+		else
+			t[#t + 1] = cwd:join(u)
+		end
+	end
+	return t
+end
+
+return M
