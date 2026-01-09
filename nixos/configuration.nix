@@ -14,6 +14,7 @@
     ./sddm.nix
     host.hardwareModule
   ]
+
   ++ (
     if host.hostname == "maponixos" then
       [
@@ -30,6 +31,7 @@
       TERMINAL = "kitty";
       "QT_QPA_PLATFORM" = "wayland";
       "QT_QPA_PLATFORMTHEME" = "flatpak";
+      "SKIM_DEFAULT_COMMAND" = "fd -d 6 -H -E node_modules -E .git -E '*.lock'";
     };
   };
   nix.settings.experimental-features = [
@@ -104,7 +106,7 @@
 
   services.mihomo = {
     enable = true;
-    webui = "/home/mapomagpie/.config/clash/metacubexd/";
+    webui = pkgs.metacubexd;
     tunMode = true;
     configFile = "/home/${host.username}/.config/clash/config.yaml";
   };

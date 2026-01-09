@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
   programs.starship = {
     enable = true;
@@ -21,11 +21,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    completionInit = ''
-      autoload -U edit-command-line
-      zle -N edit-command-line
-      bindkey '^Xe' edit-command-line
-    '';
     history = {
       size = 100000;
       path = "${config.xdg.dataHome}/zsh/history";
@@ -34,15 +29,6 @@
       ignoreDups = true;
       ignoreSpace = true;
       share = true;
-    };
-    historySubstringSearch = {
-      enable = true;
-      searchDownKey = [
-        "^[OB"
-      ];
-      searchUpKey = [
-        "^[OA"
-      ];
     };
     shellAliases = {
       ll = "eza -l";
@@ -53,7 +39,14 @@
       y = "yazi_cwd";
     };
     initContent = ''
+      autoload -U edit-command-line
+      zle -N edit-command-line
+      bindkey '^Xe' edit-command-line
       source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      source ${pkgs.skim}/share/skim/completion.zsh
+      source ${pkgs.skim}/share/skim/key-bindings.zsh
+      zvm_bindkey viins "^R" skim-history-widget
       nd() {
         if [ -z "$1" ]; then
           nix develop -c zsh
