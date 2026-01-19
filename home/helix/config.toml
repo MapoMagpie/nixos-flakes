@@ -1,8 +1,15 @@
 theme = "catppuccin_mocha_nb"
 [editor]
 auto-format = true
-completion-timeout = 250
+# completion-timeout = 100
+# completion-trigger-len = 1
+# completion-auto-select = true
 mouse = true
+word-completion = { enable = false, trigger-length = 3 }
+
+[editor.inline-diagnostics]
+# cursor-line = "disable"
+# other-lines = "disable"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -32,9 +39,9 @@ tab = "all"
 
 [keys.insert]
 C-s = [":w", "save_selection"]
-esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true", "normal_mode"]
+# esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true", "normal_mode"]
 
 [keys.normal]
 C-s = [":w", "save_selection"]
-esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
+# esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
 

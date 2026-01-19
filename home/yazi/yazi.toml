@@ -1,0 +1,18 @@
+[mgr]
+ratio = [1, 4, 3]
+show_hidden = false
+sort_by = "natural"
+
+[[open.prepend_rules]]
+name = "*.zip"
+use = ["extract", "reveal"]
+
+[[plugin.prepend_previewers]]
+name = "*.zip"
+run = "archive"
+
+[preview]
+max_width = 800
+tab_size = 2
+wrap = "no"
+

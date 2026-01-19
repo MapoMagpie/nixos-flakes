@@ -1,6 +1,0 @@
-[submodule "home/browser/firefox-compact-ui"]
-	path = home/browser/firefox-compact-ui
-	url = git@github.com:MapoMagpie/firefox-compact-ui.git
-[submodule "home/fcitx5/rime"]
-	path = home/fcitx5/rime
-	url = git@github.com:MapoMagpie/rime-xkjd6-private.git

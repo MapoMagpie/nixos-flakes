@@ -1,17 +1,21 @@
 {
-  pkgs,
   host,
   ...
 }:
 
 {
   imports = [
+    ./fonts
     ./network.nix
-    ./fonts.nix
     ./portal.nix
     ./programs.nix
     ./xdgmime.nix
     ./sddm.nix
+    ./user.nix
+    ./zsh.nix
+    ./vpn.nix
+    ./environment.nix
+    ./fcitx.nix
     host.hardwareModule
   ]
 
@@ -25,20 +29,13 @@
       [ ]
   );
 
-  environment = {
-    variables = {
-      EDITOR = "hx";
-      TERMINAL = "kitty";
-      "QT_QPA_PLATFORM" = "wayland";
-      "QT_QPA_PLATFORMTHEME" = "flatpak";
-      "SKIM_DEFAULT_COMMAND" = "fd -d 6 -H -E node_modules -E .git -E '*.lock'";
-    };
-  };
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
   nix.settings.trusted-users = [ host.username ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -80,21 +77,6 @@
   security.polkit.enable = true;
   security.pam.services.swaylock = { };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."${host.username}" = {
-    isNormalUser = true;
-    description = host.userDesc;
-    initialPassword = host.userInitPass;
-    shell = pkgs.zsh;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "i2c"
-      "libvirtd"
-    ];
-    openssh.authorizedKeys.keys = host.openssh.authorizedKeys.keys;
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   services.pipewire = {
@@ -104,13 +86,6 @@
     pulse.enable = true;
   };
 
-  services.mihomo = {
-    enable = true;
-    webui = pkgs.metacubexd;
-    tunMode = true;
-    configFile = "/home/${host.username}/.config/clash/config.yaml";
-  };
-
   services.upower.enable = host.upowerEnable;
   services.power-profiles-daemon.enable = host.upowerEnable;
 
@@ -118,6 +93,7 @@
 
   hardware.amdgpu = {
     initrd.enable = true;
+    opencl.enable = true;
   };
 
   # This value determines the NixOS release from which the default

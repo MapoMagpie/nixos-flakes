@@ -1,0 +1,11 @@
+daemonize
+image=~/nixos/home/images/wallpapers/lock.jpg
+indicator-radius=200
+indicator-thickness=15
+inside-color=1f1f1f30
+key-hl-color=f0c31f
+line-uses-inside
+line-uses-ring
+ring-clear-color=1a1a1c
+ring-color=00000000
+separator-color=00000000

@@ -1,0 +1,32 @@
+[[language]]
+auto-format = true
+name = "nix"
+
+[language.formatter]
+args = ["--width=300"]
+command = "nixfmt"
+
+[[language]]
+auto-format = true
+name = "typescript"
+
+[language.indent]
+tab-width = 2
+unit = " "
+
+[[language]]
+name = "markdown"
+scope = "source.markdown"
+file-types = ["md", "markdown"]
+language-servers = ["senimels"]
+
+[[language]]
+name = "text"
+scope = "source.text"
+file-types = ["txt", "text"]
+language-servers = ["senimels"]
+
+[language-server.senimels]
+command = "/home/mapomagpie/code/senime/target/release/examples/lsp"
+args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
+config.trigger_characters = []

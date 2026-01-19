@@ -13,6 +13,7 @@ input {
     touchpad {
         tap
         natural-scroll
+        dwt
         accel-speed 0.000000
     }
     mouse { accel-speed 0.000000; }
@@ -23,15 +24,14 @@ input {
     // focus-follows-mouse
     // warp-mouse-to-focus
 }
-output "DP-3" {
-    transform "normal"
-    position x=900 y=0
-    mode "2560x1440@144.000000"
-}
-output "HDMI-A-1" {
-    transform "90"
-    position x=0 y=0
-    mode "1440x900@59.887000"
+// output "DP-3" {
+//     transform "normal"
+//     position x=900 y=0
+//     mode "2560x1440@144.000000"
+// }
+output "eDP-1" {
+    mode "1920x1080"
+    scale 1.0
 }
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -45,11 +45,10 @@ environment {
 }
 
 // workspaces
-workspace "NETW" { open-on-output "DP-3"; }
-workspace "CODE" { open-on-output "DP-3"; }
-workspace "CHAT" { open-on-output "DP-3"; }
-workspace "GAME" { open-on-output "DP-3"; }
-workspace "EXTE" { open-on-output "HDMI-A-1"; }
+workspace "NETW"
+workspace "CODE"
+workspace "CHAT"
+workspace "GAME"
 
 // startup
 spawn-at-startup "quickshell"
@@ -58,7 +57,6 @@ spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "sway-audio-idle-inhibit"
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "mpvpaper" "-o" "--loop" "DP-3" "/home/mapomagpie/Videos/elysia-peachy-spring-honkai-impact-3rd-wallpaperwaifu-com.mp4"
 
 // overview
 overview {
@@ -169,9 +167,6 @@ binds {
     Mod+Return  hotkey-overlay-title="Open Terminal"             {
         spawn "kitty";
     }
-    Mod+Y       hotkey-overlay-title="Open Yazi"                 {
-        spawn "kitty" "-T" "Yazi" "yazi";
-    }
     Mod+Space   hotkey-overlay-title="Open Launcher"             {
         spawn "fuzzel";
     }
@@ -235,9 +230,9 @@ window-rule {
 window-rule {
     match app-id="^firefox$" title="Picture-in-Picture"
     match app-id="^mpv$"
-    open-floating true
     default-column-width { proportion 0.300000; }
     default-window-height { proportion 0.300000; }
+    open-floating true
     default-floating-position relative-to="bottom-right" x=10 y=10
 }
 window-rule {
@@ -256,14 +251,9 @@ window-rule {
     match app-id="Minecraft"
     match app-id="^org.telegram.desktop$"
     match app-id="moe.tsuna.tsukimi"
+    match app-id="^dev.zed.Zed$"
     exclude title="Picture-in-Picture"
     default-column-width { proportion 1.000000; }
-}
-window-rule {
-    match app-id="moe.tsuna.tsukimi" is-floating=true
-    default-column-width { proportion 0.300000; }
-    default-window-height { proportion 0.300000; }
-    default-floating-position relative-to="bottom-right" x=10 y=10
 }
 window-rule {
     match app-id="kitty$"
