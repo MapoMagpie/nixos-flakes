@@ -43,15 +43,13 @@
       zle -N edit-command-line
       bindkey '^Xe' edit-command-line
       source ${config.home.homeDirectory}/nixos/home/misc/scripts/yazi_cwd.sh
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       source ${pkgs.skim}/share/skim/completion.zsh
       source ${pkgs.skim}/share/skim/key-bindings.zsh
-      zvm_bindkey viins "^R" skim-history-widget
       nd() {
         if [ -z "$1" ]; then
           nix develop -c zsh
         else
-          nix develop ~/devflakes/"$1" -c zsh
+          nix develop ~/nixos#"$1" -c zsh
         fi
       }
     '';

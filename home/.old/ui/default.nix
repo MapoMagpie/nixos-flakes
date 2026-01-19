@@ -17,11 +17,11 @@
     sway-audio-idle-inhibit
   ];
 
-  home.pointerCursor = with pkgs; {
-    name = "Bibata-Original-Amber";
-    package = bibata-cursors;
-    size = 32;
-  };
+  # home.pointerCursor = with pkgs; {
+  #   name = "Bibata-Original-Amber";
+  #   package = bibata-cursors;
+  #   size = 32;
+  # };
 
   # gtk = {
   #   enable = true;
@@ -31,12 +31,12 @@
   #   };
   # };
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      cursor-theme = "Bibata-Original-Amber";
-      color-scheme = "prefer-dark";
-    };
-  };
+  # dconf.settings = {
+  #   "org/gnome/desktop/interface" = {
+  #     cursor-theme = "Bibata-Original-Amber";
+  #     color-scheme = "prefer-dark";
+  #   };
+  # };
 
   services.hypridle = {
     enable = true;

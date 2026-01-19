@@ -14,7 +14,7 @@
       sarasa-gothic
       (pkgs.stdenv.mkDerivation {
         name = "local_fonts";
-        src = ../home/misc/fonts;
+        src = ./fonts;
         installPhase = ''
           mkdir -p $out/share/fonts/truetype
           cp $src/*.{ttf,otf} $out/share/fonts/truetype/

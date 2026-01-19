@@ -7,11 +7,10 @@
 }:
 {
 
-  programs.zsh.enable = true;
-  programs.niri.enable = true;
-  programs.git = {
-    enable = true;
-    # lfs.enable = true;
+  programs = {
+    zsh.enable = true;
+    niri.enable = true;
+    git.enable = true;
   };
 
   environment.systemPackages =
@@ -43,6 +42,7 @@
       which
       tree
       btop
+      amdgpu_top
       showmethekey
 
       sysstat
@@ -76,6 +76,7 @@
 
       slurp
       dragon-drop
+      xwayland-satellite
     ]
     ++ (
       if host.hostname == "maponixos" then

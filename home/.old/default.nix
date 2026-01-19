@@ -6,8 +6,8 @@
 }:
 {
   home.packages = with pkgs; [
-    nil
-    nixfmt-rfc-style
+    nixd
+    nixfmt
   ];
   home.file.".config/helix/themes".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/code/helix/themes";
   home.file.".config/helix/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/code/helix/config.toml";

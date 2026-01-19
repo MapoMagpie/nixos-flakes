@@ -4,8 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-maid.url = "github:viperML/nix-maid";
 
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,14 +12,17 @@
     helix.url = "github:MapoMagpie/helix/my-helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     {
       nixpkgs,
-      home-manager,
+      nix-maid,
       rimedm,
       helix,
+      rust-overlay,
       ...
     }:
     let
@@ -37,22 +39,61 @@
             inherit helix;
           };
           modules = [
-            ./nixos/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.backupFileExtension = "bak";
-              home-manager.extraSpecialArgs = {
-                inherit host;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users."${host.username}" = import ./home;
-            }
+            nix-maid.nixosModules.default
+            ./nixos
           ];
+        };
+
+      pkgsFor =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [
+            rust-overlay.overlays.default
+          ];
+        };
+      mkRustToochain =
+        pkgs:
+        pkgs.rust-bin.stable.latest.default.override {
+          extensions = [ "rust-src" ];
         };
     in
     {
       nixosConfigurations.maponixos = nixosSystem "maponixos";
       nixosConfigurations.slavenixos = nixosSystem "slavenixos";
+      devShells."x86_64-linux" =
+        let
+          pkgs = pkgsFor "x86_64-linux";
+          rust = mkRustToochain pkgs;
+        in
+        {
+          rust = pkgs.mkShell {
+            packages = with pkgs; [
+              rust
+              rust-analyzer-unwrapped
+            ];
+            RUST_SRC_PATH = "${rust}/lib/rustlib/src/rust/library";
+          };
+          ts = pkgs.mkShell {
+            packages = with pkgs; [
+              nodejs_24
+              typescript-language-server
+            ];
+          };
+          go = pkgs.mkShell {
+            packages = with pkgs; [
+              go
+              gopls
+              gotools
+              go-tools
+            ];
+          };
+          lua = pkgs.mkShell {
+            packages = with pkgs; [
+              lua
+              lua-language-server
+            ];
+          };
+        };
     };
 }
