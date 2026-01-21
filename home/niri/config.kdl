@@ -51,9 +51,10 @@ workspace "EXTE" { open-on-output "HDMI-A-1"; }
 
 // startup
 spawn-at-startup "quickshell"
-// spawn-at-startup "swww-daemon"
 spawn-at-startup "fcitx5" "-d"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "-max-dedupe-search" "500" "-max-items" "5000" "store"
 spawn-at-startup "sway-audio-idle-inhibit"
+spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock" "timeout" "400" "niri msg action power-off-monitors" "resume" "niri msg action power-off-monitors" "before-sleep" "swaylock"
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "mpvpaper" "-o" "--no-audio --loop --hwdec=auto --video-sync=display-resample" "DP-3" "/home/mapomagpie/Videos/sister-marija-muse-dash-wallpaperwaifu-com.mp4"
