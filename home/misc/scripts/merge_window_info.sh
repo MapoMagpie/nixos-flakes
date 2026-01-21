@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 awk -v RS= '{

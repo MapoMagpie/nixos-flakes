@@ -85,37 +85,6 @@
         firefox
         swaylock
       ];
-
-      systemd.services = {
-        "cliphist" = {
-          path = [
-            pkgs.cliphist
-            pkgs.wl-clipboard
-          ];
-          script = ''
-            exec wl-paste --watch cliphist -max-dedupe-search 500 -max-items 5000 store
-          '';
-          wantedBy = [ "graphical-session.target" ];
-          description = "Clipboard management daemon";
-        };
-        "swayidle" = {
-          path = [
-            pkgs.swayidle
-            pkgs.swaylock
-            pkgs.niri
-          ];
-          script = ''
-            exec swayidle -w \
-             	timeout 300 'swaylock' \
-             	timeout 330 'niri msg action power-off-monitors' \
-             	resume 'niri msg action power-off-monitors' \
-             	before-sleep 'swaylock'
-          '';
-          wantedBy = [ "graphical-session.target" ];
-          description = "IDLE Listener";
-        };
-      };
-
       dconf.settings = {
         "/org/gnome/desktop/interface/color-scheme" = "prefer-dark";
         "/org/gnome/desktop/interface/cursor-theme" = "Bibata-Original-Amber";

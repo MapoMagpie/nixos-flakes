@@ -55,6 +55,7 @@
       mkRustToochain =
         pkgs:
         pkgs.rust-bin.stable.latest.default.override {
+          targets = [ "wasm32-unknown-unknown" ];
           extensions = [ "rust-src" ];
         };
     in
@@ -71,6 +72,15 @@
             packages = with pkgs; [
               rust
               rust-analyzer-unwrapped
+            ];
+            RUST_SRC_PATH = "${rust}/lib/rustlib/src/rust/library";
+          };
+          rust-wasm = pkgs.mkShell {
+            packages = with pkgs; [
+              rust
+              rust-analyzer-unwrapped
+              wasm-pack
+              wasm-bindgen-cli
             ];
             RUST_SRC_PATH = "${rust}/lib/rustlib/src/rust/library";
           };
