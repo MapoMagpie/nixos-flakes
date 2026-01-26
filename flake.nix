@@ -52,12 +52,6 @@
             rust-overlay.overlays.default
           ];
         };
-      mkRustToochain =
-        pkgs:
-        pkgs.rust-bin.stable.latest.default.override {
-          targets = [ "wasm32-unknown-unknown" ];
-          extensions = [ "rust-src" ];
-        };
     in
     {
       nixosConfigurations.maponixos = nixosSystem "maponixos";
@@ -65,7 +59,15 @@
       devShells."x86_64-linux" =
         let
           pkgs = pkgsFor "x86_64-linux";
-          rust = mkRustToochain pkgs;
+
+          rust = pkgs.rust-bin.stable.latest.default.override {
+            extensions = [ "rust-src" ];
+          };
+
+          rust-wasm = pkgs.rust-bin.stable.latest.default.override {
+            targets = [ "wasm32-unknown-unknown" ];
+            extensions = [ "rust-src" ];
+          };
         in
         {
           rust = pkgs.mkShell {
@@ -77,7 +79,7 @@
           };
           rust-wasm = pkgs.mkShell {
             packages = with pkgs; [
-              rust
+              rust-wasm
               rust-analyzer-unwrapped
               wasm-pack
               wasm-bindgen-cli

@@ -82,7 +82,7 @@
       if host.hostname == "maponixos" then
         [
           gimp3
-          kdePackages.kdenlive
+          # kdePackages.kdenlive
           yt-dlp
           tsukimi
         ]

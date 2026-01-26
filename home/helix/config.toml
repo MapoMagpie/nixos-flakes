@@ -39,9 +39,9 @@ tab = "all"
 
 [keys.insert]
 C-s = [":w", "save_selection"]
-# esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true", "normal_mode"]
+esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true", "normal_mode"]
 
 [keys.normal]
 C-s = [":w", "save_selection"]
-# esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
+esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
 

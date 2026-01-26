@@ -27,6 +27,6 @@ file-types = ["txt", "text"]
 language-servers = ["senimels"]
 
 [language-server.senimels]
-command = "/home/mapomagpie/code/senime/target/release/examples/lsp"
+command = "/home/mapomagpie/code/senime/target/release/senimels"
 args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
 config.trigger_characters = []
