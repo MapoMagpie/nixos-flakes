@@ -1,5 +1,21 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  steam-gamescope-desktop = pkgs.makeDesktopItem {
+    name = "steam-gamescope";
+    desktopName = "Steam Gamescope";
+    exec = "steam-gamescope";
+    icon = "steam";
+    terminal = false;
+    categories = [
+      "Game"
+      "Application"
+    ];
+  };
+in
 {
+  environment.systemPackages = [
+    steam-gamescope-desktop
+  ];
   programs.steam = {
     enable = true;
     gamescopeSession = {
@@ -26,4 +42,5 @@
       ];
     };
   };
+
 }
