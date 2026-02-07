@@ -66,26 +66,47 @@
         "fcitx5/rime".source = "{{home}}/nixos/external/rime";
       };
 
-      packages = with pkgs; [
-        mpvpaper
-        sway-audio-idle-inhibit
+      packages =
+        with pkgs;
+        [
+          mpvpaper
+          sway-audio-idle-inhibit
 
-        bibata-cursors
-        zoxide
-        kitty
-        starship
-        cliphist
-        fuzzel
-        quickshell
-        matugen
+          bibata-cursors
+          zoxide
+          kitty
+          starship
+          cliphist
+          fuzzel
+          quickshell
+          matugen
 
-        nixd
-        nixfmt
+          nixd
+          nixfmt
 
-        firefox
-        swaylock
-        swayidle
-      ];
+          firefox
+          swaylock
+          swayidle
+          gitui
+          dragon-drop
+          swayimg
+          wf-recorder
+          freerdp
+          slurp
+          yt-dlp
+        ]
+        ++ (
+          if host.hostname == "maponixos" then
+            [
+              tsukimi
+              zed-editor
+              gimp3
+              # kdePackages.kdenlive
+              telegram-desktop
+            ]
+          else
+            [ ]
+        );
       dconf.settings = {
         "/org/gnome/desktop/interface/color-scheme" = "prefer-dark";
         "/org/gnome/desktop/interface/cursor-theme" = "Bibata-Original-Amber";

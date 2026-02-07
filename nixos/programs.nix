@@ -1,6 +1,5 @@
 {
   pkgs,
-  host,
   rimedm,
   helix,
   ...
@@ -13,80 +12,60 @@
     git.enable = true;
   };
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      wget
-      curl
+  environment.systemPackages = with pkgs; [
+    wget
+    curl
 
-      zip
-      xz
-      unzip
-      p7zip
-      zstd
+    zip
+    xz
+    unzip
+    p7zip
+    zstd
 
-      ripgrep
-      eza
-      fzf
-      skim
-      jq
-      sd
-      fd
+    ripgrep
+    eza
+    fzf
+    skim
+    jq
+    sd
+    fd
 
-      ffmpeg
-      imagemagick
-      libavif
-      mpv
+    ffmpeg
+    imagemagick
+    libavif
+    mpv
 
-      file
-      which
-      tree
-      btop
-      amdgpu_top
-      showmethekey
+    file
+    which
+    tree
+    btop
+    amdgpu_top
+    showmethekey
 
-      sysstat
-      ethtool
+    sysstat
+    ethtool
 
-      ddcutil
+    ddcutil
 
-      ntfs3g
+    ntfs3g
 
-      gnome-keyring
-      hyprpolkitagent
+    gnome-keyring
+    hyprpolkitagent
 
-      libnotify
+    libnotify
 
-      yazi
-      # helix
-      helix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      miniserve
-      telegram-desktop
+    yazi
+    # helix
+    helix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    miniserve
 
-      tldr
-      bat
-      wl-clipboard
-      killall
-      freerdp
-      swayimg
-      wf-recorder
-      rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
-      grim
-      gitui
+    tldr
+    bat
+    wl-clipboard
+    killall
+    rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
+    grim
 
-      slurp
-      dragon-drop
-      xwayland-satellite
-    ]
-    ++ (
-      if host.hostname == "maponixos" then
-        [
-          gimp3
-          # kdePackages.kdenlive
-          yt-dlp
-          tsukimi
-        ]
-      else
-        [ ]
-    );
+    xwayland-satellite
+  ];
 }

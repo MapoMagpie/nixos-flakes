@@ -19,15 +19,7 @@
     host.hardwareModule
   ]
 
-  ++ (
-    if host.hostname == "maponixos" then
-      [
-        ./game
-        # ./kvm.nix
-      ]
-    else
-      [ ]
-  );
+  ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
 
   nix.settings.experimental-features = [
     "nix-command"
