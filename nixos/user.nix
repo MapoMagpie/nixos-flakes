@@ -28,7 +28,7 @@
           	email = "${host.git.userEmail}"
         '';
 
-        "niri/config.kdl".source = ../home/niri/config.kdl;
+        "niri/config.kdl".source = "{{home}}/nixos/home/niri/config.kdl";
 
         "fuzzel/fuzzel.ini".text =
           let
@@ -37,13 +37,13 @@
           in
           base + colors;
 
-        "quickshell".source = ../home/quickshell;
+        "quickshell".source = "{{home}}/nixos/home/quickshell";
 
-        "matugen".source = ../home/matugen;
+        "matugen".source = "{{home}}/nixos/home/matugen";
 
-        "yazi".source = ../home/yazi;
-        "kitty".source = ../home/kitty;
-        "starship.toml".source = ../home/starship/starship.toml;
+        "yazi".source = "{{home}}/nixos/home/yazi";
+        "kitty".source = "{{home}}/nixos/home/kitty";
+        "starship.toml".source = "{{home}}/nixos/home/starship/starship.toml";
 
         "xdg-desktop-portal-termfilechooser/config".text = ''
           [filechooser]
@@ -57,9 +57,9 @@
           org.freedesktop.impl.portal.FileChooser=termfilechooser
         '';
 
-        "helix".source = ../home/helix;
-        "swayimg/config".source = ../home/swayimg/swayimg_config.ini;
-        "swaylock/config".source = ../home/swaylock/config;
+        "helix".source = "{{home}}/nixos/home/helix";
+        "swayimg/config".source = "{{home}}/nixos/home/swayimg/swayimg_config.ini";
+        "swaylock/config".source = "{{home}}/nixos/home/swaylock/config";
       };
 
       file.xdg_data = {

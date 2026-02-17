@@ -1,0 +1,166 @@
+# by simla33 https://github.com/InioX/matugen-themes/pull/24
+# : Manager [[[
+
+[manager]
+cwd = { fg = "#e7dff0" }
+
+# Tab
+tab_active = { fg = "#3c0091", bg = "#d0bcff", bold = true }
+tab_inactive = { fg = "#e9ddff", bg = "#23005c" }
+tab_width = 1
+
+# Find
+find_keyword = { fg = "#ffb4ab", bold = true, italic = true, underline = true }
+find_position = { fg = "#ffb4ab", bold = true, italic = true }
+
+# Marker
+marker_copied = { fg = "#ff9068", bg = "#ff9068" }
+marker_cut = { fg = "#ffdbce", bg = "#ffdbce" }
+marker_marked = { fg = "#ffb4ab", bg = "#ffb4ab" }
+marker_selected = { fg = "#ffb599", bg = "#ffb599" }
+
+# Count
+count_copied = { fg = "#370e00", bg = "#ffdbce" }
+count_cut = { fg = "#370e00", bg = "#ffdbce" }
+count_selected = { fg = "#3c0091", bg = "#ffb599" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#d0bcff" }
+
+# : ]]]
+
+
+# : Status [[[
+
+[status]
+separator_open = "🭁"
+separator_close = "🭠"
+separator_style = { bg = "#3c0091", fg = "#F4A261" }
+
+[mode]
+# Mode
+normal_main = { bg = "#d0bcff", fg = "#3c0091", bold = true }
+normal_alt  = { bg = "#4a4457", fg = "#ccc3da" }
+
+# Select mode
+select_main = { bg = "#d0bcff", fg = "#3b1184", bold = true }
+select_alt  = { bg = "#4a4457", fg = "#ccc3da" }
+
+# Unset mode
+unset_main = { bg = "#ffb599", fg = "#5a1c00", bold = true }
+unset_alt  = { bg = "#4a4457", fg = "#ccc3da" }
+
+# Progress
+progress_label = { bold = true }
+progress_normal = { fg = "#d0bcff", bg = "#3b3744" }
+progress_error = { fg = "#ffb4ab", bg = "#3b3744" }
+
+# Permissions
+permissions_t = { fg = "#6523ff" }
+permissions_w = { fg = "#ff4600" }
+permissions_x = { fg = "#ff2b12" }
+permissions_r = { fg = "#ff6b35" }
+permissions_s = { fg = "#8644ff" }
+
+# : ]]]
+
+
+# : Select [[[
+
+[select]
+border = { fg = "#d0bcff" }
+active = { fg = "#ffb599", bold = true }
+inactive = {}
+
+# : ]]]
+
+
+# : Input [[[
+
+[input]
+border = { fg = "#d0bcff" }
+value = { fg = "#e7dff0" }
+
+# : ]]]
+
+
+# : Completion [[[
+
+[completion]
+border = { fg = "#d0bcff", bg = "#3c0091" }
+
+# : ]]]
+
+
+# : Tasks [[[
+
+[tasks]
+border = { fg = "#d0bcff" }
+title = {}
+hovered = { fg = "#ffdbce", underline = true }
+
+# : ]]]
+
+
+# : Which [[[
+
+[which]
+cols = 3
+mask = { bg = "#3b3744" }
+cand = { fg = "#d0bcff" }
+rest = { fg = "#3c0091" }
+desc = { fg = "#e7dff0" }
+separator = " ▶ "
+separator_style = { fg = "#e7dff0" }
+
+# : ]]]
+
+
+# : Help [[[
+
+[help]
+on = { fg = "#e7dff0" }
+run = { fg = "#e7dff0" }
+footer = { fg = "#3b1184", bg = "#d0bcff" }
+
+# : ]]]
+
+
+# : Notify [[[
+
+[notify]
+title_info = { fg = "#ffb599" }
+title_warn = { fg = "#d0bcff" }
+title_error = { fg = "#ffb4ab" }
+
+# : ]]]
+
+
+# : File-specific styles [[[
+
+[filetype]
+
+rules = [
+    # Images
+    { mime = "image/*", fg = "#94e2d5" },
+
+    # Media
+    { mime = "{audio,video}/*", fg = "#f9e2af" },
+
+    # Archives
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#f5c2e7" },
+
+    # Documents
+    { mime = "application/{pdf,doc,rtf}", fg = "#a6e3a1" },
+
+    # Special files
+    { name = "*", is = "orphan", bg = "#93000a" },
+    { name = "*", is = "exec", fg = "#ffdad6" },
+
+    # Fallback
+    { name = "*", fg = "#e7dff0" },
+    { name = "*/", fg = "#d0bcff" },
+]
+
+# : ]]]

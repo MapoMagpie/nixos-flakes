@@ -2,27 +2,27 @@
 
 [templates.yazi]
 input_path = './templates/yazi-theme.toml'
-output_path = '~/nixos/home/filemanager/theme.toml'
+output_path = '~/nixos/home/yazi/theme.toml'
 
 [templates.kitty]
 input_path = './templates/kitty-colors.conf'
-output_path = '~/nixos/home/term/kitty_theme.conf'
+output_path = '~/nixos/home/kitty_theme.conf'
 post_hook = "kitty @ set-colors -a -c ~/nixos/home/term/kitty_theme.conf"
 
 [templates.niri]
 input_path = './templates/niri-colors.txt'
-output_path = '~/nixos/home/ui/niri/colors.txt'
+output_path = '~/nixos/home/niri/colors.txt'
 post_hook = "sh -c ~/nixos/home/misc/scripts/inject_niri_color.sh"
 
 [templates.fuzzel]
 pre_hook = "rm -f ~/.config/fuzzel/fuzzel.ini"
 input_path = './templates/fuzzel-colors.ini'
-output_path = '~/nixos/home/ui/fuzzel/colors.ini'
-post_hook = "cat ~/nixos/home/ui/fuzzel/base.ini ~/nixos/home/ui/fuzzel/colors.ini > ~/.config/fuzzel/fuzzel.ini"
+output_path = '~/nixos/home/fuzzel/colors.ini'
+post_hook = "cat ~/nixos/home/fuzzel/base.ini ~/nixos/home/fuzzel/colors.ini > ~/.config/fuzzel/fuzzel.ini"
 
 [templates.quickshell]
 input_path = './templates/quickshell-colors.qml'
-output_path = '~/nixos/home/ui/quickshell/config/Assets/Colors.qml'
+output_path = '~/nixos/home/quickshell/Assets/Colors.qml'
 
 # [templates.gtk3]
 # input_path = './templates/gtk-colors.css'
