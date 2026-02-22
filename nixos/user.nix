@@ -103,6 +103,7 @@
               gimp3
               # kdePackages.kdenlive
               telegram-desktop
+              chromium
             ]
           else
             [ ]
