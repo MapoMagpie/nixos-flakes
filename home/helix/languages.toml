@@ -7,8 +7,19 @@ args = ["--width=300"]
 command = "nixfmt"
 
 [[language]]
-auto-format = true
 name = "typescript"
+language-servers = ["typescript-language-server", "copilot", "senimels-code"]
+auto-format = true
+
+[[language]]
+name = "go"
+language-servers = ["gopls", "golangci-lint-lsp", "copilot", "senimels-code"]
+auto-format = true
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "senimels-code"]
+auto-format = true
 
 [language.indent]
 tab-width = 2
@@ -18,15 +29,32 @@ unit = " "
 name = "markdown"
 scope = "source.markdown"
 file-types = ["md", "markdown"]
-language-servers = ["senimels"]
+language-servers = ["senimels-novel"]
 
 [[language]]
 name = "text"
 scope = "source.text"
 file-types = ["txt", "text"]
-language-servers = ["senimels"]
+language-servers = ["senimels-novel"]
 
-[language-server.senimels]
+[language-server.senimels-novel]
 command = "/home/mapomagpie/code/senime/target/release/senimels"
 args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
-config.trigger_characters = []
+
+[language-server.senimels-code]
+command = "/home/mapomagpie/code/senime/target/release/senimels"
+args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
+
+[language-server.senimels-code.config]
+trigger-characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.abcdefghijklmnopqrstuvwxyz"
+comment-prefixes = ["//"]
+
+[language-server.copilot]
+command = "copilot-language-server"
+args = ["--stdio"]
+only-manual-trigger = true
+
+[language-server.copilot.config]
+editorInfo = { name = "Helix", version = "25.01" }
+editorPluginInfo = { name = "helix-copilot", version = "0.1.0" }
+
