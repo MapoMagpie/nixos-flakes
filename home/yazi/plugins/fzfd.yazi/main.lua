@@ -16,8 +16,10 @@ function M:entry()
 		return ya.notify { title = "skim", content = "Not supported under virtual filesystems", timeout = 5, level = "warn" }
 	end
 
-	local _permit = ui.hide()
+	local permit = ui.hide()
 	local output, err = M.run_with(cwd, selected)
+  -- ya.notify { title = "skim", content = "output", timeout = 5, level = "warn" }
+	permit:drop()
 	if not output then
 		return ya.notify { title = "skim", content = tostring(err), timeout = 5, level = "error" }
 	end
@@ -32,10 +34,14 @@ function M:entry()
 	end
 end
 
+---@param cwd Url
+---@param selected Url[]
+---@return string?, Error?
 function M.run_with(cwd, selected)
+  -- ya.notify { title = "skim", content = tostring(cwd), timeout = 5, level = "warn" }
 	local child, err = Command("sk")
 		:cwd(tostring(cwd))
-		:stdin(#selected > 0 and Command.PIPED or Command.INHERIT)
+		-- :stdin(#selected > 0 and Command.PIPED or Command.INHERIT)
 		:stdout(Command.PIPED)
 		:spawn()
 
