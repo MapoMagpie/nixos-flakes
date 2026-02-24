@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -16,7 +17,6 @@
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
-    "usb_storage"
     "sd_mod"
     "rtsx_usb_sdmmc"
   ];
@@ -25,7 +25,21 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/cbc0e62b-957e-4013-8086-351b84a2665b";
+    device = "/dev/disk/by-uuid/867bd7ee-23ad-41de-9eb6-c813b3d39a8e";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/4CC4-88B4";
+    fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
+  };
+
+  fileSystems."/mnt/hdd1" = {
+    device = "/dev/disk/by-uuid/3b7f3932-acdd-45d4-849a-52575cde0d75";
     fsType = "ext4";
   };
 
