@@ -13,13 +13,20 @@
     ./sddm.nix
     ./user.nix
     ./zsh.nix
-    ./vpn.nix
     ./environment.nix
     ./fcitx.nix
     host.hardwareModule
   ]
 
-  ++ (if host.hostname == "maponixos" then [ ./game ] else [ ]);
+  ++ (
+    if host.hostname == "maponixos" then
+      [
+        ./game
+        ./vpn.nix
+      ]
+    else
+      [ ]
+  );
 
   nix.settings.experimental-features = [
     "nix-command"
