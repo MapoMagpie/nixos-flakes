@@ -17,13 +17,14 @@
     ./fcitx.nix
     host.hardwareModule
   ]
-
   ++ (
     if host.hostname == "maponixos" then
       [
         ./game
         ./vpn.nix
       ]
+    else if host.hostname == "slavenixostwo" then
+      [ ./qbittorrent.nix ]
     else
       [ ]
   );
