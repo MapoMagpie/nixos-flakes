@@ -62,6 +62,7 @@
     {
       nixosConfigurations.maponixos = nixosSystem "maponixos";
       nixosConfigurations.slavenixos = nixosSystem "slavenixos";
+      nixosConfigurations.slavenixostwo = nixosSystem "slavenixostwo";
       devShells."x86_64-linux" = {
         rust = pkgs.mkShell {
           packages = with pkgs; [
