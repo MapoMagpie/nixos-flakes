@@ -10,7 +10,8 @@
       "wheel"
       "i2c"
       "libvirtd"
-    ];
+    ]
+    ++ (if host.hostname == "slavenixostwo" then [ "qbittorrent" ] else [ ]);
     openssh.authorizedKeys.keys = host.openssh.authorizedKeys.keys;
     maid = {
       file.home.".zshrc".text = ''
