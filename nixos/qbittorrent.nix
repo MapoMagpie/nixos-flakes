@@ -5,6 +5,7 @@
     webuiPort = 1999;
     openFirewall = true;
 
+    torrentingPort = 41999;
     serverConfig = {
       # 第一次启动必须接受法律声明
       LegalNotice.Accepted = true;
