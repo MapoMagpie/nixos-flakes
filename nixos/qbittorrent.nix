@@ -17,7 +17,11 @@
         AlternativeUIEnabled = true;
         RootFolder = "${pkgs.vuetorrent}/share/vuetorrent";
       };
-
+      Preferences.Queueing = {
+        MaxActiveDownloads = 3;
+        MaxActiveUploads = 100;
+        MaxActiveTorrents = 103;
+      };
       # 下载设置
       Preferences.Downloads = {
         SavePath = "/mnt/hdd1/bt";
