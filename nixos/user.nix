@@ -106,6 +106,10 @@
               telegram-desktop
               chromium
             ]
+          else if host.hostname == "slavenixos" then
+            [
+              telegram-desktop
+            ]
           else
             [ ]
         );
