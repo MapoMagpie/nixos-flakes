@@ -23,6 +23,10 @@
         ./game
         ./vpn.nix
       ]
+    else if host.hostname == "slavenixos" then
+      [
+        ./vpn.nix
+      ]
     else if host.hostname == "slavenixostwo" then
       [ ./qbittorrent.nix ]
     else
