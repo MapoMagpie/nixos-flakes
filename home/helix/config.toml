@@ -1,10 +1,10 @@
 theme = "catppuccin_mocha_nb"
 [editor]
+mouse = false
 auto-format = true
 # completion-timeout = 100
 # completion-trigger-len = 1
 # completion-auto-select = true
-mouse = true
 word-completion = { enable = false, trigger-length = 3 }
 
 [editor.inline-diagnostics]
