@@ -29,7 +29,7 @@
           	email = "${host.git.userEmail}"
         '';
 
-        "niri/config.kdl".source = "{{home}}/nixos/home/niri/config.kdl";
+        "niri/config.kdl".source = if host.hostname == "maponixos" then "{{home}}/nixos/home/niri/config.kdl" else "{{home}}/nixos/home/niri/config_slave.kdl";
 
         "fuzzel/fuzzel.ini".text =
           let

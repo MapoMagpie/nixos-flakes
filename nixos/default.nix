@@ -25,7 +25,7 @@
       ]
     else if host.hostname == "slavenixos" then
       [
-        ./vpn.nix
+        # ./vpn.nix
       ]
     else if host.hostname == "slavenixostwo" then
       [ ./qbittorrent.nix ]
@@ -54,9 +54,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # fix nuphy air75 fn key not working
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=0
-  '';
+  boot.extraModprobeConfig =
+    if host.hostname == "maponixos" then
+      ''
+        options hid_apple fnmode=0
+      ''
+    else
+      "";
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";

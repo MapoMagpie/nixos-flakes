@@ -61,6 +61,7 @@
 
     tldr
     bat
+    delta
     wl-clipboard
     killall
     rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
