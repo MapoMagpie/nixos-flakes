@@ -35,7 +35,7 @@ output "HDMI-A-1" {
 }
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-hotkey-overlay
+// hotkey-overlay
 environment {
     DISPLAY ":0"
     "QT_QPA_PLATFORM" "wayland"
