@@ -99,12 +99,13 @@
         ++ (
           if host.hostname == "maponixos" then
             [
-              tsukimi
-              zed-editor
+              # tsukimi
+              # zed-editor
               gimp3
               # kdePackages.kdenlive
               telegram-desktop
               chromium
+              codex
             ]
           else if host.hostname == "slavenixos" then
             [
