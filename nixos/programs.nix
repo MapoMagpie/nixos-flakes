@@ -8,7 +8,6 @@
 
   programs = {
     zsh.enable = true;
-    niri.enable = true;
     git.enable = true;
   };
 
@@ -31,16 +30,12 @@
     fd
 
     ffmpeg
-    imagemagick
     libavif
-    mpv
 
     file
     which
     tree
     btop
-    amdgpu_top
-    showmethekey
 
     sysstat
     ethtool
@@ -50,9 +45,6 @@
     ntfs3g
 
     gnome-keyring
-    hyprpolkitagent
-
-    libnotify
 
     yazi
     # helix
@@ -62,11 +54,8 @@
     tldr
     bat
     delta
-    wl-clipboard
     killall
     rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
-    grim
 
-    xwayland-satellite
   ];
 }

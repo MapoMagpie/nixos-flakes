@@ -5,26 +5,31 @@
 
 {
   imports = [
+    host.hardwareModule
     ./fonts
     ./network.nix
-    ./portal.nix
     ./programs.nix
-    ./xdgmime.nix
-    ./sddm.nix
     ./user.nix
     ./zsh.nix
     ./environment.nix
-    ./fcitx.nix
-    host.hardwareModule
+    ./xdgmime.nix
   ]
   ++ (
     if host.hostname == "maponixos" then
       [
+        ./sddm.nix
+        ./portal.nix
+        ./fcitx.nix
+        ./programs_ui.nix
         ./game
-        ./vpn.nix
+        # ./vpn.nix
       ]
     else if host.hostname == "slavenixos" then
       [
+        ./sddm.nix
+        ./portal.nix
+        ./fcitx.nix
+        ./programs_ui.nix
         # ./vpn.nix
       ]
     else if host.hostname == "slavenixostwo" then
