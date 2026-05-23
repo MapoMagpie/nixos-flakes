@@ -31,6 +31,7 @@
 
     ffmpeg
     libavif
+    libnotify
 
     file
     which

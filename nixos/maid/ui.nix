@@ -2,7 +2,6 @@
 {
 
   file.xdg_config = {
-
     "mozilla/firefox/profiles.ini".source = ../../home/firefox/profiles.ini;
     "mozilla/firefox/mapomagpie/user.js".source = ../../home/firefox/user.js;
     "mozilla/firefox/mapomagpie/chrome".source = "{{home}}/nixos/external/firefox-compact-ui";
@@ -40,7 +39,6 @@
 
       bibata-cursors
 
-      kitty
       cliphist
       fuzzel
       quickshell

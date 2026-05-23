@@ -27,5 +27,6 @@
 
     gitui
     yt-dlp
+    kitty
   ];
 }

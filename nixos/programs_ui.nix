@@ -14,7 +14,6 @@
     amdgpu_top
     showmethekey
     hyprpolkitagent
-    libnotify
     wl-clipboard
     grim
     xwayland-satellite

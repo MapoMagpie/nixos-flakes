@@ -16,7 +16,15 @@
       "i2c"
       "libvirtd"
     ]
-    ++ (if host.hostname == "slavenixostwo" then [ "qbittorrent" ] else [ ]);
+    ++ (
+      if host.hostname == "slavenixostwo" then
+        [
+          "qbittorrent"
+          "qui"
+        ]
+      else
+        [ ]
+    );
     openssh.authorizedKeys.keys = host.openssh.authorizedKeys.keys;
     maid =
       let
@@ -30,7 +38,7 @@
           packages = maid.packages ++ ui.packages;
         };
       in
-      (lib.recursiveUpdate maid ui) // programs;
+      lib.recursiveUpdate (lib.recursiveUpdate maid ui) programs;
   };
 
 }
