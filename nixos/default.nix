@@ -33,7 +33,10 @@
         # ./vpn.nix
       ]
     else if host.hostname == "slavenixostwo" then
-      [ ./qbittorrent.nix ]
+      [
+        ./qbittorrent.nix
+        ./logind.nix
+      ]
     else
       [ ]
   );
