@@ -7,6 +7,11 @@ args = ["--width=300"]
 command = "nixfmt"
 
 [[language]]
+name = "lua"
+language-servers = ["lua-language-server", "copilot", "senimels-code"]
+auto-format = true
+
+[[language]]
 name = "typescript"
 language-servers = ["typescript-language-server", "copilot", "senimels-code"]
 auto-format = true
@@ -47,7 +52,7 @@ args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
 
 [language-server.senimels-code.config]
 trigger-characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.abcdefghijklmnopqrstuvwxyz"
-comment-prefixes = ["//"]
+comment-prefixes = ["//", "--"]
 
 [language-server.copilot]
 command = "copilot-language-server"
