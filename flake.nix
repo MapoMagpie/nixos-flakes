@@ -102,6 +102,7 @@
           packages = with pkgs; [
             lua
             lua-language-server
+            copilot-language-server
           ];
         };
       };
