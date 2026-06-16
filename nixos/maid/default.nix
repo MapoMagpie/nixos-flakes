@@ -14,6 +14,8 @@
     "yazi".source = "{{home}}/nixos/home/yazi";
     "kitty".source = "{{home}}/nixos/home/kitty";
     "starship.toml".source = "{{home}}/nixos/home/starship/starship.toml";
+    "television/config.toml".source = "{{home}}/nixos/home/television/config.toml";
+    "television/cable/files.toml".source = "{{home}}/nixos/home/television/cable/files.toml";
 
     "helix".source = "{{home}}/nixos/home/helix";
   };

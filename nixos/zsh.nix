@@ -1,4 +1,4 @@
-{ pkgs, host, ... }:
+{ host, ... }:
 {
   system.userActivationScripts.zshrc = "touch .zshrc";
   programs.zsh = {
@@ -22,8 +22,7 @@
       autoload -U edit-command-line
       zle -N edit-command-line
       bindkey '^Xe' edit-command-line
-      source ${pkgs.skim}/share/skim/completion.zsh
-      source ${pkgs.skim}/share/skim/key-bindings.zsh
+      eval "$(tv init zsh)"
       source /home/${host.username}/nixos/home/misc/scripts/yazi_cwd.sh
       nd() {
         if [ -z "$1" ]; then

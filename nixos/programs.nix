@@ -24,10 +24,10 @@
     ripgrep
     eza
     fzf
-    skim
     jq
     sd
     fd
+    television
 
     ffmpeg
     libavif
