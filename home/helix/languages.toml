@@ -44,15 +44,15 @@ language-servers = ["senimels-novel"]
 
 [language-server.senimels-novel]
 command = "/home/mapomagpie/code/senime/target/release/senimels"
-args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
+args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
 
 [language-server.senimels-code]
 command = "/home/mapomagpie/code/senime/target/release/senimels"
-args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
+args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
 
 [language-server.senimels-code.config]
 trigger-characters = "7ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.abcdefghijklmnopqrstuvwxyz"
-comment-prefixes = ["//", "--"]
+comment-prefixes = ["///", "//", "--"]
 ignore-invoked = true
 
 [language-server.copilot]
