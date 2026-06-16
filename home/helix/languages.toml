@@ -23,7 +23,7 @@ auto-format = true
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "senimels-code"]
+language-servers = ["rust-analyzer", "senimels-code", "copilot"]
 auto-format = true
 
 [language.indent]
@@ -51,8 +51,9 @@ command = "/home/mapomagpie/code/senime/target/release/senimels"
 args = ["-t", "/home/mapomagpie/code/senime/test/虎码码表_我.txt"]
 
 [language-server.senimels-code.config]
-trigger-characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.abcdefghijklmnopqrstuvwxyz"
+trigger-characters = "7ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.abcdefghijklmnopqrstuvwxyz"
 comment-prefixes = ["//", "--"]
+ignore-invoked = true
 
 [language-server.copilot]
 command = "copilot-language-server"

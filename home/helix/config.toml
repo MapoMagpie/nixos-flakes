@@ -6,6 +6,7 @@ auto-format = true
 # completion-trigger-len = 1
 # completion-auto-select = true
 word-completion = { enable = false, trigger-length = 3 }
+inline-completion-auto-trigger = false
 
 [editor.inline-diagnostics]
 # cursor-line = "disable"
@@ -38,7 +39,7 @@ space = "none"
 tab = "all"
 
 [keys.insert]
-C-s = [":w", "save_selection"]
+C-s = [":wa", "save_selection"]
 # esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true", "normal_mode"]
 "A-l" = "inline_completion_accept"
 "C-x" = ["inline_completion_trigger", "completion"]
@@ -47,5 +48,7 @@ C-s = [":w", "save_selection"]
 
 [keys.normal]
 C-s = [":w", "save_selection"]
+C-c = ":sh wl-copy '%<buffer_name>:L%<selection_line_start>-L%<selection_line_end>'"
+C-r = ":reload-all"
 # esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
 
