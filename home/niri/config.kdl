@@ -51,7 +51,7 @@ workspace "EXTE" { open-on-output "HDMI-A-1"; }
 
 // startup
 spawn-at-startup "quickshell"
-spawn-at-startup "fcitx5" "-d"
+// spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "-max-dedupe-search" "500" "-max-items" "5000" "store"
 spawn-at-startup "sway-audio-idle-inhibit"
 spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock" "timeout" "400" "niri msg action power-off-monitors" "resume" "niri msg action power-off-monitors" "before-sleep" "swaylock"
@@ -194,14 +194,20 @@ binds {
     Mod+V       hotkey-overlay-title="Show Clip History"         {
         spawn "sh" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy";
     }
-    Mod+I       hotkey-overlay-title="Toggle Rime Ascii Mode"    {
-        spawn "sh" "-c" "~/nixos/home/misc/scripts/setrimeasciimode.sh";
-    }
+    // Mod+I       hotkey-overlay-title="Toggle Rime Ascii Mode"    {
+    //     spawn "sh" "-c" "~/nixos/home/misc/scripts/setrimeasciimode.sh";
+    // }
     Mod+Shift+W hotkey-overlay-title="Show All Windows"          {
         spawn "sh" "-c" "niri msg windows | ~/nixos/home/misc/scripts/merge_window_info.sh | fuzzel -d | cut -d '/' -f1 | xargs -I {} niri msg action focus-window --id {}";
     }
 }
+layer-rule {
+    match namespace="^launcher$"
 
+    background-effect {
+        blur true
+    }
+}
 // rules
 window-rule {
     match app-id="kitty"
@@ -209,6 +215,12 @@ window-rule {
     match app-id="^showmethekey-gtk$"
     match app-id="^dev.zed.Zed$"
     draw-border-with-background false
+    background-effect {
+        xray false
+        blur false
+        noise 0
+        saturation 1
+    }
 }
 window-rule {
     match app-id="^xdragon$"
@@ -244,6 +256,8 @@ window-rule {
 }
 window-rule {
     match app-id="^firefox$" title="^$"
+    match app-id="^firefox$" title="^Developer Tools" is-active=true
+    match app-id="^firefox$" title="^Extension.*" is-active=true
     default-column-width { proportion 0.400000; }
     default-window-height { proportion 0.500000; }
     open-floating true
@@ -303,8 +317,15 @@ window-rule {
 window-rule {
     match app-id="^steam_app.*$"
     match app-id="^steam$"
+    match app-id="^gamescope$"
     match app-id="PrismLauncher$"
     match app-id="Minecraft"
     open-on-workspace "GAME"
+}
+window-rule {
+    match app-id="^org.fcitx.$" title="Fcitx Configuration"
+    open-floating true
+    default-column-width { proportion 0.700000; }
+    default-window-height { proportion 0.700000; }
 }
 animations { slowdown 1.000000; }
