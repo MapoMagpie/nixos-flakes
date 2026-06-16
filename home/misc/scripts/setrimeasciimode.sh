@@ -16,12 +16,12 @@
 
 if [ $# -eq 0 ]; then
     # 无参数时，获取当前状态并取反
-    im=$(dbus-send --session --print-reply=literal --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.CurrentInputMethod | sd '.*?(keyboard-us|rime)' '$1')
-    [ "$im" = "keyboard-us" ] && im="rime" || im="keyboard-us"
+    im=$(dbus-send --session --print-reply=literal --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.CurrentInputMethod | sd '.*?(keyboard-us|senime)' '$1')
+    [ "$im" = "keyboard-us" ] && im="senime" || im="keyboard-us"
 else
     # 有参数时，直接使用参数值（默认为true）
     case "$1" in
-        "false") im="rime" ;;
+        "false") im="senime" ;;
         *)       im="keyboard-us"  ;;
     esac
 fi
