@@ -62,6 +62,7 @@
           telegram-desktop
           chromium
           codex
+          claude-code
         ]
       else if host.hostname == "slavenixos" then
         [
