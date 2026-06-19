@@ -25,21 +25,25 @@ input {
 }
 output "DP-3" {
     transform "normal"
-    position x=900 y=0
+    position x=0 y=0
     mode "2560x1440@144.000000"
 }
-output "HDMI-A-1" {
-    transform "90"
-    position x=0 y=0
-    mode "1440x900@59.887000"
-}
+// output "HDMI-A-1" {
+//     transform "90"
+//     position x=0 y=0
+//     mode "1440x900@59.887000"
+// }
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // hotkey-overlay
 environment {
     DISPLAY ":0"
-    "QT_QPA_PLATFORM" "wayland"
-    "QT_QPA_PLATFORMTHEME" "flatpak"
+    QT_QPA_PLATFORM "wayland"
+    // XDG_CURRENT_DESKTOP "niri"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORMTHEME "flatpak"
+    // QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 }
 
 // workspaces
@@ -47,17 +51,17 @@ workspace "NETW" { open-on-output "DP-3"; }
 workspace "CODE" { open-on-output "DP-3"; }
 workspace "CHAT" { open-on-output "DP-3"; }
 workspace "GAME" { open-on-output "DP-3"; }
-workspace "EXTE" { open-on-output "HDMI-A-1"; }
+// workspace "EXTE" { open-on-output "HDMI-A-1"; }
 
 // startup
-spawn-at-startup "quickshell"
+spawn-at-startup "dms" "run"
 // spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "-max-dedupe-search" "500" "-max-items" "5000" "store"
-spawn-at-startup "sway-audio-idle-inhibit"
-spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock" "timeout" "400" "niri msg action power-off-monitors" "resume" "niri msg action power-off-monitors" "before-sleep" "swaylock"
+// spawn-at-startup "sway-audio-idle-inhibit"
+// spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock" "timeout" "400" "niri msg action power-off-monitors" "resume" "niri msg action power-off-monitors" "before-sleep" "swaylock"
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "mpvpaper" "-o" "--no-audio --loop --hwdec=auto --video-sync=display-resample" "DP-3" "/home/mapomagpie/Videos/sister-marija-muse-dash-wallpaperwaifu-com.mp4"
+// spawn-at-startup "mpvpaper" "-o" "--no-audio --loop --hwdec=auto --video-sync=display-resample" "DP-3" "/home/mapomagpie/Videos/sister-marija-muse-dash-wallpaperwaifu-com.mp4"
 
 // overview
 overview {
@@ -79,30 +83,30 @@ gestures {
 }
 
 layout {
-    gaps 1
-    struts {
-        left 5
-        right 5
-        top 5
-        bottom 4
-    }
+    gaps 8
+    // struts {
+    //     left 5
+    //     right 5
+    //     top 6
+    //     bottom 0
+    // }
     focus-ring {
-        width 2
+        width 3
         active-color "#d0bcff"
     }
-    border { off; }
-    insert-hint { color "#d0bcff"; }
-    default-column-width
+    // border { off; }
+    // insert-hint { color "#d0bcff"; }
+    // default-column-width
     preset-column-widths {
-        proportion 0.333333
+        // proportion 0.333333
         proportion 0.500000
-        proportion 0.666667
+        // proportion 0.666667
         proportion 1.000000
     }
     preset-window-heights {
-        proportion 0.333333
+        // proportion 0.333333
         proportion 0.500000
-        proportion 0.666667
+        // proportion 0.666667
         proportion 1.000000
     }
     center-focused-column "never"
@@ -177,10 +181,10 @@ binds {
         spawn "sh" "-c" "slurp > /tmp/geometry && notify-send \"$(cat /tmp/geometry)\"";
     }
     Mod+Shift+E hotkey-overlay-title="Record Screen"             {
-        spawn "sh" "-c" "notify-send \"wf-recorder started\" && qs ipc call recording setStatus true && wf-recorder --audio -g \"$(cat /tmp/geometry)\" -r 60 -f ~/Videos/screenshots/rec_$(date +\"%Y%m%d_%H%M%S\").mp4 && notify-send \"wf-recorder done\"";
+        spawn "sh" "-c" "notify-send \"screen recorder started\" && gpu-screen-recorder -f 30 -a default_output -w region -region $(cat /tmp/geometry | sd '(\\d+),(\\d+) (\\d+)x(\\d+)' '${3}x${4}+${1}+${2}') -f 30 -o ~/Videos/screenshots/rec_$(date +\"%Y%m%d_%H%M%S\").mp4 && notify-send \"screen recorder done\"";
     }
     Mod+Alt+E   hotkey-overlay-title="Stop Record Screen"        {
-        spawn "sh" "-c" "killall -INT wf-recorder";
+        spawn "sh" "-c" "killall -INT gpu-screen-recorder";
     }
     Mod+Shift+S hotkey-overlay-title="Screenshot After 3 Second" {
         spawn "sh" "-c" "sleep 3 && grim -g \"$(cat /tmp/geometry)\" ~/Pictures/screenshots/grim_$(date +\"%Y%m%d_%H%M%S\").png && notify-send \"Screenshot Done\"";
