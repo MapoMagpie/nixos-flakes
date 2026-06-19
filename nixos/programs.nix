@@ -58,5 +58,6 @@
     killall
     rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
 
+    wl-clipboard
   ];
 }

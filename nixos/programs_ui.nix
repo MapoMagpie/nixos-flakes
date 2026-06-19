@@ -4,17 +4,15 @@
 }:
 {
 
-  programs = {
-    niri.enable = true;
-  };
+  programs.niri.enable = true;
+  programs.gpu-screen-recorder.enable = true;
 
   environment.systemPackages = with pkgs; [
     imagemagick
     mpv
-    amdgpu_top
+    # amdgpu_top
     showmethekey
     hyprpolkitagent
-    wl-clipboard
     grim
     xwayland-satellite
   ];
