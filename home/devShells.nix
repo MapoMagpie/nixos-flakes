@@ -24,6 +24,7 @@ in
       copilot-language-server
     ];
     RUST_SRC_PATH = "${rust}/lib/rustlib/src/rust/library";
+    shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   wasm = pkgs.mkShell {
     packages = with pkgs; [
@@ -44,6 +45,7 @@ in
       libclang
       copilot-language-server
     ];
+    shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   ts = pkgs.mkShell {
     packages = with pkgs; [
@@ -51,6 +53,7 @@ in
       typescript-language-server
       copilot-language-server
     ];
+    shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   go = pkgs.mkShell {
     packages = with pkgs; [
@@ -60,6 +63,7 @@ in
       go-tools
       copilot-language-server
     ];
+    shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   lua = pkgs.mkShell {
     packages = with pkgs; [
@@ -67,5 +71,6 @@ in
       lua-language-server
       copilot-language-server
     ];
+    shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
 }
