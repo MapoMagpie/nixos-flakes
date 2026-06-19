@@ -12,7 +12,7 @@
       ll = "eza -l";
       bos = "sudo nixos-rebuild switch --flake ~/nixos && notify-send 'nixos build succeeded'";
       nu = "nix flake update";
-      kt = "SHELL=zsh kitty --detach";
+      kt = "kitty @ launch --type=os-window --cwd=current --copy-env";
       h = "hx .";
       y = "yazi_cwd";
     };
