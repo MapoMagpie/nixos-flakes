@@ -14,7 +14,7 @@
       in
       base + colors;
     "quickshell".source = "{{home}}/nixos/home/quickshell";
-    "matugen".source = "{{home}}/nixos/home/matugen";
+    # "matugen".source = "{{home}}/nixos/home/matugen";
     "xdg-desktop-portal-termfilechooser/config".text = ''
       [filechooser]
       cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
@@ -23,6 +23,8 @@
     '';
     "xdg-desktop-portal/portals.conf".text = ''
       [preferred]
+      default=gnome;gtk
+      org.freedesktop.impl.portal.ScreenCast=wlr
       org.freedesktop.impl.portal.FileChooser=termfilechooser
     '';
     "swayimg/config".source = "{{home}}/nixos/home/swayimg/swayimg_config.ini";
@@ -41,14 +43,15 @@
 
       cliphist
       fuzzel
+      dgop
+      dms-shell
       quickshell
       matugen
       firefox
-      swaylock
-      swayidle
-      dragon-drop
+      # swaylock
+      # swayidle
       swayimg
-      wf-recorder
+      # wf-recorder
       freerdp
       slurp
     ]
@@ -63,6 +66,7 @@
           chromium
           codex
           claude-code
+          github-copilot-cli
         ]
       else if host.hostname == "slavenixos" then
         [
