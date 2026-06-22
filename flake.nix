@@ -14,6 +14,8 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
+    senime.url = "github:MapoMagpie/senime";
   };
 
   outputs =
@@ -23,6 +25,7 @@
       rimedm,
       helix,
       rust-overlay,
+      senime,
       ...
     }:
     let
@@ -33,7 +36,14 @@
         in
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit host rimedm helix; };
+          specialArgs = {
+            inherit
+              host
+              rimedm
+              helix
+              senime
+              ;
+          };
           modules = [
             nix-maid.nixosModules.default
             ./nixos

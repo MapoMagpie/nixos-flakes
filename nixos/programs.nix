@@ -2,6 +2,7 @@
   pkgs,
   rimedm,
   helix,
+  senime,
   ...
 }:
 {
@@ -57,6 +58,7 @@
     delta
     killall
     rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
+    senime.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     wl-clipboard
   ];
