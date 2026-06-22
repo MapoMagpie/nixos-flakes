@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, senime, ... }:
 {
   i18n.inputMethod = {
     enable = true;
@@ -12,6 +12,7 @@
         catppuccin-fcitx5
         fcitx5-tokyonight
         kdePackages.fcitx5-qt
+        senime.packages.${pkgs.stdenv.hostPlatform.system}.fcitx5-senime
       ];
       settings = {
         globalOptions = {
