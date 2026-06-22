@@ -43,11 +43,11 @@ file-types = ["txt", "text"]
 language-servers = ["senimels-novel"]
 
 [language-server.senimels-novel]
-command = "/home/mapomagpie/code/senime/target/release/senimels"
+command = "/home/mapomagpie/code/senime/target/release/senilsp"
 args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
 
 [language-server.senimels-code]
-command = "/home/mapomagpie/code/senime/target/release/senimels"
+command = "/home/mapomagpie/code/senime/target/release/senilsp"
 args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
 
 [language-server.senimels-code.config]
