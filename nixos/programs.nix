@@ -61,5 +61,6 @@
     senime.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     wl-clipboard
+    atuin
   ];
 }

@@ -18,12 +18,13 @@
     };
     # shellInit = ''
     # '';
+    # eval "$(tv init zsh)"
+    # autoload -U edit-command-line
+    # zle -N edit-command-line
+    # bindkey '^Xe' edit-command-line
     interactiveShellInit = ''
-      autoload -U edit-command-line
-      zle -N edit-command-line
-      bindkey '^Xe' edit-command-line
-      eval "$(tv init zsh)"
       source /home/${host.username}/nixos/home/misc/scripts/yazi_cwd.sh
+      eval "$(atuin init zsh)"
       nd() {
         if [ -z "$1" ]; then
           nix develop -c zsh
