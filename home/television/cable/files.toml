@@ -5,8 +5,8 @@ requirements = ["fd", "bat"]
 
 [source]
 command = [
-  { name = "Default", run = "fd -tf -td -tl -d 5" },
-  { name = "Hidden",  run = "fd -tf -td -tl -d 5 -H" },
+  { name = "Default", run = "fd -td -tf -tl -d 5" },
+  { name = "Hidden",  run = "fd -td -tf -tl -d 5 -H" },
 ]
 
 [preview]
