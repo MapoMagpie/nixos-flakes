@@ -35,14 +35,13 @@ in
   };
   cpp = pkgs.mkShell {
     packages = with pkgs; [
+      llvmPackages.clang
       gcc
       cmake
-      ninja
       pkg-config
       fcitx5
       kdePackages.extra-cmake-modules
       gettext
-      libclang
       copilot-language-server
     ];
     shellHook = "source ~/nixos/external/copilot-cli-env.sh";
