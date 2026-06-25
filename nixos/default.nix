@@ -1,8 +1,4 @@
-{
-  host,
-  ...
-}:
-
+{ host, ... }:
 {
   imports = [
     host.hardwareModule
@@ -13,6 +9,7 @@
     ./zsh.nix
     ./environment.nix
     ./xdgmime.nix
+    ./overlays.nix
   ]
   ++ (
     if host.hostname == "maponixos" then
