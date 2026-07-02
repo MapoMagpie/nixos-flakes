@@ -64,5 +64,8 @@
 
     wl-clipboard
     atuin
+
+    python3
+    xxd
   ];
 }
