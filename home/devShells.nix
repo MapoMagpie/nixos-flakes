@@ -74,7 +74,11 @@ in
       copilot-language-server
 
     ];
-    shellHook = "source ~/nixos/external/copilot-cli-env.sh";
+    shellHook = ''
+      source ~/nixos/external/copilot-cli-env.sh
+      # Tell clang/clangd where to find GCC's libstdc++ headers
+      export CPLUS_INCLUDE_PATH="${pkgs.gcc.cc}/include/c++/${pkgs.gcc.cc.version}:${pkgs.gcc.cc}/include/c++/${pkgs.gcc.cc.version}/x86_64-unknown-linux-gnu:${pkgs.gcc.cc}/include/c++/${pkgs.gcc.cc.version}/backward:${pkgs.glibc.dev}/include''${CPLUS_INCLUDE_PATH:+:$CPLUS_INCLUDE_PATH}"
+    '';
   };
   # Senime + fcitx5-android development environment
   # Merged: Rust (with Android targets) + C++ + Android SDK/NDK
@@ -94,7 +98,7 @@ in
       ninja
 
       # Android Studio (comment out if not needed)
-      androidStudioPackages.beta
+      # androidStudioPackages.beta
 
       # JDK for Gradle
       jdk17
