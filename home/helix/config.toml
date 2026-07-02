@@ -1,6 +1,6 @@
 theme = "catppuccin_mocha_nb"
 [editor]
-mouse = false
+mouse = true
 auto-format = true
 # completion-timeout = 100
 # completion-trigger-len = 1
@@ -43,6 +43,7 @@ tab = "all"
 "A-x" = "inline_completion_trigger"
 "A-j" = "inline_completion_next"
 "A-k" = "inline_completion_prev"
+"C-v" = "@<C-r>\""
 
 [keys.normal]
 "C-s" = [":wa", "save_selection"]
@@ -54,3 +55,4 @@ tab = "all"
 # "b" = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"
 [keys.normal.space] # save and quite
 "q" = ":wqa"
+"Q" = ":qa"
