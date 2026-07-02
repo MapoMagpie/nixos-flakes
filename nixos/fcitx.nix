@@ -6,30 +6,29 @@
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
-        fcitx5-rime
         fcitx5-nord
         kdePackages.fcitx5-configtool
         catppuccin-fcitx5
         fcitx5-tokyonight
         kdePackages.fcitx5-qt
-        senime.packages.${pkgs.stdenv.hostPlatform.system}.fcitx5-senime
+        # senime.packages.${pkgs.stdenv.hostPlatform.system}.fcitx5-senime
       ];
       settings = {
         globalOptions = {
           "Hotkey" = {
-            "TriggerKeys" = "Shift+Shift_R";
-            "EnumerateWithTriggerKeys" = "True";
+            "TriggerKeys" = "";
+            "EnumerateWithTriggerKeys" = "";
             "ActivateKeys" = "";
             "DeactivateKeys" = "";
-            "AltTriggerKeys" = "Shift+Shift_R";
-            "EnumerateForwardKeys" = "Shift+Shift_R";
+            "AltTriggerKeys" = "";
+            "EnumerateForwardKeys" = "";
             "EnumerateBackwardKeys" = "";
             "EnumerateSkipFirst" = "False";
             "EnumerateGroupForwardKeys" = "";
             "EnumerateGroupBackwardKeys" = "";
             "TogglePreedit" = "";
-            "PrevPage" = "Up";
-            "NextPage" = "Down";
+            "PrevPage" = "";
+            "NextPage" = "";
             "PrevCandidate" = "";
             "NextCandidate" = "";
             "ModifierOnlyKeyTimeout" = "250";
@@ -76,14 +75,10 @@
           "Groups/0" = {
             "Name" = "Default";
             "Default Layout" = "us";
-            "DefaultIM" = "keyboard-us";
-          };
-          "Groups/0/Items/1" = {
-            "Name" = "keyboard-us";
-            "Layout" = "";
+            "DefaultIM" = "senime";
           };
           "Groups/0/Items/0" = {
-            "Name" = "rime";
+            "Name" = "senime";
             "Layout" = "";
           };
           "GroupOrder" = {
