@@ -29,9 +29,20 @@
     '';
     "swayimg/config".source = "{{home}}/nixos/home/swayimg/swayimg_config.ini";
     "swaylock/config".source = "{{home}}/nixos/home/swaylock/config";
-  };
-  file.xdg_data = {
-    "fcitx5/rime".source = "{{home}}/nixos/external/rime";
+    "gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+      gtk-icon-theme-name=Papirus-Dark
+      gtk-cursor-theme-name=Bibata-Original-Amber
+      gtk-application-prefer-dark-theme=1
+    '';
+    "gtk-4.0/settings.ini".text = ''
+      [Settings]
+      gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+      gtk-icon-theme-name=Papirus-Dark
+      gtk-cursor-theme-name=Bibata-Original-Amber
+      gtk-application-prefer-dark-theme=1
+    '';
   };
   packages =
     with pkgs;
@@ -40,6 +51,9 @@
       sway-audio-idle-inhibit
 
       bibata-cursors
+      adwaita-icon-theme
+      papirus-icon-theme
+      catppuccin-gtk
 
       cliphist
       fuzzel
@@ -67,6 +81,7 @@
           codex
           claude-code
           github-copilot-cli
+          scrcpy
         ]
       else if host.hostname == "slavenixos" then
         [
@@ -78,5 +93,7 @@
   dconf.settings = {
     "/org/gnome/desktop/interface/color-scheme" = "prefer-dark";
     "/org/gnome/desktop/interface/cursor-theme" = "Bibata-Original-Amber";
+    "/org/gnome/desktop/interface/icon-theme" = "Papirus-Dark";
+    "/org/gnome/desktop/interface/gtk-theme" = "Catppuccin-Mocha-Standard-Blue-Dark";
   };
 }
