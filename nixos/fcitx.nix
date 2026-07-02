@@ -1,5 +1,11 @@
 { pkgs, senime, ... }:
 {
+  # Disable fcitx5 autostart - override with Hidden=true
+  environment.etc."xdg/autostart/org.fcitx.Fcitx5.desktop".text = ''
+    [Desktop Entry]
+    Hidden=true
+  '';
+
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
