@@ -3,6 +3,16 @@
   xdg.portal = {
     enable = true;
     config = {
+      common = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        # "org.freedesktop.impl.portal.Access" = "gnome";
+        "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+      };
       niri = {
         default = [
           "gnome"
