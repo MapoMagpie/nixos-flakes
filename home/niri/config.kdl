@@ -40,8 +40,8 @@ environment {
     DISPLAY ":0"
     QT_QPA_PLATFORM "wayland"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORMTHEME "flatpak"
-    // QT_STYLE_OVERRIDE "Catppuccin-Mocha-Standard-Blue-Dark"
+    QT_QPA_PLATFORMTHEME "gnome"
+    GTK_USE_PORTAL "1"
 }
 
 // workspaces

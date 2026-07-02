@@ -48,6 +48,8 @@
 
     gnome-keyring
 
+    qgnomeplatform-qt6
+
     yazi
     # helix
     helix.packages.${pkgs.stdenv.hostPlatform.system}.default
