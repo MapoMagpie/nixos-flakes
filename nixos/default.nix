@@ -14,7 +14,6 @@
   ++ (
     if host.hostname == "maponixos" then
       [
-        ./sddm.nix
         ./portal.nix
         ./fcitx.nix
         ./programs_ui.nix
@@ -23,7 +22,6 @@
       ]
     else if host.hostname == "slavenixos" then
       [
-        ./sddm.nix
         ./portal.nix
         ./fcitx.nix
         ./programs_ui.nix

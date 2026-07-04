@@ -21,12 +21,12 @@
       default_dir=$HOME
       env=TERMCMD=kitty --app-id="kitty.yazi.filechooser"
     '';
-    "xdg-desktop-portal/portals.conf".text = ''
-      [preferred]
-      default=gnome;gtk
-      org.freedesktop.impl.portal.ScreenCast=wlr
-      org.freedesktop.impl.portal.FileChooser=termfilechooser
-    '';
+    # "xdg-desktop-portal/portals.conf".text = ''
+    #   [preferred]
+    #   default=gtk;gnome
+    #   org.freedesktop.impl.portal.ScreenCast=wlr
+    #   org.freedesktop.impl.portal.FileChooser=termfilechooser
+    # '';
     "swayimg/config".source = "{{home}}/nixos/home/swayimg/swayimg_config.ini";
     "swaylock/config".source = "{{home}}/nixos/home/swaylock/config";
     "gtk-3.0/settings.ini".text = ''

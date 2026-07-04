@@ -3,27 +3,14 @@
   xdg.portal = {
     enable = true;
     config = {
-      common = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        # "org.freedesktop.impl.portal.Access" = "gnome";
-        "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-      };
       niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        # "org.freedesktop.impl.portal.Access" = "gnome";
+        # "org.freedesktop.impl.portal.Notification" = "gnome";
         "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+        # "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       };
     };
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gnome
