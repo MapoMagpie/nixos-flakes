@@ -16,6 +16,10 @@
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     senime.url = "github:MapoMagpie/senime";
+    senime.inputs.nixpkgs.follows = "nixpkgs";
+
+    qylock.url = "github:Darkkal44/qylock";
+    qylock.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -26,6 +30,7 @@
       helix,
       rust-overlay,
       senime,
+      qylock,
       ...
     }:
     let
@@ -46,6 +51,7 @@
           };
           modules = [
             nix-maid.nixosModules.default
+            qylock.nixosModules.default
             ./nixos
           ];
         };
