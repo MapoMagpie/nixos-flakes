@@ -76,7 +76,15 @@
           # zed-editor
           gimp3
           # kdePackages.kdenlive
-          telegram-desktop
+          (pkgs.symlinkJoin {
+            name = "telegram-desktop";
+            paths = [ telegram-desktop ];
+            buildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/Telegram \
+                --set QT_QPA_PLATFORMTHEME flatpak
+            '';
+          })
           chromium
           codex
           claude-code
@@ -85,7 +93,15 @@
         ]
       else if host.hostname == "slavenixos" then
         [
-          telegram-desktop
+          (pkgs.symlinkJoin {
+            name = "telegram-desktop";
+            paths = [ telegram-desktop ];
+            buildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/Telegram \
+                --set QT_QPA_PLATFORMTHEME flatpak
+            '';
+          })
         ]
       else
         [ ]
