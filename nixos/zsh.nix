@@ -24,6 +24,12 @@
     # bindkey '^Xe' edit-command-line
     interactiveShellInit = ''
       source /home/${host.username}/nixos/home/misc/scripts/yazi_cwd.sh
+      yazi_widget() {
+        BUFFER="yazi_cwd"
+        zle accept-line
+      }
+      zle -N yazi_widget
+      bindkey '^e' yazi_widget
       eval "$(atuin init zsh)"
       nd() {
         if [ -z "$1" ]; then
