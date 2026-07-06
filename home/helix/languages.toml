@@ -43,17 +43,19 @@ file-types = ["txt", "text"]
 language-servers = ["senimels-novel"]
 
 [language-server.senimels-novel]
-command = "/home/mapomagpie/code/senime/target/release/senilsp"
+command = "/home/mapomagpie/code/senime/target/release/senils"
 args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
+[language-server.senimels-novel.config]
+coding-mode = false
 
 [language-server.senimels-code]
-command = "/home/mapomagpie/code/senime/target/release/senilsp"
-args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
+command = "/home/mapomagpie/code/senime/target/release/senils"
+args = ["-t", "/home/mapomagpie/.config/senime/config-coding.toml"]
 
 [language-server.senimels-code.config]
 trigger-characters = "7ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.abcdefghijklmnopqrstuvwxyz"
 comment-prefixes = ["///", "//", "--"]
-ignore-invoked = true
+special-prefix = "!!"
 
 [language-server.copilot]
 command = "copilot-language-server"
