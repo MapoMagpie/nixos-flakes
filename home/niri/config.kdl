@@ -53,7 +53,7 @@ workspace "GAME" { open-on-output "DP-3"; }
 
 // startup
 spawn-at-startup "dms" "run"
-// spawn-at-startup "fcitx5" "-d"
+spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "-max-dedupe-search" "500" "-max-items" "5000" "store"
 // spawn-at-startup "sway-audio-idle-inhibit"
 // spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock" "timeout" "400" "niri msg action power-off-monitors" "resume" "niri msg action power-off-monitors" "before-sleep" "swaylock"
