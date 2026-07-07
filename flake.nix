@@ -16,6 +16,7 @@
     senime.url = "github:MapoMagpie/senime";
     senime.inputs.nixpkgs.follows = "nixpkgs";
 
+    # FIXME: https://github.com/Darkkal44/qylock/blob/db61a972b4b23728d9944a906e70029ca8a5899d/flake.nix#L166
     qylock.url = "github:Darkkal44/qylock";
     qylock.inputs.nixpkgs.follows = "nixpkgs";
   };

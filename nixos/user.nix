@@ -25,8 +25,8 @@ let
   ];
 
   uiPkgs = with pkgs; [
-    mpvpaper
-    sway-audio-idle-inhibit
+    # mpvpaper
+    # sway-audio-idle-inhibit
     bibata-cursors
     adwaita-icon-theme
     papirus-icon-theme
@@ -62,7 +62,7 @@ in
     isNormalUser = true;
     description = host.userDesc;
     initialPassword = host.userInitPass;
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     extraGroups = [
       "networkmanager"
       "wheel"

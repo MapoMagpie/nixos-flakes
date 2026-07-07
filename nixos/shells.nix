@@ -1,8 +1,14 @@
 { ... }:
 {
-  system.userActivationScripts.zshrc = "touch .zshrc";
-  programs.zsh = {
+  programs.bash = {
     enable = true;
+    completion.enable = false;
+    # interactiveShellInit = ''
+    #   enable -f ${pkgs.flyline}/lib/libflyline.so flyline
+    # '';
+  };
+  programs.zsh = {
+    enable = false;
     enableCompletion = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;

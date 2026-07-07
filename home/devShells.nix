@@ -45,6 +45,7 @@ let
 in
 {
   rust = pkgs.mkShell {
+    name = "RUST";
     packages = with pkgs; [
       rust
       rust-analyzer-unwrapped
@@ -55,6 +56,7 @@ in
     shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   wasm = pkgs.mkShell {
+    name = "WASM";
     packages = with pkgs; [
       rust-wasm
       wasm-pack
@@ -62,6 +64,7 @@ in
     ];
   };
   cpp = pkgs.mkShell {
+    name = "CPP";
     packages = with pkgs; [
       llvmPackages.clang
       gcc
@@ -82,7 +85,8 @@ in
   };
   # Senime + fcitx5-android development environment
   # Merged: Rust (with Android targets) + C++ + Android SDK/NDK
-  senime-android = pkgs.mkShell {
+  fcitx5-android = pkgs.mkShell {
+    name = "fcitx5-android";
     packages = with pkgs; [
       # Rust toolchain with Android cross-compilation targets
       rust-android
@@ -130,6 +134,7 @@ in
     '';
   };
   ts = pkgs.mkShell {
+    name = "TS";
     packages = with pkgs; [
       nodejs_24
       typescript-language-server
@@ -138,6 +143,7 @@ in
     shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   go = pkgs.mkShell {
+    name = "GO";
     packages = with pkgs; [
       go
       gopls
@@ -148,6 +154,7 @@ in
     shellHook = "source ~/nixos/external/copilot-cli-env.sh";
   };
   lua = pkgs.mkShell {
+    name = "LUA";
     packages = with pkgs; [
       lua
       lua-language-server

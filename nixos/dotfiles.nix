@@ -9,30 +9,31 @@ let
   nixosDir = "${home}/nixos";
 
   # ── Text-based files (built into nix store) ─────────────────
-
-  zshrc = pkgs.writeText "zshrc" ''
-    eval "$(${pkgs.starship}/bin/starship init zsh)"
-    eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
-    eval "$(${pkgs.atuin}/bin/atuin init zsh)"
-    alias -- bos='sudo nixos-rebuild switch --flake ~/nixos && notify-send "nixos build succeeded"'
-    alias -- h='hx .'
-    alias -- kt='kitty @ launch --type=os-window --cwd=current --copy-env'
-    alias -- nu='nix flake update'
-    alias -- y=yazi_cwd
+  bashrc = pkgs.writeText "bashrc" ''
+    enable -f ${pkgs.flyline}/lib/libflyline.so flyline
+    flyline suggestions --auto-suggest true
+    flyline create-prompt-widget custom --name STARSHIP --command "${nixosDir}/home/misc/scripts/shell_prompt.sh" --placeholder prev
+    PS1='\e[01;32m\w\e[00m \e[02m[\t]\e[00m STARSHIP \n\e[01;32m:\e[00m'
+    PS1_FINAL='\e[02m[\t]\W>|\e[00m'
+    eval "$(${pkgs.zoxide}/bin/zoxide init bash)"
     source ${nixosDir}/home/misc/scripts/yazi_cwd.sh
-    yazi_widget() { BUFFER="yazi_cwd"; zle accept-line }
-    zle -N yazi_widget
-    bindkey '^e' yazi_widget
+    alias bos='sudo nixos-rebuild switch --flake ~/nixos && notify-send "nixos build succeeded"'
+    alias h='hx .'
+    alias kt='kitty @ launch --type=os-window --cwd=current --copy-env'
+    alias nu='nix flake update'
+    alias y=yazi_cwd
     nd() {
       if [ -z "$1" ]; then
-        nix develop -c zsh
+        nix develop
       else
-        nix develop ~/nixos#"$1" -c zsh
+        nix develop ~/nixos#"$1"
       fi
     }
     SAVEHIST=100000
     HISTSIZE=100000
-    HISTFILE=${home}/.local/share/zsh/history
+    HISTCONTROL=ignoredups:erasedups
+    shopt -s histappend
+    export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
   '';
 
   gitConfig = pkgs.writeText "gitconfig" ''
@@ -73,8 +74,8 @@ let
   commonLinks = [
     # ── maid/default.nix ──
     {
-      target = ".zshrc";
-      source = zshrc;
+      target = ".bashrc";
+      source = bashrc;
     }
     {
       target = ".config/git/config";
@@ -82,23 +83,19 @@ let
     }
     {
       target = ".config/yazi";
-      source = "${../home/yazi}";
+      source = "${nixosDir}/home/yazi";
     }
     {
       target = ".config/kitty";
-      source = "${../home/kitty}";
-    }
-    {
-      target = ".config/starship.toml";
-      source = "${../home/starship/starship.toml}";
+      source = "${nixosDir}/home/kitty";
     }
     {
       target = ".config/television";
-      source = "${../home/television}";
+      source = "${nixosDir}/home/television";
     }
     {
       target = ".config/helix";
-      source = "${../home/helix}";
+      source = "${nixosDir}/home/helix";
     }
   ];
   # nixfmt:enable
@@ -106,20 +103,20 @@ let
   uiLinks = [
     # ── maid/ui.nix ──
     {
-      target = ".mozilla/firefox/profiles.ini";
-      source = "${../home/firefox/profiles.ini}";
+      target = ".config/mozilla/firefox/profiles.ini";
+      source = "${nixosDir}/home/firefox/profiles.ini";
     }
     {
-      target = ".mozilla/firefox/mapomagpie/user.js";
-      source = "${../home/firefox/user.js}";
+      target = ".config/mozilla/firefox/mapomagpie/user.js";
+      source = "${nixosDir}/home/firefox/user.js";
     }
     {
-      target = ".mozilla/firefox/mapomagpie/chrome";
+      target = ".config/mozilla/firefox/mapomagpie/chrome";
       source = "${nixosDir}/external/firefox-compact-ui";
     }
     {
       target = ".config/niri/config.kdl";
-      source = if host.hostname == "maponixos" then "${../home/niri/config.kdl}" else "${../home/niri/config_slave.kdl}";
+      source = if host.hostname == "maponixos" then "${nixosDir}/home/niri/config.kdl" else "${nixosDir}/home/niri/config_slave.kdl";
     }
     {
       target = ".config/fuzzel/fuzzel.ini";
@@ -135,12 +132,8 @@ let
     }
     {
       target = ".config/swayimg/init.lua";
-      source = "${../home/swayimg/init.lua}";
+      source = "${nixosDir}/home/swayimg/init.lua";
     }
-    # {
-    #   target = ".config/swaylock/config";
-    #   source = "${nixosDir}/home/swaylock/config";
-    # }
     {
       target = ".config/gtk-3.0/settings.ini";
       source = gtk3Settings;

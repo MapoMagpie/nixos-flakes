@@ -6,7 +6,7 @@
     ./network.nix
     ./programs.nix
     ./user.nix
-    ./zsh.nix
+    ./shells.nix
     ./environment.nix
     ./xdgmime.nix
     ./overlays.nix
