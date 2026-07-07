@@ -84,6 +84,10 @@ in
       source = "${nixosDir}/home/swayimg/init.lua";
     }
     {
+      target = ".config/senime";
+      source = "${nixosDir}/external/senime";
+    }
+    {
       target = ".config/gtk-3.0/settings.ini";
       source = gtk3Settings;
     }

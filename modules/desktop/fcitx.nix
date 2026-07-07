@@ -114,14 +114,6 @@
             "ForceWaylandDPI" = "0";
             "EnableFractionalScale" = "True";
           };
-          rime.globalSection = {
-            "PreeditMode " = "Commit preview";
-            "InputState" = "Follow Global Configuration";
-            "PreeditCursorPositionAtBeginning" = "True";
-            "SwitchInputMethodBehavior" = "Commit commit preview";
-            "Deploy" = "";
-            "Synchronize" = "";
-          };
         };
       };
     };
