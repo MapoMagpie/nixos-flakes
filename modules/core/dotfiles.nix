@@ -1,7 +1,8 @@
 {
+  config,
+  lib,
   pkgs,
   host,
-  lib,
   ...
 }:
 let
@@ -42,37 +43,9 @@ let
     	email = "${host.git.userEmail}"
   '';
 
-  fuzzelIni = pkgs.writeText "fuzzel.ini" (builtins.readFile ../home/fuzzel/base.ini + builtins.readFile ../home/fuzzel/colors.ini);
-
-  gtk3Settings = pkgs.writeText "gtk-3.0-settings.ini" ''
-    [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
-    gtk-icon-theme-name=Papirus-Dark
-    gtk-cursor-theme-name=Bibata-Original-Amber
-    gtk-application-prefer-dark-theme=1
-  '';
-
-  gtk4Settings = pkgs.writeText "gtk-4.0-settings.ini" ''
-    [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
-    gtk-icon-theme-name=Papirus-Dark
-    gtk-cursor-theme-name=Bibata-Original-Amber
-    gtk-application-prefer-dark-theme=1
-  '';
-
-  portalConfig = pkgs.writeText "termfilechooser-config" ''
-    [filechooser]
-    cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
-    default_dir=$HOME
-    env=TERMCMD=kitty --app-id="kitty.yazi.filechooser"
-  '';
-
   # ── Symlink rules ───────────────────────────────────────────
-  # Each entry: { target = "..."; source = "..."; }
-
   # nixfmt:disable
   commonLinks = [
-    # ── maid/default.nix ──
     {
       target = ".bashrc";
       source = bashrc;
@@ -100,56 +73,7 @@ let
   ];
   # nixfmt:enable
 
-  uiLinks = [
-    # ── maid/ui.nix ──
-    {
-      target = ".config/mozilla/firefox/profiles.ini";
-      source = "${nixosDir}/home/firefox/profiles.ini";
-    }
-    {
-      target = ".config/mozilla/firefox/mapomagpie/user.js";
-      source = "${nixosDir}/home/firefox/user.js";
-    }
-    {
-      target = ".config/mozilla/firefox/mapomagpie/chrome";
-      source = "${nixosDir}/external/firefox-compact-ui";
-    }
-    {
-      target = ".config/niri/config.kdl";
-      source = if host.hostname == "maponixos" then "${nixosDir}/home/niri/config.kdl" else "${nixosDir}/home/niri/config_slave.kdl";
-    }
-    {
-      target = ".config/fuzzel/fuzzel.ini";
-      source = fuzzelIni;
-    }
-    # {
-    #   target = ".config/quickshell";
-    #   source = "${nixosDir}/home/quickshell";
-    # }
-    {
-      target = ".config/xdg-desktop-portal-termfilechooser/config";
-      source = portalConfig;
-    }
-    {
-      target = ".config/swayimg/init.lua";
-      source = "${nixosDir}/home/swayimg/init.lua";
-    }
-    {
-      target = ".config/gtk-3.0/settings.ini";
-      source = gtk3Settings;
-    }
-    {
-      target = ".config/gtk-4.0/settings.ini";
-      source = gtk4Settings;
-    }
-    # ── XDG_DATA_HOME ──
-    {
-      target = ".local/share/applications/swayimg.desktop";
-      source = "${pkgs.swayimg}/share/applications/swayimg.desktop";
-    }
-  ];
-
-  allLinks = commonLinks ++ (if host.hostname != "slavenixostwo" then uiLinks else [ ]);
+  allLinks = commonLinks ++ config.dotfiles.extraLinks;
 
   # Generate ln commands
   linkCommands = lib.concatMapStringsSep "\n" (
@@ -158,7 +82,6 @@ let
   ) allLinks;
 
   # ── Dconf settings ─────────────────────────────────────────
-
   dconfCommands = ''
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Original-Amber'"
@@ -173,18 +96,33 @@ let
   '';
 in
 {
-  programs.dconf.enable = true;
+  options.dotfiles.extraLinks = lib.mkOption {
+    type = lib.types.listOf (
+      lib.types.submodule {
+        options = {
+          target = lib.mkOption { type = lib.types.str; };
+          source = lib.mkOption { type = lib.types.either lib.types.str lib.types.package; };
+        };
+      }
+    );
+    default = [ ];
+    description = "Extra symlinks to create during dotfiles activation (added by role modules)";
+  };
 
-  systemd.user.services.dotfiles-activation = {
-    wantedBy = [ "default.target" ];
-    before = [ "graphical-session-pre.target" ];
-    after = [ "default.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = "${activationScript}/bin/dotfiles-activate";
+  config = {
+    programs.dconf.enable = true;
+
+    systemd.user.services.dotfiles-activation = {
+      wantedBy = [ "default.target" ];
+      before = [ "graphical-session-pre.target" ];
+      after = [ "default.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${activationScript}/bin/dotfiles-activate";
+      };
+      restartTriggers = [ activationScript ];
+      restartIfChanged = true;
     };
-    restartTriggers = [ activationScript ];
-    restartIfChanged = true;
   };
 }

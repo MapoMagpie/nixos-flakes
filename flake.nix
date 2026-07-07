@@ -32,16 +32,12 @@
       ...
     }:
     let
-      nixosSystem =
+      mkHost =
         hostname:
-        let
-          host = import ./variables.nix hostname;
-        in
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
             inherit
-              host
               rimedm
               helix
               senime
@@ -49,15 +45,15 @@
           };
           modules = [
             qylock.nixosModules.default
-            ./nixos
+            ./hosts/${hostname}
           ];
         };
 
     in
     {
-      nixosConfigurations.maponixos = nixosSystem "maponixos";
-      nixosConfigurations.slavenixos = nixosSystem "slavenixos";
-      nixosConfigurations.slavenixostwo = nixosSystem "slavenixostwo";
+      nixosConfigurations.maponixos = mkHost "maponixos";
+      nixosConfigurations.slavenixos = mkHost "slavenixos";
+      nixosConfigurations.slavenixostwo = mkHost "slavenixostwo";
       devShells."x86_64-linux" = import ./home/devShells.nix { inherit nixpkgs rust-overlay; };
     };
 }

@@ -1,5 +1,10 @@
-{ ... }:
+{ host, ... }:
 {
+  users.users."${host.username}".extraGroups = [
+    "qbittorrent"
+    "qui"
+  ];
+
   environment.etc."qui-secret".text = "eeee125639fa03da0428c17b0f1ea5092281f02a98db73bd0606bd929fdbe5a9";
   services.qui = {
     enable = true;
