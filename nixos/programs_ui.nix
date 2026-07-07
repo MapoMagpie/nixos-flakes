@@ -15,7 +15,6 @@
     xwayland-satellite
     # qt6Packages.qt6ct
     # niri
-    pkgs.sddm-astronaut
   ];
 
   programs.niri = {

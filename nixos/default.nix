@@ -10,6 +10,7 @@
     ./environment.nix
     ./xdgmime.nix
     ./overlays.nix
+    ./dotfiles.nix
   ]
   ++ (
     if host.hostname == "maponixos" then
@@ -86,7 +87,7 @@
   };
 
   security.polkit.enable = true;
-  security.pam.services.swaylock = { };
+  # security.pam.services.swaylock = { };
 
   nixpkgs.config.allowUnfree = true;
 

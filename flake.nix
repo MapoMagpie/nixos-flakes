@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nix-maid.url = "github:viperML/nix-maid";
-
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -25,7 +23,6 @@
   outputs =
     {
       nixpkgs,
-      nix-maid,
       rimedm,
       helix,
       rust-overlay,
@@ -50,7 +47,6 @@
               ;
           };
           modules = [
-            nix-maid.nixosModules.default
             qylock.nixosModules.default
             ./nixos
           ];
