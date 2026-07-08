@@ -6,10 +6,26 @@ output=""
 
 # --- 1. Yazi ---
 if [[ -n "${YAZI_ID:-}" ]]; then
-    output+="🆈 "
+    output+="\e[01;33m[Ỳḁ]\e[0m "
 fi
 
-# --- 2. Git ---
+# --- 2. Jobs ---
+# When sourced, use jobs builtin for accuracy.
+# When executed (e.g. via $(...) in PS1), fall back to ps via $PPID.
+if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
+    # Sourced — use shell builtin
+    if [[ -n "$(jobs -p)" ]]; then
+        output+="\e[1;93m[ᐇ]\e[0m "
+    fi
+else
+    # Executed as subprocess — check parent shell's child processes
+    # Exclude ourselves ($$) to avoid false positive
+    if pgrep -P "$PPID" 2>/dev/null | grep -qvx "$$"; then
+        output+="\e[1;93m[ᐇ]\e[0m "
+    fi
+fi
+
+# --- 3. Git ---
 if git rev-parse --git-dir &>/dev/null; then
     git_dir=$(git rev-parse --git-dir 2>/dev/null)
 
@@ -84,17 +100,17 @@ if git rev-parse --git-dir &>/dev/null; then
         state+="↩${stash_count}"
     fi
 
-    output+="\e[36m⨚ ${branch}"
+    output+="\e[01;36m⨚${branch}"
     [[ -n "$changes" ]] && output+=" \e[31m${changes}\e[36m"
     [[ -n "$state" ]] && output+=" ${state}"
     output+="\e[0m "
 fi
 
-# --- 3. Nix shell ---
+# --- 4. Nix shell ---
 if [[ -n "${IN_NIX_SHELL:-}" ]]; then
-    output+="❄️"
+    output+="\e[01;34mṄịᶍ\e[02;37m"
     [[ -n "${name:-}" ]] && output+=" ${name}"
-    output+=" "
+    output+="\e[00m "
 fi
 
 # Trim trailing space and print
