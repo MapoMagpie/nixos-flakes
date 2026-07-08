@@ -197,11 +197,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1783317254,
-        "narHash": "sha256-pHK+9HZ2D/QZpJO3BAzTPn1iCEgN5jjIwzmBk5sF4pU=",
+        "lastModified": 1783438198,
+        "narHash": "sha256-W+Vcje4Hs6nGHeXeT3kLvT/SVEyxaNJZziYxgY68n5Y=",
         "owner": "MapoMagpie",
         "repo": "senime",
-        "rev": "6c0313038e6044543b2a895000902ff697e46827",
+        "rev": "78704a4da83f020d526ed064944647922bc6e809",
         "type": "github"
       },
       "original": {
