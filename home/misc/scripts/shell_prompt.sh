@@ -115,8 +115,8 @@ fi
 
 # --- 4. Nix shell ---
 if [[ -n "${IN_NIX_SHELL:-}" ]]; then
-    output+="\e[01;34mṄịᶍ\e[02;37m"
-    [[ -n "${name:-}" ]] && output+=" ${name}"
+    output+="\e[01;34mṄịᶍ\e[0m"
+    [[ -n "${name:-}" ]] && output+="\e[02;37m[${name}]"
     output+="\e[00m "
 fi
 
