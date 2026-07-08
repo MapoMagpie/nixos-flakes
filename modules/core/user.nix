@@ -6,7 +6,6 @@
 let
   commonUserPkgs = with pkgs; [
     zoxide
-    starship
     nixd
     nixfmt
     gitui
