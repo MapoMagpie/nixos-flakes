@@ -1,9 +1,35 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
+let
+  sddm-astronaut =
+    (pkgs.sddm-astronaut.override {
+      embeddedTheme = "post-apocalyptic_hacker"; # or any other theme
+      themeConfig = {
+        # Customize colors and settings
+        HeaderTextColor = "#d5c4a1";
+        Background = "Backgrounds/custom-background.mp4";
+        # ... other theme configuration options
+      };
+    }).overrideAttrs
+      (oldAttrs: {
+        # Optional: Inject custom background image
+        installPhase = oldAttrs.installPhase + ''
+          chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
+          cp ${../../home/images/wallpapers/white-tree-sunset.mp4} \
+            $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/custom-background.mp4
+        '';
+      });
+in
 {
 
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs; [
+      kdePackages.qtmultimedia # Required for video backgrounds/audio
+    ];
+    theme = "sddm-astronaut-theme";
+  };
   programs.gpu-screen-recorder.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -13,6 +39,7 @@
     hyprpolkitagent
     grim
     xwayland-satellite
+    sddm-astronaut
     # qt6Packages.qt6ct
     # niri
   ];
@@ -22,40 +49,4 @@
     # useNautilus = false;
   };
 
-  # systemd.packages = [ pkgs.niri ];
-  # # Restarting the compositor kills the graphical session; same
-  # # treatment as the display-manager modules.
-  # systemd.user.services.niri = {
-  #   restartIfChanged = false;
-  #   # Defining the unit here generates a drop-in; without this it
-  #   # would carry the NixOS default Environment="PATH=coreutils:…",
-  #   # clobbering the PATH that niri-session imported into the user
-  #   # manager and breaking spawn actions that rely on it.
-  #   enableDefaultPath = false;
-  # };
-
-  # services.displayManager.sessionPackages = [
-  #   pkgs.niri
-  # ];
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-
-  programs.qylock = {
-    enable = true;
-    # theme = "nier-automata"; # any directory name under themes/
-    theme = "winter"; # any directory name under themes/
-    # sddm.enable = true;             # installs theme + sets it active (default)
-    # quickshell.enable = true;       # adds `qylock-lock` to PATH (default)
-
-    # Optional per-theme tweaks (replaces the interactive prompts):
-    # themeOptions = {
-    #   terraria.backgroundMode = "time"; # time | random | static
-    #   Genshin.backgroundMode = "time";
-    #   clockwork.orbital = {
-    #     themeMode = "dark";
-    #     enableWindup = true;
-    #   };
-    #   osu.gameMode = "menu"; # menu | game
-    # };
-  };
 }
