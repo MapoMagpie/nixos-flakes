@@ -20,6 +20,7 @@
     unzip
     p7zip
     zstd
+    ouch
 
     ripgrep
     eza

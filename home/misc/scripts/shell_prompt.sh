@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # shell_prompt.sh - Generate a pretty prompt line similar to starship
-# Outputs: 🆈 | git branch A{M}D{...} state | 🆁 version | ❄️
 
 output=""
 
