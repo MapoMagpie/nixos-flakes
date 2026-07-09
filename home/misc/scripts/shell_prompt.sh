@@ -6,7 +6,7 @@ output=""
 
 # --- 1. Yazi ---
 if [[ -n "${YAZI_ID:-}" ]]; then
-    output+="\e[01;33m[Ỳḁ]\e[0m "
+    output+="\e[01;05;33mỲḁ\e[0m "
 fi
 
 # --- 2. Jobs ---
@@ -15,13 +15,13 @@ fi
 if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
     # Sourced — use shell builtin
     if [[ -n "$(jobs -p)" ]]; then
-        output+="\e[1;93m[ᐇ]\e[0m "
+        output+="\e[01;05;93mᐇ\e[0m "
     fi
 else
     # Executed as subprocess — check parent shell's child processes
     # Exclude ourselves ($$) to avoid false positive
     if pgrep -P "$PPID" 2>/dev/null | grep -qvx "$$"; then
-        output+="\e[1;93m[ᐇ]\e[0m "
+        output+="\e[01;05;93mᐇ\e[0m "
     fi
 fi
 
