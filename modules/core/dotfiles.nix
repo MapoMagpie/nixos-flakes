@@ -21,9 +21,9 @@ let
     flyline key bind Ctrl+h always=moveLeft
     flyline key bind Ctrl+l always=moveRight
     flyline create-prompt-widget custom --name STARSHIP --command "${nixosDir}/home/misc/scripts/shell_prompt.sh" --placeholder prev
-    PS1='\e[02m[\t]\e[00m \e[01;04;32m\w\e[00m STARSHIP \n\e[01;95m⦊:\e[00m'
+    flyline create-prompt-widget custom --name PATHABBR --command "${nixosDir}/home/misc/path_abbr 40" --placeholder prev
+    PS1='\e[02m[\t]\e[00m \e[01;04;32mPATHABBR\e[00m STARSHIP \n\e[01;95m⦊:\e[00m'
     PS1_FINAL='\e[02m[\t]-|\e[00m'
-    RPS1_FINAL='\e[01;04;32m\W\e[00m'
     eval "$(${pkgs.zoxide}/bin/zoxide init bash)"
     source ${nixosDir}/home/misc/scripts/yazi_cwd.sh
     alias bos='sudo nixos-rebuild switch --flake ~/nixos && notify-send "nixos build succeeded"'
