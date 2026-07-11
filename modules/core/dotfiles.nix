@@ -24,8 +24,10 @@ let
     flyline create-prompt-widget custom --name PATHABBR --command "${nixosDir}/home/misc/path_abbr 40" --placeholder prev
     PS1='\e[02m[\t]\e[00m \e[01;04;32mPATHABBR\e[00m STARSHIP \n\e[01;95m⦊:\e[00m'
     PS1_FINAL='\e[02m[\t]-|\e[00m'
+    shopt -s checkjobs
     eval "$(${pkgs.zoxide}/bin/zoxide init bash)"
     source ${nixosDir}/home/misc/scripts/yazi_cwd.sh
+    source ${pkgs.git}/share/bash-completion/completions/git
     alias bos='sudo nixos-rebuild switch --flake ~/nixos && notify-send "nixos build succeeded"'
     alias h='hx .'
     alias kt='kitty @ launch --type=os-window --cwd=current --copy-env'
@@ -33,9 +35,9 @@ let
     alias y=yazi_cwd
     nd() {
       if [ -z "$1" ]; then
-        nix develop
+        nix develop -c $SHELL
       else
-        nix develop ~/nixos#"$1"
+        nix develop ~/nixos#"$1" -c $SHELL
       fi
     }
     SAVEHIST=100000
@@ -47,8 +49,16 @@ let
 
   gitConfig = pkgs.writeText "gitconfig" ''
     [user]
-    	name = "${host.git.userName}"
-    	email = "${host.git.userEmail}"
+      name = "${host.git.userName}"
+      email = "${host.git.userEmail}"
+    [rerere]
+      enable = true
+      autoupdate = true
+    [pull]
+      rebase = true
+    [diff]
+      colorMoved = zebra
+      algorithm = histogram
   '';
 
   # ── Symlink rules ───────────────────────────────────────────
