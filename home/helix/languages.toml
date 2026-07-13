@@ -1,6 +1,7 @@
 [[language]]
-auto-format = true
 name = "nix"
+language-servers = ["nil", "copilot", "senimels-code"]
+auto-format = true
 
 [language.formatter]
 args = ["--width=300"]
@@ -60,9 +61,12 @@ special-prefix = "!!"
 [language-server.copilot]
 command = "copilot-language-server"
 args = ["--stdio"]
-only-manual-trigger = true
 
 [language-server.copilot.config]
 editorInfo = { name = "Helix", version = "25.01" }
 editorPluginInfo = { name = "helix-copilot", version = "0.1.0" }
 
+[language-server.nil]
+command = "nil"
+[language-server.nil.config]
+nil.nix.flake = { autoEvalInputs = false, nixpkgsInputName = "nixpkgs",  }

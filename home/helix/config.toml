@@ -8,6 +8,10 @@ auto-format = true
 word-completion = { enable = false, trigger-length = 3 }
 inline-completion-auto-trigger = false
 
+[editor.workspace-trust]
+level = "insecure"
+prompt = true
+
 [editor.inline-diagnostics]
 # cursor-line = "disable"
 # other-lines = "disable"
@@ -53,7 +57,7 @@ tab = "all"
 "p" = ":sh wl-copy \"%<buffer_name>\"" # copy current buffer name
 "y" = ":sh wl-copy \"%<buffer_name>:L%<selection_line_start>-L%<selection_line_end>\"" # copy current buffer name and selection lines
 "c" = ":sh echo '%<selection>' | wc -m" # copy current buffer name and selection lines
-# "b" = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"
+"b" = ":sh git blame -L %<selection_line_start>,%<selection_line_end> %<buffer_name>"
 [keys.normal.space] # save and quite
 "q" = ":wqa"
 "Q" = ":qa"
