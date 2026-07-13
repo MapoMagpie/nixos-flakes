@@ -21,7 +21,7 @@ let
     flyline key bind Ctrl+h always=moveLeft
     flyline key bind Ctrl+l always=moveRight
     flyline create-prompt-widget custom --name STARSHIP --command "${nixosDir}/home/misc/scripts/shell_prompt.sh" --placeholder prev
-    flyline create-prompt-widget custom --name PATHABBR --command "${nixosDir}/home/misc/path_abbr 40" --placeholder prev
+    flyline create-prompt-widget custom --name PATHABBR --command "${nixosDir}/home/misc/scripts/path_abbr 40" --placeholder prev
     PS1='\e[02m[\t]\e[00m \e[01;04;32mPATHABBR\e[00m STARSHIP \n\e[01;95m⦊:\e[00m'
     PS1_FINAL='\e[02m[\t]-|\e[00m'
     shopt -s checkjobs
