@@ -6,7 +6,7 @@ let
 
   gtk3Settings = pkgs.writeText "gtk-3.0-settings.ini" ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+    gtk-theme-name=Nordic
     gtk-icon-theme-name=Papirus-Dark
     gtk-cursor-theme-name=Bibata-Original-Amber
     gtk-application-prefer-dark-theme=1
@@ -14,7 +14,7 @@ let
 
   gtk4Settings = pkgs.writeText "gtk-4.0-settings.ini" ''
     [Settings]
-    gtk-theme-name=Catppuccin-Mocha-Standard-Blue-Dark
+    gtk-theme-name=Nordic
     gtk-icon-theme-name=Papirus-Dark
     gtk-cursor-theme-name=Bibata-Original-Amber
     gtk-application-prefer-dark-theme=1
@@ -40,7 +40,7 @@ in
     bibata-cursors
     adwaita-icon-theme
     papirus-icon-theme
-    catppuccin-gtk
+    nordic
     cliphist
     fuzzel
     dgop
