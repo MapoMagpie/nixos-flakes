@@ -28,16 +28,19 @@ let
     eval "$(${pkgs.zoxide}/bin/zoxide init bash)"
     source ${nixosDir}/home/misc/scripts/yazi_cwd.sh
     source ${pkgs.git}/share/bash-completion/completions/git
+    export KITTY_SHELL_INTEGRATION="enabled"
+    source ${pkgs.kitty}/lib/kitty/shell-integration/bash/kitty.bash
     alias bos='sudo nixos-rebuild switch --flake ~/nixos && notify-send "nixos build succeeded"'
     alias h='hx .'
-    alias kt='kitty @ launch --type=os-window --cwd=current --copy-env'
+    alias kk='kitty @ launch --type=os-window --cwd=current --copy-env'
+    alias kt='kitty @ launch --type=tab --cwd=current --copy-env'
     alias nu='nix flake update'
     alias y=yazi_cwd
     nd() {
       if [ -z "$1" ]; then
-        nix develop -c $SHELL
+        source <(nix print-dev-env)
       else
-        nix develop ~/nixos#"$1" -c $SHELL
+        source <(nix print-dev-env ~/nixos#"$1")
       fi
     }
     SAVEHIST=100000
@@ -104,7 +107,7 @@ let
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Original-Amber'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Papirus-Dark'"
-    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Catppuccin-Mocha-Standard-Blue-Dark'"
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Nordic'"
   '';
 
   activationScript = pkgs.writeShellScriptBin "dotfiles-activate" ''
