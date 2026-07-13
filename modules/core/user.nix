@@ -6,7 +6,7 @@
 let
   commonUserPkgs = with pkgs; [
     zoxide
-    nixd
+    nil
     nixfmt
     gitui
     yt-dlp
