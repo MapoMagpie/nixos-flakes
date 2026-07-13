@@ -1,5 +1,45 @@
 {
   "nodes": {
+    "externalFonts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783950562,
+        "narHash": "sha256-UQ7bmLoX+nr7+A05up7uy2Y21ufteBHxDVuO+a9K6Mg=",
+        "ref": "refs/heads/master",
+        "rev": "caf0a84439b5a68f0031ca1367a544f2a7df6c2e",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:./external/assets/fonts"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./external/assets/fonts"
+      }
+    },
+    "externalMedias": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783950571,
+        "narHash": "sha256-h2svzEPH3bulf5IJ4xQDwDcwvOFno5Ie1K95RxBxRaw=",
+        "ref": "refs/heads/master",
+        "rev": "aa4b82a9e38b160fdc075682566a4c66c874e9f0",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:./external/assets/medias"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./external/assets/medias"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -79,6 +119,8 @@
     },
     "root": {
       "inputs": {
+        "externalFonts": "externalFonts",
+        "externalMedias": "externalMedias",
         "helix": "helix",
         "nixpkgs": "nixpkgs",
         "rimedm": "rimedm",

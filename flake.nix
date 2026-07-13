@@ -15,6 +15,12 @@
 
     senime.url = "github:MapoMagpie/senime";
     senime.inputs.nixpkgs.follows = "nixpkgs";
+
+    externalFonts.url = "git+file:./external/assets/fonts";
+    externalFonts.inputs.nixpkgs.follows = "nixpkgs";
+
+    externalMedias.url = "git+file:./external/assets/medias";
+    externalMedias.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -24,6 +30,8 @@
       helix,
       rust-overlay,
       senime,
+      externalFonts,
+      externalMedias,
       ...
     }:
     let
@@ -31,7 +39,7 @@
         hostname:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit rimedm helix senime; };
+          specialArgs = { inherit rimedm helix senime externalFonts externalMedias; };
           modules = [ ./hosts/${hostname} ];
         };
 

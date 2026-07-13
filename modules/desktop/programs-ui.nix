@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  externalMedias,
+  ...
+}:
 let
   sddm-astronaut =
     (pkgs.sddm-astronaut.override {
@@ -14,7 +18,7 @@ let
         # Optional: Inject custom background image
         installPhase = oldAttrs.installPhase + ''
           chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
-          cp ${../../home/images/wallpapers/white-tree-sunset.mp4} \
+          cp ${externalMedias.default}/share/wallpapers/white-tree-sunset.mp4 \
             $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/custom-background.mp4
         '';
       });

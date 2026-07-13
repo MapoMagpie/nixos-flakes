@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, externalFonts, ... }:
 {
 
   fonts = {
@@ -12,14 +12,7 @@
       lxgw-fusionkai
       lxgw-wenkai-screen
       sarasa-gothic
-      (pkgs.stdenv.mkDerivation {
-        name = "local_fonts";
-        src = ./fonts;
-        installPhase = ''
-          mkdir -p $out/share/fonts/truetype
-          cp $src/*.{ttf,otf} $out/share/fonts/truetype/
-        '';
-      })
+      externalFonts.default
     ];
     enableDefaultPackages = true;
     fontDir.enable = true;
