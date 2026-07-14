@@ -57,6 +57,6 @@
       nixosConfigurations.maponixos = mkConfiguration (import ./hosts/default.nix "maponixos");
       nixosConfigurations.slavenixos = mkConfiguration (import ./hosts/default.nix "slavenixos");
       nixosConfigurations.slavenixostwo = mkConfiguration (import ./hosts/default.nix "slavenixostwo");
-      devShells."x86_64-linux" = import ./home/devShells.nix { inherit nixpkgs rust-overlay; };
+      devShells."x86_64-linux" = import ./devshells { inherit nixpkgs rust-overlay; };
     };
 }
