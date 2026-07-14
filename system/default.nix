@@ -9,6 +9,7 @@
     ./network.nix
     ./fonts.nix
     ./xdgmime.nix
+    ./portal.nix
     ../pkgs/overlays.nix
     ./programs
     ../home
