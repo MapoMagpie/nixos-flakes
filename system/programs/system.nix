@@ -1,6 +1,5 @@
 {
   pkgs,
-  helix,
   ...
 }:
 {
@@ -53,8 +52,8 @@
     gnome-keyring
 
     yazi
-    # helix
-    helix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # helix (from overlay, pre-built runtime avoids eval overhead)
+    helix
     miniserve
 
     tldr
