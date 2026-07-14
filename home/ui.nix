@@ -54,7 +54,7 @@ let
     }
     {
       target = ".config/niri/config.kdl";
-      source = "${currDir}/home/niri/config.kdl";
+      source = "${currDir}/niri/config.kdl";
     }
     {
       target = ".config/fuzzel/fuzzel.ini";
