@@ -1,4 +1,4 @@
-{ hostname, pkgs }:
+hostname:
 if hostname == "maponixos" then
   {
     screen = {
@@ -17,8 +17,9 @@ if hostname == "maponixos" then
     hardware = ./hardware-mapo.nix;
     upowerEnable = false;
     enable_ui = true;
-    enable_master_ui = true;
+    enable_ui_master = true;
     enable_game = true;
+    enable_server = false;
   }
 else if hostname == "slavenixos" then
   {
@@ -40,8 +41,9 @@ else if hostname == "slavenixos" then
     hardware = ./hardware-slave.nix;
     upowerEnable = true;
     enable_ui = true;
-    enable_master_ui = false;
+    enable_ui_master = false;
     enable_game = false;
+    enable_server = false;
   }
 else if hostname == "slavenixostwo" then
   {
@@ -63,8 +65,9 @@ else if hostname == "slavenixostwo" then
     hardware = ./hardware-slavetwo.nix;
     upowerEnable = true;
     enable_ui = false;
-    enable_master_ui = false;
+    enable_ui_master = false;
     enable_game = false;
+    enable_server = true;
   }
 else
   { }

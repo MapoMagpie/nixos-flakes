@@ -13,15 +13,27 @@ let
       { target, source }:
       "mkdir -p $(dirname ${homeDir}/${target}) && ln -sfn ${source} ${homeDir}/${target}"
     ) links;
+
   base = import ./base.nix (
-    {
+    input
+    // {
       inherit homeDir currDir mkLinkCommands;
     }
-    ++ input
   );
+  ui =
+    if host.enable_ui then
+      import ./ui.nix (
+        input
+        // {
+          inherit homeDir currDir mkLinkCommands;
+        }
+      )
+    else
+      "";
   activationScript = pkgs.writeShellScriptBin "dotfiles-activate" ''
     set -e
     ${base}
+    ${ui}
   '';
 in
 {

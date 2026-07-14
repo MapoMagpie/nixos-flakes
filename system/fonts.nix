@@ -1,4 +1,9 @@
-{ pkgs, externalFonts, ... }:
+{
+  pkgs,
+  host,
+  externalFonts,
+  ...
+}:
 {
 
   fonts = {

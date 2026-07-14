@@ -1,7 +1,7 @@
 {
   homeDir,
   currDir,
-  mkLineCommands,
+  mkLinkCommands,
   pkgs,
   host,
   ...
@@ -85,7 +85,7 @@ let
       source = "${pkgs.swayimg}/share/applications/swayimg.desktop";
     }
   ];
-  linkCommands = mkLineCommands links;
+  linkCommands = mkLinkCommands links;
 in
 ''
   ${linkCommands}

@@ -11,7 +11,7 @@ let
   };
 in
 {
-  users.user."${host.username}".packages =
+  users.users."${host.username}".packages =
     with pkgs;
     [
       bibata-cursors

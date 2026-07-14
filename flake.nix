@@ -35,7 +35,7 @@
       ...
     }:
     let
-      mkHost =
+      mkConfiguration =
         host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -54,9 +54,9 @@
 
     in
     {
-      nixosConfigurations.maponixos = mkHost import ./hosts/default.nix "maponixos";
-      nixosConfigurations.slavenixos = mkHost import ./hosts/default.nix "slavenixos";
-      nixosConfigurations.slavenixostwo = mkHost import ./hosts/default.nix "slavenixostwo";
+      nixosConfigurations.maponixos = mkConfiguration (import ./hosts/default.nix "maponixos");
+      nixosConfigurations.slavenixos = mkConfiguration (import ./hosts/default.nix "slavenixos");
+      nixosConfigurations.slavenixostwo = mkConfiguration (import ./hosts/default.nix "slavenixostwo");
       devShells."x86_64-linux" = import ./home/devShells.nix { inherit nixpkgs rust-overlay; };
     };
 }

@@ -6,7 +6,7 @@
   ...
 }:
 {
-  users.user."${host.username}".packages = with pkgs; [
+  users.users."${host.username}".packages = with pkgs; [
     zoxide
     nil
     nixfmt

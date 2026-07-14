@@ -11,7 +11,7 @@
     ./xdgmime.nix
     ../pkgs/overlays.nix
     ./programs
-    ./dotfiles
+    ../home
   ]
   ++ (if host.enable_server then [ ./server ] else [ ]);
 

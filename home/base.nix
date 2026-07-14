@@ -1,7 +1,7 @@
 {
   homeDir,
   currDir,
-  mkLineCommands,
+  mkLinkCommands,
   pkgs,
   host,
   ...
@@ -88,7 +88,6 @@ let
       source = "${currDir}/helix";
     }
   ];
-  linkCommands = mkLineCommands link;
-  # ── Dconf settings ─────────────────────────────────────────
+  linkCommands = mkLinkCommands link;
 in
 linkCommands
