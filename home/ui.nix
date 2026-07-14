@@ -1,8 +1,13 @@
-{ pkgs, host, ... }:
+{
+  homeDir,
+  currDir,
+  mkLineCommands,
+  pkgs,
+  host,
+  ...
+}:
 let
-  nixosDir = "/home/${host.username}/nixos";
-
-  fuzzelIni = pkgs.writeText "fuzzel.ini" (builtins.readFile ../../home/fuzzel/base.ini + builtins.readFile ../../home/fuzzel/colors.ini);
+  fuzzelIni = pkgs.writeText "fuzzel.ini" (builtins.readFile ./fuzzel/base.ini + builtins.readFile ./fuzzel/colors.ini);
 
   gtk3Settings = pkgs.writeText "gtk-3.0-settings.ini" ''
     [Settings]
@@ -26,50 +31,30 @@ let
     default_dir=$HOME
     env=TERMCMD=kitty --app-id="kitty.yazi.filechooser"
   '';
-in
-{
-  imports = [
-    ./portal.nix
-    ./fcitx.nix
-    ./programs-ui.nix
-    ./game
-  ];
 
-  # Desktop UI packages for user
-  users.users."${host.username}".packages = with pkgs; [
-    bibata-cursors
-    adwaita-icon-theme
-    papirus-icon-theme
-    nordic
-    cliphist
-    fuzzel
-    dgop
-    quickshell
-    dms-shell
-    matugen
-    firefox
-    swayimg
-    freerdp
-    slurp
-  ];
+  dconfCommands = ''
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Original-Amber'"
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Papirus-Dark'"
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Nordic'"
+  '';
 
-  # Desktop dotfile symlinks
-  dotfiles.extraLinks = [
+  links = [
     {
       target = ".config/mozilla/firefox/profiles.ini";
-      source = "${nixosDir}/home/firefox/profiles.ini";
+      source = "${currDir}/firefox/profiles.ini";
     }
     {
       target = ".config/mozilla/firefox/mapomagpie/user.js";
-      source = "${nixosDir}/home/firefox/user.js";
+      source = "${currDir}/firefox/user.js";
     }
     {
       target = ".config/mozilla/firefox/mapomagpie/chrome";
-      source = "${nixosDir}/external/firefox-compact-ui";
+      source = "${homeDir}/nixos/external/firefox-compact-ui";
     }
     {
       target = ".config/niri/config.kdl";
-      source = "${nixosDir}/home/niri/${host.niriConfig or "config.kdl"}";
+      source = "${currDir}/home/niri/config.kdl";
     }
     {
       target = ".config/fuzzel/fuzzel.ini";
@@ -81,11 +66,11 @@ in
     }
     {
       target = ".config/swayimg/init.lua";
-      source = "${nixosDir}/home/swayimg/init.lua";
+      source = "${currDir}/swayimg/init.lua";
     }
     {
       target = ".config/senime";
-      source = "${nixosDir}/external/senime";
+      source = "${homeDir}/nixos/external/senime";
     }
     {
       target = ".config/gtk-3.0/settings.ini";
@@ -100,4 +85,9 @@ in
       source = "${pkgs.swayimg}/share/applications/swayimg.desktop";
     }
   ];
-}
+  linkCommands = mkLineCommands links;
+in
+''
+  ${linkCommands}
+  ${dconfCommands}
+''

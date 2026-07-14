@@ -1,0 +1,19 @@
+{
+  pkgs,
+  host,
+  rimedm,
+  senime,
+  ...
+}:
+{
+  users.user."${host.username}".packages = with pkgs; [
+    zoxide
+    nil
+    nixfmt
+    gitui
+    yt-dlp
+    kitty
+    rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
+    senime.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
+}

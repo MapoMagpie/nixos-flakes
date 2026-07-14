@@ -1,32 +1,56 @@
 {
+  pkgs,
   host,
   ...
 }:
 {
   imports = [
+    host.hardware
     ./network.nix
-    ./environment.nix
-    ./shells.nix
-    ./fonts
-    ./programs.nix
-    ./user.nix
+    ./fonts.nix
     ./xdgmime.nix
-    ./overlays.nix
-    ./dotfiles.nix
-  ];
+    ../pkgs/overlays.nix
+    ./programs
+    ./dotfiles
+  ]
+  ++ (if host.enable_server then [ ./server ] else [ ]);
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  users.users."${host.username}" = {
+    isNormalUser = true;
+    description = host.userDesc;
+    initialPassword = host.userInitPass;
+    shell = pkgs.bash;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "i2c"
+      "libvirtd"
+    ];
+    openssh.authorizedKeys.keys = host.openssh.authorizedKeys.keys;
+  };
+
+  environment = {
+    variables = {
+      EDITOR = "hx";
+      PAGER = "bat";
+      TERMINAL = "kitty";
+    };
+  };
+
+  nix.settings = {
+    trusted-users = [ host.username ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
+  };
 
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 1w";
   };
-
-  nix.settings.auto-optimise-store = true;
 
   hardware.i2c.enable = true;
 
@@ -74,6 +98,14 @@
     initrd.enable = true;
     opencl.enable = true;
   };
+
+  boot.extraModprobeConfig =
+    if host.hostname == "maponixos" then
+      ''
+        options hid_apple fnmode=0
+      ''
+    else
+      "";
 
   system.stateVersion = "24.11";
 }

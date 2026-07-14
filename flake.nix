@@ -36,18 +36,27 @@
     }:
     let
       mkHost =
-        hostname:
+        host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit rimedm helix senime externalFonts externalMedias; };
-          modules = [ ./hosts/${hostname} ];
+          specialArgs = {
+            inherit
+              rimedm
+              helix
+              senime
+              externalFonts
+              externalMedias
+              host
+              ;
+          };
+          modules = [ ./system ];
         };
 
     in
     {
-      nixosConfigurations.maponixos = mkHost "maponixos";
-      nixosConfigurations.slavenixos = mkHost "slavenixos";
-      nixosConfigurations.slavenixostwo = mkHost "slavenixostwo";
+      nixosConfigurations.maponixos = mkHost import ./hosts/default.nix "maponixos";
+      nixosConfigurations.slavenixos = mkHost import ./hosts/default.nix "slavenixos";
+      nixosConfigurations.slavenixostwo = mkHost import ./hosts/default.nix "slavenixostwo";
       devShells."x86_64-linux" = import ./home/devShells.nix { inherit nixpkgs rust-overlay; };
     };
 }

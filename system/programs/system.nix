@@ -1,14 +1,19 @@
 {
   pkgs,
-  rimedm,
   helix,
-  senime,
   ...
 }:
 {
 
   programs = {
     git.enable = true;
+  };
+  programs.bash = {
+    enable = true;
+    completion.enable = false;
+    # interactiveShellInit = ''
+    #   enable -f ${pkgs.flyline}/lib/libflyline.so flyline
+    # '';
   };
 
   environment.systemPackages = with pkgs; [
@@ -47,8 +52,6 @@
 
     gnome-keyring
 
-    qgnomeplatform-qt6
-
     yazi
     # helix
     helix.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -58,8 +61,6 @@
     bat
     delta
     killall
-    rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
-    senime.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     wl-clipboard
 

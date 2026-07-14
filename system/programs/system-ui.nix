@@ -25,6 +25,7 @@ let
 in
 {
 
+  programs.niri.enable = true;
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -44,13 +45,7 @@ in
     grim
     xwayland-satellite
     sddm-astronaut
-    # qt6Packages.qt6ct
-    # niri
+    qgnomeplatform-qt6
   ];
-
-  programs.niri = {
-    enable = true;
-    # useNautilus = false;
-  };
 
 }
