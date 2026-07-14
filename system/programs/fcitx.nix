@@ -1,4 +1,4 @@
-{ pkgs, senime, ... }:
+{ pkgs, ... }:
 {
   # Disable fcitx5 autostart - override with Hidden=true
   environment.etc."xdg/autostart/org.fcitx.Fcitx5.desktop".text = ''
@@ -17,7 +17,6 @@
         catppuccin-fcitx5
         fcitx5-tokyonight
         kdePackages.fcitx5-qt
-        senime.packages.${pkgs.stdenv.hostPlatform.system}.fcitx5-senime
       ];
       settings = {
         globalOptions = {
@@ -118,4 +117,10 @@
       };
     };
   };
+
+  # 让 fcitx5 能从 ~/.nix-profile 发现 addon（通过 nix profile 安装的 senime 等）
+  environment.extraInit = ''
+    export FCITX_ADDON_DIRS="$HOME/.nix-profile/lib/fcitx5''${FCITX_ADDON_DIRS:+:$FCITX_ADDON_DIRS}"
+    export XDG_DATA_DIRS="$HOME/.nix-profile/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+  '';
 }

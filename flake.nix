@@ -13,9 +13,6 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    senime.url = "github:MapoMagpie/senime";
-    senime.inputs.nixpkgs.follows = "nixpkgs";
-
     externalFonts.url = "git+file:./external/assets/fonts";
     externalFonts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -29,7 +26,6 @@
       rimedm,
       helix,
       rust-overlay,
-      senime,
       externalFonts,
       externalMedias,
       ...
@@ -43,7 +39,6 @@
             inherit
               rimedm
               helix
-              senime
               externalFonts
               externalMedias
               host

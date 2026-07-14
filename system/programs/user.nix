@@ -2,7 +2,6 @@
   pkgs,
   host,
   rimedm,
-  senime,
   ...
 }:
 {
@@ -14,6 +13,5 @@
     yt-dlp
     kitty
     rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
-    senime.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
