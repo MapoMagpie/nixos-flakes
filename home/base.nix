@@ -12,8 +12,6 @@ let
     enable -f ${pkgs.flyline}/lib/libflyline.so flyline
     flyline suggestions --auto-suggest true
     flyline mouse --mode disabled
-    flyline key bind Ctrl+j always=fuzzyHistorySelectNext+tabCompletionMoveDown
-    flyline key bind Ctrl+k always=fuzzyHistorySelectPrev+tabCompletionMoveUp
     flyline key bind Ctrl+b always=moveLeftOneWord
     flyline key bind Ctrl+w always=moveRightOneWord
     flyline key bind Ctrl+h always=moveLeft

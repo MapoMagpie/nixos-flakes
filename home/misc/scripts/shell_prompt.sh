@@ -107,8 +107,8 @@ if status_out=$(git status -s -b 2>/dev/null) && [[ -n "$status_out" ]]; then
     fi
 
     output+="\e[01;36m⨚${branch}"
-    [[ -n "$changes" ]] && output+=" \e[31m${changes}\e[36m"
-    [[ -n "$state" ]] && output+=" ${state}"
+    [[ -n "$changes" ]] && output+="\e[31m${changes}\e[36m"
+    [[ -n "$state" ]] && output+="${state}"
     output+="\e[0m "
 fi
 
