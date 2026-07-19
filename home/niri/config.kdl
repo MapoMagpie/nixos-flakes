@@ -1,3 +1,4 @@
+// https://github.com/niri-wm/niri/wiki/Configuration:-Miscellaneous
 input {
     keyboard {
         xkb {
@@ -35,7 +36,10 @@ output "DP-3" {
 // }
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-// hotkey-overlay
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
 environment {
     DISPLAY ":0"
     QT_QPA_PLATFORM "wayland"
