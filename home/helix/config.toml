@@ -26,7 +26,7 @@ git-ignore = true
 
 [editor.whitespace.characters]
 nbsp = "⍽"
-newline = "⏎"
+newline = "↵"
 nnbsp = "␣"
 space = "·"
 tab = "→"
