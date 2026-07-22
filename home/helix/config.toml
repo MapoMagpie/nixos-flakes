@@ -55,7 +55,9 @@ tab = "all"
 # esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
 [keys.normal.space.c] # my commands
 "p" = ":sh wl-copy \"%<buffer_name>\"" # copy current buffer name
-"y" = ":sh wl-copy \"%<buffer_name>:L%<selection_line_start>-L%<selection_line_end>\"" # copy current buffer name and selection lines
+"P" = ":sh wl-copy \"%<file_path_absolute>\"" # copy current file path absolute
+"y" = ":sh wl-copy \"%<buffer_name>:%<selection_line_start>-%<selection_line_end>\"" # copy current buffer name and selection lines
+"Y" = ":sh wl-copy \"%<file_path_absolute>:%<selection_line_start>-%<selection_line_end>\"" # copy current file path absolute and selection lines
 "c" = ":sh echo '%<selection>' | wc -m" # copy current buffer name and selection lines
 "b" = ":sh git blame -L %<selection_line_start>,%<selection_line_end> %<buffer_name>"
 [keys.normal.space] # save and quite
