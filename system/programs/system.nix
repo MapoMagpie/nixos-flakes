@@ -65,5 +65,6 @@
 
     python3
     xxd
+    gh
   ];
 }
