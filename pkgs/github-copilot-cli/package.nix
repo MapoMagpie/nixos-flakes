@@ -20,16 +20,16 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "github-copilot-cli";
-  version = "1.0.71";
+  version = "1.0.73";
 
   src = fetchurl {
     url = "https://github.com/github/copilot-cli/releases/download/v${finalAttrs.version}/copilot-${platform}.tar.gz";
     hash =
       {
-        "x86_64-darwin" = "sha256-J8yEBWo9e1rkaQnb//9jXvA9Q9Zjah2Q+BU3BtYbcOI=";
-        "aarch64-darwin" = "sha256-DvILAwi24j6dRMFDvwde59Kay7vDhHusuOKWI/LSQ4k=";
-        "x86_64-linux" = "sha256-d56bPlI5nY/fW81hd54/HWBnlrpHi2FK1B+4DVIpELs=";
-        "aarch64-linux" = "sha256-dMx82q7TmPJrfXLH1Buiv/QakDUlrqx3g2HW29igxg0=";
+        "x86_64-darwin" = "sha256-kflCDNkD41ojVAf6h5AUk2JSZ/UC3T5dLqsYgrCoxlg=";
+        "aarch64-darwin" = "sha256-hYCBJwpUTDlq8BMpJkSfjZK6UIbCuALGM6N2qdpeg9Y=";
+        "x86_64-linux" = "sha256-j5u19+NkwmcmXR4krCrqae1VnduVZxnG2xKjU95sWXA=";
+        "aarch64-linux" = "sha256-Fvgkqzzc9Rp1rZB8hCQoBZEcr8ZRmq9Y0J4K5Osfwc0=";
       }
       .${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
   };
