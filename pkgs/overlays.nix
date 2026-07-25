@@ -15,6 +15,7 @@
           builtins.attrValues self.astalPackages
           ++ [ super.libadwaita ];
       };
+      shojiwm = super.callPackage ./shojiwm/package.nix { };
     })
   ];
 }

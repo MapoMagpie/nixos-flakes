@@ -1,6 +1,7 @@
 {
   pkgs,
   externalMedias,
+  host,
   ...
 }:
 let
@@ -24,8 +25,21 @@ let
       });
 in
 {
+  imports = [
+    ../../pkgs/shojiwm/nixos-module.nix
+  ];
 
   programs.niri.enable = true;
+
+  programs.shojiwm = {
+    enable = true;
+    portal.enable = true;
+    xwaylandSatellite.enable = true;
+    initConfig = {
+      enable = true;
+      users = [ host.username ];
+    };
+  };
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
