@@ -46,6 +46,7 @@ in
     xwayland-satellite
     sddm-astronaut
     qgnomeplatform-qt6
+    ags
   ];
 
 }
