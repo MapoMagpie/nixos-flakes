@@ -24,6 +24,13 @@ select = "underline"
 [editor.file-picker]
 git-ignore = true
 
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator"]
+right = ["diagnostics", "selections", "position", "total-line-numbers"]
+
+[editor.lsp]
+display-progress-messages = true
+
 [editor.whitespace.characters]
 nbsp = "⍽"
 newline = "↵"
