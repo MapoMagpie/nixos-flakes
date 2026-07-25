@@ -45,13 +45,21 @@
       "flakes"
     ];
     auto-optimise-store = true;
+    substituters = [
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://cache.nixos.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 1w";
-  };
+  # nix.gc is disabled in favor of programs.nh.clean
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 1w";
+  # };
 
   hardware.i2c.enable = true;
 

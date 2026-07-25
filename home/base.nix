@@ -26,7 +26,7 @@ let
     source ${pkgs.git}/share/bash-completion/completions/git
     export KITTY_SHELL_INTEGRATION="enabled"
     source ${pkgs.kitty}/lib/kitty/shell-integration/bash/kitty.bash
-    alias bos='sudo nixos-rebuild switch --fast --flake ~/nixos && notify-send "nixos build succeeded"'
+    alias bos='nh os switch --ask --accept-flake-config ~/nixos && notify-send "nixos build succeeded"'
     alias h='hx .'
     alias kk='kitty @ launch --type=os-window --cwd=current --copy-env'
     alias kt='kitty @ launch --type=tab --cwd=current --copy-env'
