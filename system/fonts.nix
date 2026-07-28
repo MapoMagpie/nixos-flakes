@@ -25,11 +25,11 @@
           "Noto Sans Symbols 2"
         ];
         monospace = [
-          "Comic Mono"
           "0xProto Nerd Font Mono"
-          "LXGW WenKai Mono"
           "Noto Sans Symbols"
           "Noto Sans Symbols 2"
+          "Comic Mono"
+          "LXGW WenKai Mono"
         ];
         emoji = [
           "Noto Color Emoji"
