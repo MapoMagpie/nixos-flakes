@@ -29,13 +29,13 @@
 }:
 
 let
-  version = "0.1.0";
+  version = "unstable-2026-07-28";
 
   src = fetchFromGitHub {
     owner = "bea4dev";
     repo = "ShojiWM";
-    rev = "2502c96638b7a671e99a1e5b8ec1477526f081c1";
-    hash = "sha256-Bz/k2TqSZoQpGpatbhyW2pNr7UpPG7ZkQKhT9mnYPxg=";
+    rev = "d9802e3ef34a4477a92e87915c75627b5a78babc";
+    hash = "sha256-aEwwQ9utsaCKoPC1i4P9RJk5NWQk69xPAYWfuFnJ1qg=";
   };
 
   runtime = buildNpmPackage {
@@ -102,6 +102,7 @@ rustPlatform.buildRustPackage {
     lockFile = ./Cargo.lock;
 
     outputHashes = {
+      "rustyscript-0.12.3" = "sha256-04yZws8aY6NpyQc0F6fg7CAwYYXer7r+eFABwafP+kU=";
       "smithay-0.7.0" = "sha256-V8VWa7lj8w1CP3V7H1mITD/ChlkYGAg2EW+iE/SsUzE=";
       "smithay-drm-extras-0.1.0" = "sha256-V8VWa7lj8w1CP3V7H1mITD/ChlkYGAg2EW+iE/SsUzE=";
     };
