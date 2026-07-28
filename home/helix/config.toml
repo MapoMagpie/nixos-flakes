@@ -60,6 +60,11 @@ tab = "all"
 "C-s" = [":wa", "save_selection"]
 "C-r" = ":reload-all"
 # esc = [":run-shell-command ~/nixos/home/misc/scripts/setrimeasciimode.sh true"]
+
+[keys.normal.g]
+"j" = "goto_next_change"
+"k" = "goto_prev_change"
+
 [keys.normal.space.c] # my commands
 "p" = ":sh wl-copy \"%<buffer_name>\"" # copy current buffer name
 "P" = ":sh wl-copy \"%<file_path_absolute>\"" # copy current file path absolute
