@@ -6,10 +6,10 @@
 }:
 let
   target = {
-    "x86_64-linux" = "sha256-YmwiehbsD/Krwz+EjAkO2GcR8JSvHMtruEX+IHzvIrA=";
-    "aarch64-linux" = "sha256-GWlUPDlpx7g0y/+tuPYpUTcV/fzRTnGH7iOHhGku3e8=";
-    "x86_64-darwin" = "sha256-h1rJj9cjNBOFLKdU7OevbkhQOJNq7kmZiZqrpwHkmuU=";
-    "aarch64-darwin" = "sha256-JDA9XBOl5xTt1NoHbdUGhbUMlJ8G85TKPYkCErA3Ddw=";
+    "x86_64-linux" = "x86_64-unknown-linux-gnu";
+    "aarch64-linux" = "aarch64-unknown-linux-gnu";
+    "x86_64-darwin" = "x86_64-apple-darwin";
+    "aarch64-darwin" = "aarch64-apple-darwin";
   }.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
 in
 stdenv.mkDerivation (finalAttrs: {

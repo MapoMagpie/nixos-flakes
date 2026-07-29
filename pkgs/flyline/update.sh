@@ -36,8 +36,9 @@ for system in "${!target_map[@]}"; do
   curl -fsSL -o "$tmp/flyline.tar.gz" "$url"
   hash=$(nix --extra-experimental-features nix-command hash file "$tmp/flyline.tar.gz")
   echo "  hash: $hash"
-  # Update hash for this system in package.nix
-  sed -i "s|\"$system\" = \"[^\"]*\"|\"$system\" = \"$hash\"|" "$PACKAGE_FILE"
+  # Update hash for this system in package.nix (only match sha256- entries to
+  # avoid clobbering the `target` attrset, which shares the same key pattern)
+  sed -i "s|\"$system\" = \"sha256-[^\"]*\"|\"$system\" = \"$hash\"|" "$PACKAGE_FILE"
   rm -rf "$tmp"
 done
 
