@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783950562,
-        "narHash": "sha256-UQ7bmLoX+nr7+A05up7uy2Y21ufteBHxDVuO+a9K6Mg=",
+        "lastModified": 1784435781,
+        "narHash": "sha256-3bZEUd/zAX72Et8/qcNHArjQTGjzBo31bK0SVMxUnOc=",
         "ref": "refs/heads/master",
-        "rev": "caf0a84439b5a68f0031ca1367a544f2a7df6c2e",
-        "revCount": 1,
+        "rev": "4306c10fc610e58bdd7d4a8df132ecb0ac4c65f1",
+        "revCount": 2,
         "type": "git",
         "url": "file:./external/assets/fonts"
       },
@@ -64,11 +64,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784120854,
-        "narHash": "sha256-KesHgItiZPgGX740axSiQLcIQ8D24MDqNpkKYWIek8k=",
+        "lastModified": 1785090369,
+        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "753cc8a3a87467296ddd1fa93f0cc3e81120ee46",
+        "rev": "624af665418d3c65d544145b4d34ad696439570e",
         "type": "github"
       },
       "original": {
@@ -137,11 +137,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784216271,
-        "narHash": "sha256-bvaxxdk7mmMQ88AuXQGTUtk+PcUujHpgxqpryqTWvTU=",
+        "lastModified": 1785216007,
+        "narHash": "sha256-KrGilCiFVxEQOaBD3TODhklZzE7uICQvqsBWgycIABA=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "1f69c7203034a4a974d7a4eac0f19b54af30804d",
+        "rev": "8ec8a5a41f8d8244e672829c9cd705416139d3f0",
         "type": "github"
       },
       "original": {
