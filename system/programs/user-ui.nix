@@ -36,7 +36,6 @@ in
           gimp3
           chromium
           codex
-          claude-code
           github-copilot-cli
           scrcpy
         ]
