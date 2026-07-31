@@ -39,11 +39,29 @@ let
         source <(nix print-dev-env ~/nixos#"$1")
       fi
     }
-    SAVEHIST=100000
-    HISTSIZE=100000
-    HISTCONTROL=ignoredups:erasedups
-    shopt -s histappend
+    # Bash history (SAVEHIST is a zsh variable and has no effect in bash).
+    # HISTSIZE limits the in-memory list; HISTFILESIZE limits the file.
+    # histappend is OFF so that on exit bash *rewrites* the file from the
+    # in-memory list (which erasedups dedupes during `history -r`) instead of
+    # *appending*, keeping ~/.bash_history deduplicated and uncapped.
+    export HISTFILE="''${HISTFILE:-$HOME/.bash_history}"
+    export HISTSIZE=100000
+    export HISTFILESIZE=100000
+    export HISTCONTROL=ignoredups:erasedups
+    export HISTTIMEFORMAT='%F %T '
+    shopt -u histappend
     export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+  '';
+
+  # Login shells (TTY, ssh, sudo -i, desktop session) only read
+  # /etc/profile + ~/.bash_profile and do NOT source ~/.bashrc. Without this
+  # they would exit with default HISTSIZE/HISTFILESIZE=500 and no erasedups,
+  # truncating ~/.bash_history back to <=500 entries. Source ~/.bashrc so the
+  # same history settings apply everywhere.
+  bashProfile = pkgs.writeText "bash_profile" ''
+    if [ -f "$HOME/.bashrc" ]; then
+      . "$HOME/.bashrc"
+    fi
   '';
 
   gitConfig = pkgs.writeText "gitconfig" ''
@@ -64,6 +82,10 @@ let
     {
       target = ".bashrc";
       source = bashrc;
+    }
+    {
+      target = ".bash_profile";
+      source = bashProfile;
     }
     {
       target = ".config/git/config";
