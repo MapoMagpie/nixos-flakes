@@ -51,6 +51,7 @@
 
     sysstat
     ethtool
+    socat
 
     ddcutil
 
