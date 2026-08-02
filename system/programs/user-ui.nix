@@ -38,6 +38,7 @@ in
           codex
           github-copilot-cli
           scrcpy
+          pi-coding-agent
         ]
       else
         [ ]
