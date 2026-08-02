@@ -45,7 +45,7 @@ language-servers = ["senimels-novel"]
 
 [language-server.senimels-novel]
 command = "/home/mapomagpie/code/senime/target/release/senils"
-args = ["-t", "/home/mapomagpie/.config/senime/config.toml"]
+args = ["-t", "/home/mapomagpie/.config/senime/config-coding.toml"]
 [language-server.senimels-novel.config]
 coding-mode = false
 trigger-characters = " ,.abcdefghijklmnopqrstuvwxyzHJKL"
