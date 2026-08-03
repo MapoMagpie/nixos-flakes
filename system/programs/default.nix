@@ -13,5 +13,13 @@
     else
       [ ]
   )
-  ++ (if host.enable_game then [ ./game ] else [ ]);
+  ++ (
+    if host.enable_game then
+      [
+        ./game
+        # ./vpn.nix
+      ]
+    else
+      [ ]
+  );
 }
