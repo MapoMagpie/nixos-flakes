@@ -11,7 +11,7 @@ let
 
   gtk3Settings = pkgs.writeText "gtk-3.0-settings.ini" ''
     [Settings]
-    gtk-theme-name=Nordic
+    gtk-theme-name=Colloid-Pink-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-cursor-theme-name=Bibata-Original-Amber
     gtk-application-prefer-dark-theme=1
@@ -19,7 +19,7 @@ let
 
   gtk4Settings = pkgs.writeText "gtk-4.0-settings.ini" ''
     [Settings]
-    gtk-theme-name=Nordic
+    gtk-theme-name=Colloid-Pink-Dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-cursor-theme-name=Bibata-Original-Amber
     gtk-application-prefer-dark-theme=1
@@ -36,7 +36,7 @@ let
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Original-Amber'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Papirus-Dark'"
-    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Nordic'"
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Colloid-Pink-Dark'"
   '';
 
   links = [

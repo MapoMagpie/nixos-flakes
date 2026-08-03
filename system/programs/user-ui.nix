@@ -17,7 +17,7 @@ in
       bibata-cursors
       adwaita-icon-theme
       papirus-icon-theme
-      nordic
+      (colloid-gtk-theme.override { themeVariants = [ "pink" ]; }) # 装成 Colloid-Pink-Dark
       cliphist
       fuzzel
       dgop
