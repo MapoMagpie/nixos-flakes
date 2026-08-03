@@ -29,6 +29,7 @@ in
       freerdp
       slurp
       telegramWrapped
+      swayidle
     ]
     ++ (
       if host.enable_ui_master then
