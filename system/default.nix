@@ -89,6 +89,9 @@
 
   security.polkit.enable = true;
 
+  # PAM service used by the astal auth library (astal-auth CLI / gi://AstalAuth)
+  security.pam.services.astal-auth = { };
+
   nixpkgs.config.allowUnfree = true;
 
   services.pipewire = {
