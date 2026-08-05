@@ -67,6 +67,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # /tmp on tmpfs (in-memory, auto-cleared on reboot, faster SSD-less writes)
+  boot.tmp.useTmpfs = true;
+
   # Time zone
   time.timeZone = "Asia/Shanghai";
 
