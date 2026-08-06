@@ -13,13 +13,13 @@
 # at the pinned revision. To update, bump `rev` / `hash` via ./update.sh.
 
 let
-  rev = "387436b9e3ed1c9473ca819f6e04666f12a74481";
+  rev = "8d359058767e4187505e06f4359e1a95a022ba55";
 
   src = fetchFromGitHub {
     owner = "bea4dev";
     repo = "ShojiWM";
     inherit rev;
-    hash = "sha256-7s3yAEjsyDX5EywVG01I3T0kI/p3McQ5uHQcvYcyfcQ=";
+    hash = "sha256-E0Yj2RK3jZXmzuiJfJOf1jU1QkD6Wh/+zaWaj6TmWQo=";
   };
 in
 callPackage (src + "/nix/package.nix") {
