@@ -5,3 +5,4 @@ user_pref("browser.urlbar.openintab", true);
 user_pref("dom.events.dataTransfer.imageAsFile.enabled", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+user_pref("browser.nova.enabled", true);
