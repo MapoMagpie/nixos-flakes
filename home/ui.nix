@@ -7,11 +7,9 @@
   ...
 }:
 let
-  fuzzelIni = pkgs.writeText "fuzzel.ini" (builtins.readFile ./fuzzel/base.ini + builtins.readFile ./fuzzel/colors.ini);
-
   gtk3Settings = pkgs.writeText "gtk-3.0-settings.ini" ''
     [Settings]
-    gtk-theme-name=Colloid-Pink-Dark
+    gtk-theme-name=prefer-dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-cursor-theme-name=Bibata-Original-Amber
     gtk-application-prefer-dark-theme=1
@@ -19,7 +17,7 @@ let
 
   gtk4Settings = pkgs.writeText "gtk-4.0-settings.ini" ''
     [Settings]
-    gtk-theme-name=Colloid-Pink-Dark
+    gtk-theme-name=prefer-dark
     gtk-icon-theme-name=Papirus-Dark
     gtk-cursor-theme-name=Bibata-Original-Amber
     gtk-application-prefer-dark-theme=1
@@ -36,7 +34,7 @@ let
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Original-Amber'"
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Papirus-Dark'"
-    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Colloid-Pink-Dark'"
+    ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'prefer-dark'"
   '';
 
   links = [
@@ -55,10 +53,6 @@ let
     {
       target = ".config/niri/config.kdl";
       source = "${currDir}/niri/config.kdl";
-    }
-    {
-      target = ".config/fuzzel/fuzzel.ini";
-      source = fuzzelIni;
     }
     {
       target = ".config/xdg-desktop-portal-termfilechooser/config";
