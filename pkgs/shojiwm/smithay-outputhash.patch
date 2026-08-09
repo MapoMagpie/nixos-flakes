@@ -1,5 +1,5 @@
---- a/nix/package.nix
-+++ b/nix/package.nix
+--- a/nix/package.nix	2026-08-10 07:08:19.068030686 +0800
++++ b/nix/package.nix	2026-08-10 07:08:19.071784852 +0800
 @@ -107,8 +107,8 @@
      lockFile = ../Cargo.lock;
  

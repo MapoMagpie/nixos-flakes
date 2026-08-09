@@ -24,13 +24,13 @@
 # the patch and this step once upstream fixes the hash.
 
 let
-  rev = "cb582acbcf61eb174c8bbd1b6ec935589365dcb5";
+  rev = "a5f4ccf0b6e62caa3181f2a11b92cda19d4d9b67";
 
   src = fetchFromGitHub {
     owner = "bea4dev";
     repo = "ShojiWM";
     inherit rev;
-    hash = "sha256-fKR7FfGo6aj3QdQFYoDAw0Hozd+QTVG5PFi5n/EUuoM=";
+    hash = "sha256-ZaKKcO9e78lmtSYquFZw84jSfyu1KYAfCyhcDvqoE0g=";
   };
 
   # Source with the stale smithay outputHash corrected (see comment above).
