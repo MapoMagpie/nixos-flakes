@@ -34,23 +34,22 @@ let
     alias y=yazi_cwd
     nd() {
       if [ -z "$1" ]; then
-        source <(nix print-dev-env)
+        nix develop
       else
-        source <(nix print-dev-env ~/nixos#"$1")
+        nix develop ~/nixos#"$1"
       fi
     }
     # Bash history (SAVEHIST is a zsh variable and has no effect in bash).
     # HISTSIZE limits the in-memory list; HISTFILESIZE limits the file.
-    # histappend is OFF so that on exit bash *rewrites* the file from the
-    # in-memory list (which erasedups dedupes during `history -r`) instead of
-    # *appending*, keeping ~/.bash_history deduplicated and uncapped.
+    # Keep each shell's in-memory history independent. `history -a` persists
+    # this shell's new entries without clearing and reloading its history.
     export HISTFILE="''${HISTFILE:-$HOME/.bash_history}"
     export HISTSIZE=100000
     export HISTFILESIZE=100000
     export HISTCONTROL=ignoredups:erasedups
     export HISTTIMEFORMAT='%F %T '
-    shopt -u histappend
-    export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+    shopt -s histappend
+    export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
   '';
 
   # Login shells (TTY, ssh, sudo -i, desktop session) only read
