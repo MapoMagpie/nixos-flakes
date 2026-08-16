@@ -29,7 +29,7 @@ in
     ../../pkgs/shojiwm/nixos-module.nix
   ];
 
-  # programs.niri.enable = true;
+  programs.niri.enable = true;
 
   programs.shojiwm = {
     enable = true;
@@ -61,6 +61,7 @@ in
     sddm-astronaut
     qgnomeplatform-qt6
     ags
+    amdgpu_top
   ];
 
 }

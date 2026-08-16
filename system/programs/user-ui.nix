@@ -22,7 +22,7 @@ in
       # (colloid-gtk-theme.override { themeVariants = [ "pink" ]; }) # 装成 Colloid-Pink-Dark
       cliphist
       dgop
-      # quickshell
+      quickshell
       # dms-shell
       # matugen
       firefox

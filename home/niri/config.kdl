@@ -56,7 +56,7 @@ workspace "GAME" { open-on-output "DP-3"; }
 // workspace "EXTE" { open-on-output "HDMI-A-1"; }
 
 // startup
-spawn-at-startup "dms" "run"
+spawn-at-startup "quickshell"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "-max-dedupe-search" "500" "-max-items" "5000" "store"
 // spawn-at-startup "sway-audio-idle-inhibit"
