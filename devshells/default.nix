@@ -137,6 +137,7 @@ in
     name = "TS";
     packages = with pkgs; [
       nodejs_24
+      pnpm
       typescript-language-server
       copilot-language-server
     ];
