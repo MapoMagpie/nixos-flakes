@@ -1,45 +1,33 @@
 {
   callPackage,
   fetchFromGitHub,
-  runCommand,
   libgbm,
   xwayland,
   xwaylandSatellite,
 }:
 
-# ShojiWM is built purely from upstream's own packaging, vendored from a pinned
-# commit. The upstream `nix/package.nix` (and its `rusty-v8.nix` colleague) lives
-# inside the fetched source tree, so all build internals — the cargo lockfile,
-# git-dep hashes, the embedded rusty_v8 archive — are owned upstream and tracked
-# at the pinned revision. To update, bump `rev` / `hash` via ./update.sh.
+# ShojiWM is built purely from upstream's own packaging, vendored from a
+# pinned commit of bea4dev/ShojiWM. The upstream `nix/package.nix` (and its
+# `rusty-v8.nix` colleague) lives inside the fetched source tree, so all
+# build internals — the cargo lockfile, git-dep outputHashes (smithay fork
+# rev, rustyscript), the embedded rusty_v8 archive — are owned upstream and
+# tracked at the pinned revision. To update, bump `rev` / `hash` via
+# ./update.sh (it also verifies the git-dep outputHashes against the actual
+# checkouts, since upstream has shipped stale smithay hashes before).
 #
-# Local fix: upstream pins a stale outputHash for its `smithay` git dependency
-# (`smithay-0.7.0` and `smithay-drm-extras-0.1.0` both come from
-# bea4dev/smithay at the same rev, so they share one hash) — the pinned value
-# does not match the actual checkout, so the fetchgit fails with a hash
-# mismatch. `smithay-outputhash.patch` corrects it and is applied onto the
-# fetched source (a plain overrideAttrs fix would be lost because
-# nixos-module.nix re-derives the package via `.override`). update.sh
-# regenerates the patch from the new source when the smithay rev moves; drop
-# the patch and this step once upstream fixes the hash.
+# No local patch is needed at the pinned rev: upstream fixed the smithay
+# outputHash in 40e99b7 ("nix: fix smithay outputHashes after fork rev bump").
 
 let
-  rev = "69768ca8998118dc83bb3f6ceea1592f643f9686";
+  rev = "74ea6cfc336da18e236508ac6d9d846bc2cd9d8c";
 
   src = fetchFromGitHub {
     owner = "bea4dev";
     repo = "ShojiWM";
     inherit rev;
-    hash = "sha256-v41F7LRZEHcXWwbmNdSJ4cvdL94d7vVxLlBIqShvozE=";
+    hash = "sha256-pIu/2tTOJa5Iq0k5LcVCyoa8h0JkdfQxELCNYla7+is=";
   };
-
-  # Source with the stale smithay outputHash corrected (see comment above).
-  src' = runCommand "shojiwm-src" { } ''
-    cp -a ${src} $out
-    chmod -R u+w $out
-    patch -p1 -d "$out" < ${./smithay-outputhash.patch}
-  '';
 in
-callPackage (src' + "/nix/package.nix") {
+callPackage (src + "/nix/package.nix") {
   inherit libgbm xwayland xwaylandSatellite;
 }
