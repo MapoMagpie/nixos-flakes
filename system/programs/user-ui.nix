@@ -42,6 +42,7 @@ in
           github-copilot-cli
           scrcpy
           pi-coding-agent
+          deepseek-harness
         ]
       else
         [ ]
