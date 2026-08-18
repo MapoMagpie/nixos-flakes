@@ -19,21 +19,27 @@ let
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [ bubblewrap ]
   );
+  # node-pty >= 1.2.0-beta ships prebuilds instead of compiling from source;
+  # prebuildify names the native glibc dirs linux-x64 / linux-arm64.
+  nodePtyArch =
+    if stdenv.hostPlatform.isx86_64 then "x64"
+    else if stdenv.hostPlatform.isAarch64 then "arm64"
+    else null;
 in
 buildNpmPackage (finalAttrs: {
   pname = "deepseek-harness";
-  version = "0.1.0-rc.6";
+  version = "0.1.0-rc.7";
 
   __structuredAttrs = true;
 
   src = fetchurl {
     url = "https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-${finalAttrs.version}.tgz";
-    hash = "sha256-G4qaCtPH/q7OR5JuC9N8oVHHzPqZeVOvpf0BJheE6tw=";
+    hash = "sha256-L48Ldj1hGsU296lBHuQ8CvwGfBuHMsMQLATb45i8rMU=";
   };
 
   nodejs = nodejs_24;
 
-  npmDepsHash = "sha256-6u74xRbLATQu0aLwAZCHRtHXXaZgn6dKB6i03jZohaI=";
+  npmDepsHash = "sha256-9TIeZaxqrbrRQsQp+dB2vcM1GZmCO9dOI2gx4gaiP0w=";
 
   # The npm tarball retains development-only workspace packages, which npm
   # would otherwise install because the tarball is the derivation's root.
@@ -68,9 +74,9 @@ buildNpmPackage (finalAttrs: {
       --add-flags "$out/lib/node_modules/@deepseek-ai/dsh/lib/bin.js" \
       --prefix PATH : ${runtimePath}
   ''
-  + lib.optionalString stdenv.hostPlatform.isGnu ''
+  + lib.optionalString (stdenv.hostPlatform.isGnu && nodePtyArch != null) ''
     find $out/lib/node_modules/@deepseek-ai/dsh/node_modules/node-pty/prebuilds \
-      -mindepth 1 -maxdepth 1 -type d -exec rm -r {} +
+      -mindepth 1 -maxdepth 1 -type d ! -name 'linux-${nodePtyArch}' -exec rm -r {} + || true
     find $out/lib/node_modules/@deepseek-ai/dsh/node_modules/@koromix \
       -type d -name 'musl_*' -prune -exec rm -r {} +
     find $out/lib/node_modules/@deepseek-ai/dsh/node_modules/@img \
@@ -88,6 +94,8 @@ buildNpmPackage (finalAttrs: {
     find $out/lib/node_modules/@deepseek-ai/dsh/node_modules/@img \
       -mindepth 1 -maxdepth 1 -type d -name '*linux-*' -exec rm -r {} +
   '';
+
+  passthru.updateScript = ./update.sh;
 
   nativeInstallCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;

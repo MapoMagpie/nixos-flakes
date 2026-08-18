@@ -14,7 +14,7 @@
         astal-io = self.astalPackages.io;
         extraPackages = builtins.attrValues self.astalPackages ++ [ super.libadwaita ];
       };
-      deepseek-harness = super.callPackage ./deekseek-harness/package.nix { };
+      deepseek-harness = super.callPackage ./deepseek-harness/package.nix { };
       # ShojiWM is vendored from a pinned upstream commit and built from the
       # fetched tree's own nix/package.nix (see ./shojiwm/package.nix); bump
       # rev/hash via ./shojiwm/update.sh.
