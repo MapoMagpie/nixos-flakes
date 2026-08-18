@@ -15,6 +15,9 @@
           builtins.attrValues self.astalPackages
           ++ [ super.libadwaita ];
       };
+      # ShojiWM is vendored from a pinned upstream commit and built from the
+      # fetched tree's own nix/package.nix (see ./shojiwm/package.nix); bump
+      # rev/hash via ./shojiwm/update.sh.
       shojiwm = super.callPackage ./shojiwm/package.nix {
         libgbm = super.libgbm or super.mesa;
         xwayland = super.xwayland or (super.xorg.xwayland or null);
