@@ -16,7 +16,11 @@
         # "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       };
     };
-    xdgOpenUsePortal = true;
+    # Routes every xdg-open through the XDG Desktop Portal. That breaks
+    # xdg-mime handling for plain files: the portal shows an app chooser and
+    # ignores the registered default (and hides NoDisplay apps like swayimg).
+    # Disabled so xdg-open/yazi use the xdg-mime default directly.
+    xdgOpenUsePortal = false;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gnome
