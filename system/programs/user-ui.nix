@@ -29,7 +29,8 @@ in
       swayimg
       freerdp
       slurp
-      telegramWrapped
+      # telegramWrapped
+      telegram-desktop
       wayland-pipewire-idle-inhibit
       swayidle
     ]
