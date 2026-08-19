@@ -5,8 +5,19 @@ let
     paths = [ pkgs.telegram-desktop ];
     buildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
-      wrapProgram $out/bin/Telegram \
-        --set QT_QPA_PLATFORMTHEME flatpak
+      wrapProgram $out/bin/Telegram --set QT_QPA_PLATFORMTHEME flatpak
+      # org.telegram.desktop.desktop 带 DBusActivatable=true：app launcher 通过
+      # GIO 启动时走 D-Bus 激活，而不是执行桌面文件的 Exec 行。D-Bus 激活按
+      # share/dbus-1/services/org.telegram.desktop.service 里的 Exec 拉起进程，
+      # 默认 symlinkJoin 会把该 service 文件指向 base 包里未包装的二进制，
+      # 导致从 launcher 启动时吃不到 QT_QPA_PLATFORMTHEME。
+      # 这里改写为指向包装后二进制（$out/bin/Telegram）的真实文件。
+      rm -f $out/share/dbus-1/services/org.telegram.desktop.service
+      printf '%s\n' \
+        '[D-BUS Service]' \
+        'Name=org.telegram.desktop' \
+        "Exec=$out/bin/Telegram" \
+        > $out/share/dbus-1/services/org.telegram.desktop.service
     '';
   };
 in
@@ -29,8 +40,8 @@ in
       swayimg
       freerdp
       slurp
-      # telegramWrapped
-      telegram-desktop
+      telegramWrapped
+      # telegram-desktop
       wayland-pipewire-idle-inhibit
       swayidle
     ]
