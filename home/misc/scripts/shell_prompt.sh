@@ -9,19 +9,34 @@ if [[ -n "${YAZI_ID:-}" ]]; then
 fi
 
 # --- 2. Jobs ---
-# When sourced, use jobs builtin for accuracy.
-# When executed (e.g. via $(...) in PS1), fall back to ps via $PPID.
-if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
-    # Sourced — use shell builtin
-    if [[ -n "$(jobs -p)" ]]; then
-        output+="\e[01;05;93mᐇ\e[0m "
+# `jobs` is a bash builtin, so this script only ever sees its own (empty) job
+# table, never the interactive shell's. Two mechanisms instead:
+#   1. SHELL_JOB_COUNT env var — the exact `jobs -p | wc -l` of the parent
+#      shell, if the shell exports it. Optional hook in ~/.bashrc:
+#        PROMPT_COMMAND="history -a; export SHELL_JOB_COUNT=\$(jobs -p | wc -l); \$PROMPT_COMMAND"
+#   2. Process inspection fallback (works right now, no rc change needed):
+#      flyline forks widget commands directly from the shell, so $PPID is the
+#      interactive bash. With job control on, every background job is a child
+#      of the shell in its own process group (a pipeline shares one pgrp and
+#      counts as one job; stopped jobs show state T; finished jobs are reaped
+#      or filtered as zombies). So: count the distinct non-zombie children of
+#      $PPID whose pgrp differs from the shell's own pgrp — that is the number
+#      of background jobs. (Disowned jobs are still counted, unlike `jobs`.)
+jobs_count=0
+if [[ "${SHELL_JOB_COUNT:-}" =~ ^[0-9]+$ ]]; then
+    jobs_count=$SHELL_JOB_COUNT
+elif command -v ps >/dev/null 2>&1; then
+    shell_pgid=$(ps -o pgid= -p "$PPID" 2>/dev/null | tr -d ' ')
+    if [[ -n "$shell_pgid" ]]; then
+        jobs_count=$(ps -o pid=,pgid=,stat= --ppid "$PPID" 2>/dev/null |
+            awk -v me=$$ -v spg="$shell_pgid" \
+                '$1 != me && $3 !~ /^Z/ && $2 != "" && $2 != spg { print $2 }' |
+            sort -u | wc -l)
+        jobs_count=${jobs_count// /}
     fi
-else
-    # Executed as subprocess — check parent shell's child processes
-    # Exclude ourselves ($$) to avoid false positive
-    if pgrep -P "$PPID" 2>/dev/null | grep -qvx "$$"; then
-        output+="\e[01;05;93mᐇ\e[0m "
-    fi
+fi
+if [[ "$jobs_count" -gt 0 ]]; then
+    output+="\e[01;05;93mᐇ\e[0m "
 fi
 
 # --- 3. Git ---

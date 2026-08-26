@@ -49,7 +49,10 @@ let
     export HISTCONTROL=ignoredups:erasedups
     export HISTTIMEFORMAT='%F %T '
     shopt -s histappend
-    export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+    # Export the exact background-job count (`jobs` is a builtin, only the
+    # shell itself can see its job table) at every prompt; shell_prompt.sh
+    # prefers SHELL_JOB_COUNT and falls back to process-group inspection.
+    export PROMPT_COMMAND="history -a; export SHELL_JOB_COUNT=\$(jobs -p | wc -l); $PROMPT_COMMAND"
   '';
 
   # Login shells (TTY, ssh, sudo -i, desktop session) only read
