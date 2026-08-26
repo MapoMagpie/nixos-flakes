@@ -24,9 +24,13 @@
     substituters = [
       "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
+      # deepseek-harness.nix upstream CI pushes prebuilt dsh packages here,
+      # which avoids building the whole DeepSeek Harness monorepo locally.
+      "https://deepseek-harness-nix.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "deepseek-harness-nix.cachix.org-1:5NrkwLN9veNMhiINtU5ZeV4isXFhFsOwn6Ms7J1M+TA="
     ];
   };
 

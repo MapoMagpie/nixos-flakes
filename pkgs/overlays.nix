@@ -14,7 +14,12 @@
         astal-io = self.astalPackages.io;
         extraPackages = builtins.attrValues self.astalPackages ++ [ super.libadwaita ];
       };
-      deepseek-harness = super.callPackage ./deepseek-harness/package.nix { };
+      # Thin wrapper over moraxyc/deepseek-harness.nix: all packaging
+      # internals live at the pinned rev in the fetched tree, refreshed via
+      # pkgs/deepseek-harness/update.sh.
+      deepseek-harness = super.callPackage ./deepseek-harness/package.nix {
+        pkgs = self;
+      };
       # ShojiWM is vendored from a pinned upstream commit and built from the
       # fetched tree's own nix/package.nix (see ./shojiwm/package.nix); bump
       # rev/hash via ./shojiwm/update.sh.
