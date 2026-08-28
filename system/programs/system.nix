@@ -28,7 +28,8 @@
     zip
     xz
     unzip
-    p7zip
+    _7zz
+    _7zip-zstd
     zstd
     ouch
 
