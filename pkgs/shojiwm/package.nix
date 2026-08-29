@@ -19,13 +19,13 @@
 # outputHash in 40e99b7 ("nix: fix smithay outputHashes after fork rev bump").
 
 let
-  rev = "acc534a9784a267cdf8af91a0d64071eee021fbc";
+  rev = "1de4b73b7e5a21dc1103ef209024874900c22fb1";
 
   src = fetchFromGitHub {
     owner = "bea4dev";
     repo = "ShojiWM";
     inherit rev;
-    hash = "sha256-PARqldMO2fyxXmLx7ilyWCOj3bp4w7GjslE3AZR6xPk=";
+    hash = "sha256-REDm1327Z4YW1Xw2CFgOI6J6F5suR2XLnBAD26anBM4=";
   };
 in
 callPackage (src + "/nix/package.nix") {
