@@ -44,14 +44,14 @@ file-types = ["txt", "text"]
 language-servers = ["senimels-novel"]
 
 [language-server.senimels-novel]
-command = "/home/mapomagpie/code/senime/target/release/senils"
+command = "senils"
 args = ["-t", "/home/mapomagpie/.config/senime/config-coding.toml"]
 [language-server.senimels-novel.config]
 coding-mode = false
 trigger-characters = " ,.abcdefghijklmnopqrstuvwxyzHJKL"
 
 [language-server.senimels-code]
-command = "/home/mapomagpie/code/senime/target/release/senils"
+command = "senils"
 args = ["-t", "/home/mapomagpie/.config/senime/config-coding.toml"]
 
 [language-server.senimels-code.config]
