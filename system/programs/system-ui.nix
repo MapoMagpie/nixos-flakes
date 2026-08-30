@@ -4,24 +4,17 @@
   ...
 }:
 let
-  sddm-astronaut =
-    (pkgs.sddm-astronaut.override {
+  sddm-astronaut = (
+    pkgs.sddm-astronaut.override {
       embeddedTheme = "post-apocalyptic_hacker"; # or any other theme
       themeConfig = {
         # Customize colors and settings
         HeaderTextColor = "#d5c4a1";
-        Background = "Backgrounds/custom-background.mp4";
+        Background = "/home/${host.username}/nixos/external/assets/medias/white-tree-sunset.mp4";
         # ... other theme configuration options
       };
-    }).overrideAttrs
-      (oldAttrs: {
-        # Optional: Inject custom background image
-        installPhase = oldAttrs.installPhase + ''
-          chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
-          cp /home/${host.username}/nixos/external/assets/medias/white-tree-sunset.mp4 \
-            $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/custom-background.mp4
-        '';
-      });
+    }
+  );
 in
 {
   imports = [
