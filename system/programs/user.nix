@@ -2,6 +2,7 @@
   pkgs,
   host,
   rimedm,
+  senime,
   ...
 }:
 {
@@ -23,5 +24,6 @@
       exec kitty "$@"
     '')
     rimedm.packages.${pkgs.stdenv.hostPlatform.system}.default
+    senime.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

@@ -7,6 +7,9 @@
     rimedm.url = "github:MapoMagpie/rimedm";
     rimedm.inputs.nixpkgs.follows = "nixpkgs";
 
+    senime.url = "github:MapoMagpie/senime";
+    senime.inputs.nixpkgs.follows = "nixpkgs";
+
     helix.url = "github:MapoMagpie/helix/my-helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -32,6 +35,7 @@
     {
       nixpkgs,
       rimedm,
+      senime,
       helix,
       rust-overlay,
       ...
@@ -42,7 +46,12 @@
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit rimedm helix host;
+            inherit
+              rimedm
+              senime
+              helix
+              host
+              ;
           };
           modules = [ ./system ];
         };
