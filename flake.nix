@@ -12,12 +12,6 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-
-    externalFonts.url = "git+file:./external/assets/fonts";
-    externalFonts.inputs.nixpkgs.follows = "nixpkgs";
-
-    externalMedias.url = "git+file:./external/assets/medias";
-    externalMedias.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {
@@ -40,8 +34,6 @@
       rimedm,
       helix,
       rust-overlay,
-      externalFonts,
-      externalMedias,
       ...
     }:
     let
@@ -50,13 +42,7 @@
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit
-              rimedm
-              helix
-              externalFonts
-              externalMedias
-              host
-              ;
+            inherit rimedm helix host;
           };
           modules = [ ./system ];
         };
