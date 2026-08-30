@@ -13,8 +13,8 @@ let
   src = fetchFromGitHub {
     owner = "moraxyc";
     repo = "deepseek-harness.nix";
-    rev = "052163e61ec9bc5180cb036a0da0ff4a0440542d";
-    hash = "sha256-von7BapFOfsZB6NawXYqd9XJnyjUyiHQwKzKRQ3Eifk=";
+    rev = "38434eb7d4f9ba2f388d550aa10f64f3c5b61285";
+    hash = "sha256-CTWzf7dTyU5sbA8XPoa9NbkvzdslmBaNCcfmloH26CQ=";
   };
 
   # The project exposes its packages through an overlay whose `dsh` attribute
