@@ -48,6 +48,7 @@ in
     ++ (
       if host.enable_ui_master then
         [
+          kdePackages.kdenlive
           gimp3
           chromium
           codex
