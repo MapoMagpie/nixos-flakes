@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-REPO="bea4dev/ShojiWM"
+REPO="MapoMagpie/ShojiWM"
 BRANCH="main"
 DIR="$(cd "$(dirname "$0")" && pwd)"
 PKG="$DIR/package.nix"
