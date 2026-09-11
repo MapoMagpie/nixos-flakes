@@ -14,16 +14,16 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "flyline";
-  version = "1.7.1";
+  version = "1.8.0";
 
   src = fetchurl {
     url = "https://github.com/HalFrgrd/flyline/releases/download/v${finalAttrs.version}/libflyline-v${finalAttrs.version}-${target}.tar.gz";
     hash =
       {
-        "x86_64-linux" = "sha256-oX+hhN2/rSmb2SmoR4+CnmSrGP++B/Ab1g108J3wREY=";
-        "aarch64-linux" = "sha256-X9NHamF1tCF/zUL+1viQqEwjwu6pApYuRijdwva9Rfc=";
-        "x86_64-darwin" = "sha256-778zoiaIplc3W++u2y1NMsSowHLHPE2Dx9T7ySCIQCI=";
-        "aarch64-darwin" = "sha256-2F+07gYBK1mbuWX+M1Rld41BkJTxVk4XZl8wnMoX8zI=";
+        "x86_64-linux" = "sha256-/xg03kdJriRUg4jrsFTP4tGFcJP5d2jsVWfVjuScJFs=";
+        "aarch64-linux" = "sha256-4HlW0PSS2maC81u1UJZi2b3VQIpXTFYLUghPq8BEmkY=";
+        "x86_64-darwin" = "sha256-CdLpEGbv0CNnHpjkZiMeX3J9Z1XHr+WsrBY1ZEmvzJI=";
+        "aarch64-darwin" = "sha256-Hnnrk0HqhWzoUk1vY2s9SlmnW6sf1hQZDLTVPN8rztQ=";
       }
       .${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
   };
