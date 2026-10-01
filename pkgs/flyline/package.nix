@@ -5,25 +5,27 @@
   fetchurl,
 }:
 let
-  target = {
-    "x86_64-linux" = "x86_64-unknown-linux-gnu";
-    "aarch64-linux" = "aarch64-unknown-linux-gnu";
-    "x86_64-darwin" = "x86_64-apple-darwin";
-    "aarch64-darwin" = "aarch64-apple-darwin";
-  }.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
+  target =
+    {
+      "x86_64-linux" = "x86_64-unknown-linux-gnu";
+      "aarch64-linux" = "aarch64-unknown-linux-gnu";
+      "x86_64-darwin" = "x86_64-apple-darwin";
+      "aarch64-darwin" = "aarch64-apple-darwin";
+    }
+    .${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "flyline";
-  version = "1.8.0";
+  version = "1.9.0";
 
   src = fetchurl {
     url = "https://github.com/HalFrgrd/flyline/releases/download/v${finalAttrs.version}/libflyline-v${finalAttrs.version}-${target}.tar.gz";
     hash =
       {
-        "x86_64-linux" = "sha256-/xg03kdJriRUg4jrsFTP4tGFcJP5d2jsVWfVjuScJFs=";
-        "aarch64-linux" = "sha256-4HlW0PSS2maC81u1UJZi2b3VQIpXTFYLUghPq8BEmkY=";
-        "x86_64-darwin" = "sha256-CdLpEGbv0CNnHpjkZiMeX3J9Z1XHr+WsrBY1ZEmvzJI=";
-        "aarch64-darwin" = "sha256-Hnnrk0HqhWzoUk1vY2s9SlmnW6sf1hQZDLTVPN8rztQ=";
+        "x86_64-linux" = "sha256-C5asGwCCbjzePc8QkuPF86wGxMjKvIE/R9wrmGg4/A8=";
+        "aarch64-linux" = "sha256-XacRCp55MITg9Cl2tN+NOZ7fD8+gselaTfL0zSAkM6E=";
+        "x86_64-darwin" = "sha256-Gx2IShCxZnNQGnKTs7g/hz4Bxtv6RDAcSDc7OBGdwwg=";
+        "aarch64-darwin" = "sha256-6RtHOKYiIdupOrFmyj2+oTH4H7dpDoyDgUVpB0LLaTI=";
       }
       .${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
   };
