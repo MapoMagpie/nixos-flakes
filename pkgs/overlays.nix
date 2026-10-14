@@ -1,6 +1,7 @@
 { ... }:
 {
   nixpkgs.overlays = [
+    (import ./typescript-language-server-overlay.nix)
     (self: super: {
       github-copilot-cli = super.callPackage ./github-copilot-cli/package.nix { };
       flyline = super.callPackage ./flyline/package.nix { };
