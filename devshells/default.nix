@@ -6,7 +6,6 @@ let
     config.android_sdk.accept_license = true;
     overlays = [
       rust-overlay.overlays.default
-      (import ../pkgs/typescript-language-server-overlay.nix)
     ];
   };
   rust = pkgs.rust-bin.stable.latest.default.override {
