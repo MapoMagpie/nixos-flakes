@@ -10,9 +10,6 @@
     senime.url = "github:MapoMagpie/senime";
     senime.inputs.nixpkgs.follows = "nixpkgs";
 
-    helix.url = "github:MapoMagpie/helix/my-helix";
-    helix.inputs.nixpkgs.follows = "nixpkgs";
-
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -36,7 +33,6 @@
       nixpkgs,
       rimedm,
       senime,
-      helix,
       rust-overlay,
       ...
     }:
@@ -49,7 +45,6 @@
             inherit
               rimedm
               senime
-              helix
               host
               ;
           };
