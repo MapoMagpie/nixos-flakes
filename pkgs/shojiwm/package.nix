@@ -21,13 +21,13 @@
 # outputHash in 40e99b7 ("nix: fix smithay outputHashes after fork rev bump").
 
 let
-  rev = "d22f32e524f9fa97375535b33945d13159d72fe4";
+  rev = "98f84845ebbaabf0cd847d7dc5ac628e5adfccce";
 
   src = fetchFromGitHub {
     owner = "MapoMagpie";
     repo = "ShojiWM";
     inherit rev;
-    hash = "sha256-1/FWsxdLowO/aXrVSCeW2PVIOf0qPCUrDyX4RnwbC+8=";
+    hash = "sha256-ZneGdoGW0iheFj8G8snUHqfhOt0DfdtjpmJCI/Bfg5U=";
   };
 in
 callPackage (src + "/nix/package.nix") {
