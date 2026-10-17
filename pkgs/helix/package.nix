@@ -10,11 +10,11 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "helix";
-  version = "v20260714";
+  version = "v20261017";
 
   src = fetchurl {
     url = "https://github.com/MapoMagpie/helix/releases/download/${version}/helix-source.tar.xz";
-    hash = "sha256-l2r1FIQ6dHyQsJ2JEuKbyd6zBJJo6JWU/4Qf9YvnPQI=";
+    hash = "sha256-nK8QRXfxAjgw6JdA6la0XnYMc487YlM6+0+v7elFiy0=";
   };
 
   # tarball 直接解压到当前目录（非子目录），需显式指定
@@ -30,7 +30,7 @@ rustPlatform.buildRustPackage rec {
   # 预编译 runtime 替代 grammars.nix 的 IFD 构建
   runtime = fetchurl {
     url = "https://github.com/MapoMagpie/helix/releases/download/${version}/helix-runtime.tar.xz";
-    hash = "sha256-h5QXXOQflEgMQ85BwmYFiWASV91L5lQx0cnK2pQij2w=";
+    hash = "sha256-v8Uf5/Rx6fmk3KfphRK60BZqTRoIm6vOXeyAb5P+/l0=";
   };
 
   runtimeDir = runCommand "helix-runtime" { } ''
