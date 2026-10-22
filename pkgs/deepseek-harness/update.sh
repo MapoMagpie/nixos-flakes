@@ -28,7 +28,7 @@ echo "bumping $current -> $latest"
 # --- 2. fetchFromGitHub nar hash for the new rev ---------------------------
 hash="$(nix-prefetch-url --unpack --type sha256 \
   "https://github.com/$REPO/archive/$latest.tar.gz")"
-sri="$(nix hash to-sri --type sha256 "$hash")"
+sri="$(nix hash convert --hash-algo sha256 --to sri "$hash")"
 
 # --- 3. patch package.nix in place -----------------------------------------
 sed -i "s|rev = \"$current\"|rev = \"$latest\"|" "$PKG"
