@@ -9,17 +9,25 @@
 let
   # ── Text-based files (built into nix store) ─────────────────
   bashrc = pkgs.writeText "bashrc" ''
-    enable -f ${pkgs.flyline}/lib/libflyline.so flyline
-    flyline suggestions --auto-suggest true
-    flyline mouse --mode disabled
-    flyline key bind Ctrl+b always=moveLeftOneWord
-    flyline key bind Ctrl+w always=moveRightOneWord
-    flyline key bind Ctrl+h always=moveLeft
-    flyline key bind Ctrl+l always=moveRight
-    flyline create-prompt-widget custom --name STARSHIP --command "${currDir}/misc/scripts/shell_prompt.sh" --placeholder prev
-    flyline create-prompt-widget custom --name PATHABBR --command "${currDir}/misc/scripts/path_abbr 40" --placeholder prev
-    PS1='\e[02m[\t]\e[00m \e[01;04;32mPATHABBR\e[00m STARSHIP \n\e[01;95m⦊:\e[00m'
-    PS1_FINAL='\e[02m[\t]-|\e[00m'
+    # flyline is a loadable bash builtin that refuses to activate in
+    # non-interactive shells. Such shells still reach this file (ssh remote
+    # commands, `nix copy`/`nix-store --serve`, scripts), where `enable -f`
+    # prints "load function for flyline returns failure (0): not loaded" and
+    # every following `flyline ...` line fails with "command not found" on
+    # stderr — noisy enough to break scripts that parse stderr.
+    if [[ $- == *i* ]]; then
+      enable -f ${pkgs.flyline}/lib/libflyline.so flyline
+      flyline suggestions --auto-suggest true
+      flyline mouse --mode disabled
+      flyline key bind Ctrl+b always=moveLeftOneWord
+      flyline key bind Ctrl+w always=moveRightOneWord
+      flyline key bind Ctrl+h always=moveLeft
+      flyline key bind Ctrl+l always=moveRight
+      flyline create-prompt-widget custom --name STARSHIP --command "${currDir}/misc/scripts/shell_prompt.sh" --placeholder prev
+      flyline create-prompt-widget custom --name PATHABBR --command "${currDir}/misc/scripts/path_abbr 40" --placeholder prev
+      PS1='\e[02m[\t]\e[00m \e[01;04;32mPATHABBR\e[00m STARSHIP \n\e[01;95m⦊:\e[00m'
+      PS1_FINAL='\e[02m[\t]-|\e[00m'
+    fi
     shopt -s checkjobs
     eval "$(${pkgs.zoxide}/bin/zoxide init bash)"
     source ${currDir}/misc/scripts/yazi_cwd.sh
