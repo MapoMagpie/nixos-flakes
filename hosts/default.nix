@@ -68,6 +68,7 @@ else if hostname == "slavenixostwo" then
     enable_ui_master = false;
     enable_game = false;
     enable_server = true;
+    enable_gateway = true;
   }
 else
   { }
