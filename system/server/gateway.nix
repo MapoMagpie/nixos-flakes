@@ -61,13 +61,21 @@ let
   configFile = "${userHome}/.config/mihomo/config.yaml";
 
   # ===== 规则片段 =====
-  ifaceRule = lib.optionalString (lanIfaces != [ ]) (lib.concatMapStringsSep "\n  " (i: "iifname != \"${i}\" return") lanIfaces);
+  ifaceRule = lib.optionalString (lanIfaces != [ ]) (
+    lib.concatMapStringsSep "\n  " (i: "iifname != \"${i}\" return") lanIfaces
+  );
 
-  lanRule4 = lib.optionalString (lanSubnets != [ ]) "meta nfproto ipv4 ip saddr != { ${lib.concatStringsSep ", " lanSubnets} } return";
+  lanRule4 = lib.optionalString (
+    lanSubnets != [ ]
+  ) "meta nfproto ipv4 ip saddr != { ${lib.concatStringsSep ", " lanSubnets} } return";
 
-  lanRule6 = lib.optionalString (lanSubnet6 != null) "meta nfproto ipv6 ip6 saddr != { ${lanSubnet6} } return";
+  lanRule6 = lib.optionalString (
+    lanSubnet6 != null
+  ) "meta nfproto ipv6 ip6 saddr != { ${lanSubnet6} } return";
 
-  bypassMacRule = lib.optionalString (bypassMacs != [ ]) ("ether saddr { ${lib.concatStringsSep ", " bypassMacs} } return");
+  bypassMacRule = lib.optionalString (bypassMacs != [ ]) (
+    "ether saddr { ${lib.concatStringsSep ", " bypassMacs} } return"
+  );
 
   portList = "{ " + lib.concatStringsSep ", " (map toString extraPorts) + " }";
   portRule = lib.optionalString (extraPorts != [ ]) (
@@ -278,4 +286,33 @@ in
   # 面板：http://<本机 LAN IP>:${toString apiPort}/ui（external-controller 见 config.yaml）
   # 本机进程走 output，不会被劫持；想代理本机流量见 README 附录 B，或设
   # http_proxy=http://127.0.0.1:${toString httpPort}。
+
+  # ================= 7. 本机自身的 DNS：DoT 防污染 =================
+  # 旁路网关自己的解析走 systemd-resolved + DoT（TCP 853），既不经过 mihomo、
+  # 也不受运营商对明文 53 的投毒影响 —— github.com / githubusercontent.com
+  # 这类常被解析到错误 IP 的域名，在本机上直接拿到真实地址，git / curl 无需代理。
+  # （局域网客户端的 DNS 仍由 mihomo:1053 接管，见上面的 chain dns）
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      DNS = [
+        "223.5.5.5#dns.alidns.com"
+        "1.12.12.12#dot.pub"
+        "1.1.1.1#cloudflare-dns.com"
+      ];
+      # 严格模式：绝不退回到明文 53（否则等于没防污染）。
+      # 三个服务器都不可达时本机完全无法解析 —— 这比静默被投毒更好排查。
+      DNSOverTLS = "yes";
+      # 全局默认路由：所有域名都走上面三个 DoT，不用链路下发的域名
+      Domains = [ "~." ];
+      # 想开 DNSSEC 就取消注释；个别国内域名 DNSSEC 配错会导致解析失败
+      # DNSSEC = "allow-downgrade";
+    };
+  };
+
+  # 坑：services.resolved 默认把 NM 的 DNS 模式设成 systemd-resolved，
+  # 但 NM 仍会把 DHCP 下发的（可能被污染的）DNS 作为「链路级默认路由」交给
+  # resolved，而链路级设置优先于上面的全局 DoT —— 结果就是投毒照样生效。
+  # 强制 "none" 后 NM 不再触碰 DNS，本机解析只认 resolved.conf 里的 DoT。
+  networking.networkmanager.dns = lib.mkForce "none";
 }
